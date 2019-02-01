@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="2">eb2541e7dbfae780e9c39334ca961956</sp_column>
+        <sp_widget display_value="Group Profile - BAE">d99878334f068380bceaf9b7c210c783</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>Andy.bourner@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-10 13:30:42</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>ac65c1e7dbfae780e9c39334ca96192e</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Your supporting IM&amp;T team</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_instance_ac65c1e7dbfae780e9c39334ca96192e</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-16 10:49:13</sys_updated_on>
+        <title>Your supporting IM&amp;T team</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"sys_user_group": {
+		"value": "371f0d386f4d1900d6b3d6426e3ee414",
+		"displayValue": "Collaborative Working Environment"
+	},
+	"jobtitle": {
+		"value": "",
+		"displayValue": ""
+	}
+}]]></widget_parameters>
+    </sp_instance>
+</record_update>

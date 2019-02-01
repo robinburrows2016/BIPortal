@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>idea-mark-as-read-article-modal-bae</id>
+        <sp_widget display_value="BI Portal - Idea Content">e5fc05ebdb3ea780561fb29a689619ce</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-14 15:23:28</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>db650e3cdb876b80561fb29a689619e9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>idea-mark-as-read-article-modal-bae</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_ng_template_db650e3cdb876b80561fb29a689619e9</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-14 15:23:28</sys_updated_on>
+        <template><![CDATA[              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" ng-click="c.exitMarkAsReadModal()" aria-label="{{data.messages.CLOSE}}"><i class="fa fa-times" aria-hidden="true"></i></button>
+                  <h4 id="markasreadTitle" class="modal-title">{{::data.messages.MARK_AS_READ}}</h4>
+                </div>
+                  <div class="modal-body">
+                    <div class="jumbotron" style="padding: 20px!important; margin-bottom: 0px!important;">
+                    <p style="margin-bottom: 0px!important;"><strong><span style="font-size: 12pt;">PLEASE NOTE: You should only use the 'Submit' button once you have read and discussed this article.</span></strong></p>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="c.exitMarkAsReadModal()">{{data.messages.CANCEL}}</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="c.submitMarkAsRead()">{{data.messages.SUBMIT}}</button>
+                  </div>                  
+
+              </div>]]></template>
+    </sp_ng_template>
+</record_update>

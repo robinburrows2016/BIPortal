@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope, $http, $filter, $rootScope, $timeout, $location, $q, $interval) {
+	/* widget controller */
+	var c = this;
+	var apiBaseUrl = '/api/sn_communities/v1/community',
+			defaultFeedCount = parseInt(c.options.feed_count),
+			startFrom = 0,
+			fetchTill = defaultFeedCount,
+			fetchAllContents = false,
+			url = '',
+			sessionTimeStamp,
+			loadingMore = false,
+			queryParams = $location.search(),
+			delayHttpRequest = false,
+			feedUser = c.data.liveProfileId,
+			minimumActivityCount = parseInt(c.options.minimum_activity_count),
+			defaultTopic = '',
+			forumDepthLevel = c.options.forum_level,
+			nextRecord;
+
+	c.hideContentFeed = true;
+
+	function initiateContentFeed() {
+
+		c.portal = $rootScope.portal.url_suffix;
+		c.feeds = []; //backup list
+		c.feedList = []; //main list
+		c.flatForumList = [];
+		c.hasMoreContents = false;
+		c.selectedFilters = {};
+		c.data.results = [1];
+		c.dummyFilter = {
+			contentType: JSON.stringify({name: '${All Content}', dummy: true}),
+			forum: JSON.stringify({name: '${All Forums}', dummy: true}),
+			sort: JSON.stringify(c.data.selectedSortBy)
+		}
+		c.filters = {};
+		c.sortBy = c.data.sortBy;
+		c.needForumDefault = false; //if on forum page
+		//preselection of filters
+		c.selectedFilters.contentType = '';
+		c.selectedFilters.forum = '';
+		c.selectedSortBy = c.data.selectedSortBy;
+		c.showLoading = false;
+		c.showNoResults = false;
+		c.showFilters = false;
+
+		//pre select the forum on Forum Landing page
+		if($rootScope.page.sys_id == 'e5b16a01cb503200b2d05ea3434c9c45'){
+			c.needForumDefault = true;
+			delayHttpRequest = true;
+		}
+		//set the user if on profile page
+		if($rootScope.page.sys_id == '0e4ddebfdbcee200b1f6f78eaf96198e' && queryParams.user)
+			feedUser = queryParams.user;
+
+		//default topic on topic page
+		if($rootScope.page.sys_id == '78a8a700cbe03200b2d05ea3434c9cc4')
+			defaultTopic = queryParams.sys_id;
+
+		//initialize sort select2
+		$timeout(function(){
+			if($('select.cm-feed-sort-select option').length && $('select.cm-feed-sort-select option')[0].value.indexOf('? object:') > -1)
+				$($('select.cm-feed-sort-select option')[0]).remove(); //removing the first empty option introduced by angular
+			$('.cm-content-feed select.cm-feed-sort-select.cm-select2').select2({minimumResultsForSearch: 10});
+			$('.cm-content-feed select.cm-feed-sort-select.cm-select2').select2('val',c.dummyFilter.sort);
+
+			//Attaching handler to select2 open event to show correct highlighted option.
+			//also hiding the first null option
+			$('.cm-content-feed select.cm-feed-sort-select.cm-select2').on('select2-open', function(e) { 
+				if(c.selectedSortBy){
+					$('.select2-drop .select2-results .select2-result').removeClass('select2-highlighted')
+						.each(function(i,e){
+						if($(e).children('.select2-result-label').text() == '')
+							$(e).addClass('ng-hide');
+						if($(e).children('.select2-result-label').text().indexOf(c.selectedSortBy.label) > -1)
+							$(e).addClass('select2-highlighted');
+					});
+				}
+			});
+
+		});
+		//Fetch the feeds
+		c.loadMore = function(filterChanged, firstLoad){
+			if(!loadingMore && !delayHttpRequest){
+				if(firstLoad || filterChanged){
+					//generate a session time Stamp
+					sessionTimeStamp = new Date().toISOString();
+					startFrom = 0;
+					fetchTill = defaultFeedCount;
+				}else{
+					startFrom = nextRecord;
+					fetchTill = nextRecord + defaultFeedCount;
+				}
+				//fetch data from filters
+				var selectedForum = c.selectedFilters.forum.sys_id ? c.selectedFilters.forum.sys_id: '',
+						selectedContent = c.selectedFilters.contentType.sys_id ? c.selectedFilters.contentType.sys_id : '';
+
+				url = '/contents?last='+fetchTill+'&stFrom='+startFrom + '&before='+ encodeURI(sessionTimeStamp);
+				url = url + '&forum=' + selectedForum + '&type=' + selectedContent;
+				url = url + '&sort=' + c.selectedSortBy.name;
+				if(defaultTopic)
+					url = url + '&topic=' + defaultTopic;
+				if($rootScope.page.sys_id == '0e4ddebfdbcee200b1f6f78eaf96198e')
+					url = url + '&user=' + feedUser;
+				if(fetchAllContents)
+					url = url + '&all=1';
+
+				if(c.forumNotFound){
+					c.showLoading = false;
+					c.showNoResults = true;
+					c.hideContentFeed = false;
+					return;
+				}
+
+				loadingMore = true;
+				c.showLoading = true;
+				c.showNoResults = false;	
+				$http.get(apiBaseUrl + url)
+					.then(function(data){
+					loadingMore = false;
+					if(data){
+						if(data.data.result.contents.length){
+							processRawFeeds(data.data.result.contents);
+							if(firstLoad || filterChanged){
+								c.feeds = data.data.result.contents;
+								//putting timeout to make sure 'sn-time-ago' refreshes
+								c.feedList = [];
+								$timeout(function(){
+									c.showLoading = false;
+									c.showFilters = true;
+									c.feedList = data.data.result.contents;
+									if(firstLoad)
+										filterContentTypes();
+								});
+							}
+							else{
+								c.feeds = c.feeds.concat(data.data.result.contents);
+								//putting timeout to make sure 'sn-time-ago' refreshes
+								c.feedList = [];
+								c.showLoading = false;
+								c.showFilters = true;
+								$timeout(function(){
+									c.feedList = c.feedList.length ? c.feedList.concat(data.data.result.contents) : c.feeds;
+									//filterContentTypes();
+								});
+							}
+							c.hasMoreContents = data.data.result.hasMoreRecords;
+							nextRecord = data.data.result.nextRecord;
+						}
+						else{
+							//clear feeds display if no record fetched
+							if(firstLoad || filterChanged){
+								c.feeds = [];
+								c.feedList = [];
+								c.hasMoreContents = false;
+								if(!c.feedList.length){
+									c.showLoading = false;
+									c.showNoResults = true;	
+								}
+							}
+						}
+					}
+					if(firstLoad){
+						c.hideContentFeed = false;
+					}
+				}, function(error){
+					loadingMore = false;
+					c.showLoading = false;
+					c.showNoResults = true;
+					console.warn(error);
+					if(firstLoad)
+						c.hideContentFeed = false;
+				});
+			}
+		};
+		//
+		function processRawFeeds(rawFeeds){
+			//convert view counts to number
+			angular.forEach(rawFeeds, function(feed){
+				feed.view_count = parseInt(feed.view_count);
+			});
+		}
+
+		c.showAnsweredIcon = function(content){
+			return (content.answered && content.content_type.sys_id == '5a2fcaa0dbd26600b1f6f78eaf9619a8');
+		}
+
+
+		function highlightNewPost(){
+			$timeout(function(){
+				$('.cm-content-feed .cm-list-content li:first-of-type').
+				addClass('cm-highlight-post');
+				$timeout(function(){
+					$('.cm-content-feed .cm-highlight-post').removeClass('cm-highlight-post');
+				},5000);
+			},500);
+		}
+
+		//listen for new post event
+		$rootScope.$on('sp.community.content.new', function(e, data){
+			if(data && data.new_content && (data.new_content.status == 201) && data.new_content.content){
+				//c.feeds.unshift(data.new_content.content);
+				if(c.showNoResults)
+					c.loadMore(false, true);
+				else{
+					var tempList = c.feedList;
+					c.feedList = []; //because of sn-time-ago issue.
+					$timeout(function(){
+						data.new_content.content.updated_date = data.new_content.content.updated_date_utc;
+						data.new_content.content.published_date = data.new_content.content.published_date_utc;
+						//hide sn-time-ago for 1 minute
+						data.new_content.content.hideTimeAgo = true;
+						$timeout(function(){
+							data.new_content.content.hideTimeAgo = false;
+						}, 70000);
+						tempList.unshift(data.new_content.content);
+						//check if content type is there in filter or not
+						var newContentType = data.new_content.content.content_type,
+								flag = 0;
+						c.filters.contentTypes.forEach(function(type){
+							if(type.sys_id == newContentType.sys_id)
+								flag = 1;
+						});
+						if(!flag)
+							c.filters.contentTypes.push(data.new_content.content.content_type);
+						
+						c.feedList = tempList;
+						highlightNewPost();
+					});
+				}
+			}
+		});
+
+		function createFlatList(forumArray, targetArray, level){
+			var	l = level || 0,
+					t = targetArray || [];
+			angular.forEach(forumArray, function(forum){
+				forum.level = l;
+				t.push(forum);
+				if(forum.subforumCount > 0)
+					createFlatList(forum.subforums, t, l + 1);
+			});
+		}
+
+		function filterContentTypes (){
+			//check what all contents are present in the feed
+			c.filters.contentTypes = [];
+			var BreakException = {};
+			angular.forEach(c.rawContentTypes, function(typeObj){
+				var typeId = Object.keys(typeObj)[0];
+				try {
+					angular.forEach(c.feedList, function(feed){
+						if(feed.content_type.sys_id == typeId){		
+							c.filters.contentTypes.push(feed.content_type);
+							throw BreakException; //break out of the loop
+						}
+					});
+				}
+				catch (e) {
+					if (e !== BreakException) throw e;
+				}
+			});
+			if(!c.contentFilterInitialized)
+				initializeContentFilter();
+		}
+
+		function initializeContentFilter(){
+			$timeout(function(){
+				$('.cm-content-feed select.cm-feed-content-select.cm-select2').select2({minimumResultsForSearch: 10});
+				var interval = $interval(function(){
+					$('.cm-content-feed select.cm-feed-content-select.cm-select2').select2('val',c.dummyFilter.contentType);
+					if($('.cm-content-feed select.cm-feed-content-select.cm-select2').select2('val') !== "")
+						$interval.cancel(interval);
+				}, 500);
+				//Attaching handler to select2 open event to show correct highlighted option.
+				$('.cm-content-feed select.cm-feed-content-select.cm-select2').on('select2-open', function(e) { 
+					$('.select2-drop .select2-results .select2-result').each(function(i, e){
+						if($(e).children('.select2-result-label').text() == '')
+							$(e).remove();
+					})
+					if(c.selectedFilters.contentType && c.selectedFilters.contentType.sys_id){
+						$('.select2-drop .select2-results .select2-result').removeClass('select2-highlighted')
+							.each(function(i,e){
+							if($(e).children('.select2-result-label').text() == c.selectedFilters.contentType.name)
+								$(e).addClass('select2-highlighted');
+						});
+					}
+				});
+
+				c.contentFilterInitialized = true;
+			});
+		}
+
+		function initializeForumFilter(){
+			$timeout(function(){
+				$('.cm-content-feed select.cm-feed-forum-select.cm-select2').select2({minimumResultsForSearch: 10});
+				var interval = $interval(function(){
+					if(c.selectedFilters.forum)
+						$('.cm-content-feed select.cm-feed-forum-select.cm-select2').select2('val',JSON.stringify(c.selectedFilters.forum)).prop("disabled", true);
+					else
+						$('.cm-content-feed select.cm-feed-forum-select.cm-select2').select2('val',c.dummyFilter.forum);
+
+					if($('.cm-content-feed select.cm-feed-forum-select.cm-select2').select2('val') !== "")
+						$interval.cancel(interval);
+				}, 500);
+				//Attaching handler to select2 open event to show correct highlighted option.
+				$('.cm-content-feed select.cm-feed-forum-select.cm-select2').on('select2-open', function(e) { 
+					$('.select2-drop .select2-results .select2-result').each(function(i, e){
+						if($(e).children('.select2-result-label').text() == '')
+							$(e).remove();
+					})
+					if(c.selectedFilters.forum && c.selectedFilters.forum.sys_id){
+						$('.select2-drop .select2-results .select2-result').removeClass('select2-highlighted')
+							.each(function(i,e){
+							if($(e).children('.select2-result-label').text() == c.selectedFilters.forum.name)
+								$(e).addClass('select2-highlighted');
+						});
+					}
+				});
+			});
+			angular.forEach(c.flatForumList, function(forum){
+				if(forum.sys_id == queryParams.sys_id){
+					c.selectedFilters.forum = forum;
+				}
+			});
+			if(c.needForumDefault && !c.selectedFilters.forum){
+				c.forumNotFound = true;	
+			}
+			delayHttpRequest = false;
+		}
+
+		//Assign Watchers for filters and init feeds
+		function initFeeds(){
+			initializeForumFilter();
+			//Watch for filter changes
+			$scope.$watch('c.selectedFilters', function(value){
+				angular.forEach(c.selectedFilters, function(value, key){
+					if (typeof value !== 'object' && value){
+						c.selectedFilters[key] = JSON.parse(value);
+					}
+				});
+
+				//removing the first empty option introduced by angular
+				if($('.cm-content-feed select.cm-feed-forum-select.cm-select2 option').length && 
+					 $('.cm-content-feed select.cm-feed-forum-select.cm-select2 option')[0].value.indexOf('? object:') > -1)
+					$($('.cm-content-feed select.cm-feed-forum-select.cm-select2 option')[0]).remove();
+				if($('.cm-content-feed select.cm-feed-content-select.cm-select2 option').length &&
+					 $('.cm-content-feed select.cm-feed-content-select.cm-select2 option')[0].value.indexOf('? object:') > -1)
+					$($('.cm-content-feed select.cm-feed-content-select.cm-select2 option')[0]).remove();
+
+				c.loadMore(true);
+			}, true);
+			//Watch for Sorting change
+			$scope.$watch('c.selectedSortBy', function(value){
+				if (typeof value !== 'object' && value){
+					c.selectedSortBy = JSON.parse(value);
+				}
+
+				//removing of the first empty option ---> taken care while attaching handler to this select2 open
+
+				c.loadMore(true);
+			});
+
+			//first load
+			c.loadMore(false,true);
+		}
+
+		/*------- Get Forums --------*/
+		function fetchForums(){
+			$http.get(apiBaseUrl + '/forums?getDetail=1&depth_level=' + forumDepthLevel)
+				.then(function(data){
+				if(data && data.data && data.data.result){
+					c.filters.forums = data.data.result;
+					createFlatList(c.filters.forums, c.flatForumList);
+					initFeeds();	
+				}
+			}, function(error){
+				console.error(error);
+			});
+		}
+		/**--- Get the Content Types-- */
+		$http.get(apiBaseUrl + '/user/contentTypes')
+			.then(function(data){
+			if(data && data.data && data.data.result){
+				c.rawContentTypes = data.data.result.result;
+				fetchForums();	
+			}
+		}, function(error){
+			console.error(error);
+		});
+
+	} //initcontentFeed END
+
+	//init
+	if(c.data.isLoggedIn) {
+		//check whether to show the widget or not
+		if($rootScope.page.sys_id == '3150fe57531032007a97e192d5dc3427'){
+			/*		$http.get('/api/now/actsub/subscriptions/'+ c.data.liveProfileId)
+				.then(function(data){
+				if(data && data.data && data.data.result){
+					if(data.data.result.subscriptions.length){
+						if(data.data.result.activity_count < minimumActivityCount)
+							initiateContentFeed();
+					}
+					else
+						initiateContentFeed();
+				}
+			}, function(error){
+				console.warn(error);
+			});	*/
+			if(c.data.subsResult){
+				if(c.data.subsResult.subscriptionsCount && c.data.subsResult.subscriptionsCount > 0 ){
+					if(c.data.subsResult.activityStreamCount < minimumActivityCount)
+						initiateContentFeed();
+				}
+				else
+					initiateContentFeed();	
+			}
+		}
+		else {
+			initiateContentFeed();
+		}
+	}
+	else {
+		initiateContentFeed();
+	}
+
+
+	//////Responsiveness
+	function resizeDivs(a, b , c){
+		a = a || '';
+		b = b || '';
+		c = c || '';
+		$('.cm-content-feed .cm-content-item .content-meta').css('padding-left', a);
+		$('.cm-content-feed .cm-content-item .content-main .content-icon').css('padding-right', b);
+		$('.cm-content-feed .cm-content-item .content-main .content-header').css('width', c);	
+	}
+
+	var interval;
+	function windowResized() {
+		var viewPortWidth = $(window).width();
+		if (viewPortWidth < 380){
+			if(interval){
+				$interval.cancel(interval);
+				interval = null;
+			}	
+			interval = $interval(function(){
+				resizeDivs('25px','5px','85%');
+			}, 50);
+		}
+		else if (viewPortWidth < 660){
+			if(interval){
+				$interval.cancel(interval);
+				interval = null;
+			}	
+			interval = $interval(function(){
+				resizeDivs('30px','10px','90%');
+			}, 50);
+		}
+		else if (viewPortWidth < 1210){
+			if(interval){
+				$interval.cancel(interval);
+				interval = null;
+			}	
+			interval = $interval(function(){
+				resizeDivs('','','93%');
+			}, 50);
+		}
+		else{
+			$interval.cancel(interval);
+			interval = null;
+			resizeDivs();
+		}
+	}
+
+	var timeout;
+	$(window).resize(function() {
+		if(timeout){
+			$timeout.cancel(timeout);
+			timeout = null;
+		}
+		timeout = $timeout(windowResized, 50);
+	});
+
+	$(document).ready(function(){
+		timeout = $timeout(windowResized, 50); 
+	});
+	
+	c.childContent = function(content,count){
+		var text = '';
+		if(content == '5a2fcaa0dbd26600b1f6f78eaf9619a8'){
+			if(count <= 1)
+				text = c.formatMessage(c.data.msg.reply,[count]);
+			else
+				text = c.formatMessage(c.data.msg.replies,[count]);
+		}	
+		else{
+			if(count <= 1)
+				text = c.formatMessage(c.data.msg.comment,[count]);
+			else
+				text = c.formatMessage(c.data.msg.comments,[count]);
+		}	
+		return text;
+	};
+
+
+	c.formatMessage = function(messageText, params) {
+		return messageText.replace(/\{(\d+)\}/g, function() {
+			return params[arguments[1]];
+		});
+	};
+
+
+	//--/
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.cm-content-feed {
+  .cm-content-filters {
+    .cm-filter {
+      padding-bottom: 10px;
+    }
+    .csm-dropdown-select ul.dropdown-menu {
+      width: 100%;
+    }
+    .cm-select2.select2-container .select2-choice {
+      font-size: inherit;
+    }
+  }
+  .cm-content-item {
+    .content-main {
+      .content-icon {
+        display: inline-block;
+        float: left;
+        font-size: 22px;
+        vertical-align: top;
+        color: $link-color;
+        padding-right: 15px;
+      }
+      .content-header {
+        display: inline-block;
+        width: 95%;
+        word-wrap: break-word;
+        h4 {
+          line-height: 1.3;
+          margin: 0px;
+        }
+        .forum-name {
+          margin-top: 5px;
+          margin-bottom: 5px;
+          line-height: 16px;
+          a, a:hover{
+            color: $text-muted;
+          }
+        }
+      }
+    }
+    .content-meta {
+      padding-left: 35px;
+      .info {
+        display: inline-block;
+      }
+      a, a:hover {
+        color: $text-color;
+      }
+    }
+  }
+  .cm-green {
+    color: $brand-success;
+  }
+  .cm-highlight-post{
+    border: 1px solid $brand-success !important;
+    border-bottom: 1px solid $brand-success !important;
+    border-radius: 3px;
+//    padding-left: 16px !important;
+//    padding-right: 16px !important;
+ //   margin-left: -16px;
+ //   margin-right: -16px;
+  }
+
+  .cm-list-filter {
+    margin-bottom: 10px;
+  }
+  .cm-list-content {
+    padding: 0px;
+    ul {
+      margin-bottom: 0px;
+    }
+    li {
+      padding: 10px 15px;
+    }
+    li:not(:last-of-type){
+      border-bottom: 1px solid #ddd;
+    }
+    li:not(:last-of-type){
+      border-bottom: 1px solid $csm-border-color;
+    }
+    li:last-of-type{
+      padding-bottom: 20px;
+    }
+    li.cm-no-result{
+      height: 250px;
+      .cm-content-item {
+        text-align: center;
+        p {
+          margin-top: 100px;
+        }
+        .fa-spinner {
+          font-size: 22px;
+        }
+      }
+    }
+  }  
+  .cm-list-pagination {
+    text-align: center;
+    text-align: -webkit-center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+
+  }
+
+  .self-clear:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>bi-idea-content-feed</id>
+        <internal>false</internal>
+        <link/>
+        <name>BI Portal - Idea Content Feed</name>
+        <option_schema>[{"name":"panel_type","default_value":"default","label":"Panel Type","type":"string"},{"name":"feed_count","default_value":"10","label":"Feeds Count","type":"string"},{"name":"forum_level","default_value":"3","label":"Forum Depth Level","type":"string"},{"name":"minimum_activity_count","default_value":"5","label":"Minimum number of activities to show the Feed","type":"string"}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+
+	var liveProfileGR = new GlideRecord("live_profile");
+	liveProfileGR.addQuery("document",gs.getUser().getID());
+	liveProfileGR.query();
+
+	data.liveProfileId = "";
+
+	if (liveProfileGR.next()) {
+		data.liveProfileId = liveProfileGR.getUniqueValue();
+	}
+
+	data.isLoggedIn = gs.getSession().isLoggedIn();
+
+	data.sortBy = [
+		{
+			name: 'publish',
+			label: gs.getMessage('Recent')
+		},
+		{
+			name: 'view',
+			label: gs.getMessage('Popular')
+		}
+	];
+
+	data.selectedSortBy = {
+		name: 'publish',
+		label: gs.getMessage('Recent')
+	};
+
+	///Load subscription 
+	var actSubCtx = global.ActivitySubscriptionContext.getContext();
+	var subscriptionService = actSubCtx.getSubscriptionService();
+	//data.subsResult = subscriptionService.getSubscriptionsBySubscriber(data.liveProfileId, '', '');
+        data.subsResult = subscriptionService.getActSubCounts(data.liveProfileId);	
+	
+        data.msg = {
+		itemtitle: gs.getMessage("{0} in {1} by {2}"),
+		itemlinktitle: gs.getMessage("{0} under {1} by {2}"),
+		profilelink : gs.getMessage("{0} profile"),
+		viewtext: gs.getMessage("{0} view"),
+		viewstext: gs.getMessage("{0} views"),
+		Video: gs.getMessage("Video"),
+		Blog: gs.getMessage("Blog"),
+		Question: gs.getMessage("Question"),
+		reply: gs.getMessage("{0} reply"),
+		replies: gs.getMessage("{0} replies"),
+		comment: gs.getMessage("{0} comment"),
+		comments: gs.getMessage("{0} comments")
+	};
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-21 15:45:34</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>6fbd4e4fdb0fef80e9c39334ca96190e</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>BI Portal - Idea Content Feed</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_widget_6fbd4e4fdb0fef80e9c39334ca96190e</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-21 15:46:00</sys_updated_on>
+        <template><![CDATA[<div class="cm-content-feed" data-ng-show="!c.hideContentFeed">
+  <div class="csm-content-list">
+    <div class="cm-list-filter self-clear">
+      <div class="cm-content-filters row" data-ng-show="c.showFilters">
+        <div class="col-xs-12 col-sm-12 col-md-9">
+          <div class="row">
+            <div class="cm-filter content-filter col-xs-12 col-sm-12 col-md-4">
+              <select data-ng-model="c.selectedFilters.contentType" class="cm-feed-content-select cm-select2">
+                <option value="" data-ng-show="false"></option>
+                <option value="{{c.dummyFilter.contentType}}">${All Content}</option>
+                <option value="{{content}}" data-ng-repeat="content in c.filters.contentTypes">{{c.data.msg[content.name] ? c.data.msg[content.name]: content.name}}</option>
+              </select>
+            </div>
+            <div class="cm-filter forum-filter col-xs-12 col-sm-12 col-md-5" data-ng-if="!c.needForumDefault" data-ng-click="c.testing($event)">
+              <select data-ng-model="c.selectedFilters.forum" class="cm-feed-forum-select cm-select2">
+                <option value="" data-ng-show="false"></option>
+                <option value="{{c.dummyFilter.forum}}">${All Forums}</option>
+                <option value="{{forum}}" data-ng-repeat="forum in c.flatForumList">{{forum.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="cm-filter sort-by col-xs-12 col-sm-12 col-md-3">
+          <select data-ng-model="c.selectedSortBy" class="cm-feed-sort-select cm-select2">
+            <option value="{{sortOn}}" data-ng-repeat="sortOn in c.sortBy">${Sort By: }{{sortOn.label}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="cm-list-content panel panel-{{::options.panel_type}} csm-tile csm-widget">
+      <ul class="list-unstyled">
+        <li data-ng-repeat="feed in c.feedList track by $index" aria-label="{{c.formatMessage(c.data.msg.itemtitle, [feed.title, (feed.forum ? feed.forum.name : ''), feed.user_details.name])}}">
+          <div class="cm-content-item">
+            <div class="content-main">
+              <div class="content-icon">
+                <i class="fa {{feed.content_type.icon}}" alt="${feed.content_type.name}" data-ng-if="!c.showAnsweredIcon(feed)"></i>
+                <i class="fa fa-check-circle cm-green" aria-hidden="true" data-ng-if="c.showAnsweredIcon(feed)"></i>
+              </div>
+              <div class="content-header">
+                <header>
+                  <h4 class="font-normal">
+                    <!--- Commenting out this part as it was giving error when localization is turned on. Seems like something is missing here.
+                    <a aria-label="{{c.formatMesage(c.data.msg.itemlinktitle, [feed.title, feed.forum.name])}} {{c.showAnsweredIcon(feed) ? ${', This has accepted solution'} : ''}}" 
+                       data-ng-href="{{c.portal}}?id=community_{{feed.content_type.name.toLowerCase()}}&sys_id={{feed.sys_id}}">{{feed.title}}</a> --->
+                    <a data-ng-href="{{c.portal}}?id=community_{{feed.content_type.name.toLowerCase()}}&sys_id={{feed.sys_id}}">{{feed.title}}</a>
+                  </h4>
+                  <h5 class="forum-name font-normal">
+                    <a data-ng-href="{{c.portal}}?id=community_forum&sys_id={{feed.forum.sys_id}}" 
+                       class="">{{feed.forum ? feed.forum.name : ''}}</a>
+                  </h5>
+                </header>
+              </div>
+            </div>
+            <div class="content-meta" tabindex="0">
+              <div class="info">
+                <span class="">${By} <a aria-label="{{c.formatMessage(c.data.msg.profilelink, [feed.user_details.name])}}" data-ng-href="{{c.portal}}?id=community_user_profile&user={{feed.user_details.profile_id}}" class="">{{feed.user_details.name}}</a></span>
+                <span class="csm-separator-dot" aria-label="${separator}">&bull;</span>
+                <span ng-if = "feed.content_type.sys_id!='57f785863b2b220085f76b4ee3efc449'" tabindex="0" class="">${Updated } <!-- {{c.getDateObject(feed.updated_date)}} -->
+                  <span data-ng-hide="feed.hideTimeAgo"><sn-time-ago timestamp="feed.updated_date"/></span> 
+                  <span data-ng-show="feed.hideTimeAgo">${Just Now}</span> 
+                </span>  
+                <span ng-if = "feed.content_type.sys_id=='57f785863b2b220085f76b4ee3efc449'" class="">${Updated } <!-- {{c.getDateObject(feed.updated_date)}} -->
+                  <span data-ng-hide="feed.hideTimeAgo"><sn-time-ago timestamp="feed.published_date"/></span> 
+                  <span data-ng-show="feed.hideTimeAgo">${Just Now}</span>
+                </span>  
+              </div>
+              <div class="info pull-right hidden-xs">
+                <span class="">{{c.childContent(feed.content_type.sys_id,feed.comment_count)}}</span>
+                <span class="csm-separator-dot" aria-label="${separator}">&bull;</span>
+                <span class="">{{c.formatMessage((feed.view_count > 1 ? c.data.msg.viewstext : c.data.msg.viewtext), [feed.view_count])}}</span>
+              </div>
+              <div class="info visible-xs">
+                <span class="">{{c.childContent(feed.content_type.sys_id,feed.comment_count)}}</span>
+                <span class="csm-separator-dot" aria-label="${separator}">&bull;</span>
+                <span class="">{{c.formatMessage((feed.view_count > 1 ? c.data.msg.viewstext : c.data.msg.viewtext), [feed.view_count])}}</span>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="cm-no-result" data-ng-if="c.showLoading">
+          <div class="cm-content-item">
+            <div class="content-main">
+              <p>
+                <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                ${Loading}...
+              </p>
+            </div>
+          </div>
+        </li>
+        <li class="cm-no-result" data-ng-if="c.showNoResults">
+          <div class="cm-content-item">
+            <div class="content-main">
+              <p>
+                ${No results to display}
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="cm-list-pagination">
+      <button class="btn btn-default" name="Load More" data-ng-if="c.hasMoreContents" 
+              data-ng-click="c.loadMore()">${Show More}</button>
+    </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

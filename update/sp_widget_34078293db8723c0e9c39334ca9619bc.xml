@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+	c.show_recent = false;
+	
+	c.KEYS = {
+						DOWN:40,
+						LEFT:37,
+						RIGHT:39,
+						TAB:9,
+						UP:38
+					 }
+	
+	if (c.data.recentItems.length > 0)
+		c.show_recent = true;
+
+	c.changePanel = function(panel_name) {
+		if (c.show_recent) {
+			if (panel_name == 'popular')
+				c.show_recent = false;
+		} else {
+			if (panel_name == 'recent')
+				c.show_recent = true;
+		}
+	};
+	
+	c.switchTab = function($event, tab) {
+		var key = null;
+		if (event.keyCode === c.KEYS.LEFT || event.keyCode === c.KEYS.UP)
+			key = c.KEYS.LEFT;
+		else if (event.keyCode === c.KEYS.RIGHT || event.keyCode === c.KEYS.DOWN)
+			key = c.KEYS.RIGHT;
+		else if (event.keyCode === c.KEYS.TAB) {
+			return;
+		}
+		if (key === null)
+			return;
+
+		c.show_recent = !c.show_recent;
+		if (c.show_recent)
+			$('a.recent').focus();
+		else
+			$('a.popular').focus();
+	}
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.sc-tab-a {&#13;
+   color: $primary;&#13;
+   border: 0;&#13;
+   border-bottom: 3px solid $primary;&#13;
+   background-color: transparent;&#13;
+}&#13;
+&#13;
+.nav &gt; li.item {&#13;
+  text-align: center;&#13;
+}&#13;
+&#13;
+.recent-widget {&#13;
+  .panel-heading {&#13;
+			padding-bottom : 0px;&#13;
+	}&#13;
+  &#13;
+  .row {&#13;
+    margin-left: 0;&#13;
+    margin-right:0;&#13;
+    padding-top: 15px;&#13;
+    padding-left: 10px;&#13;
+    padding-right: 10px;&#13;
+  }&#13;
+  .item-card {&#13;
+    margin-bottom: 15px;&#13;
+  }&#13;
+}&#13;
+&#13;
+.overflow-100 {&#13;
+    color: $primary;  &#13;
+}&#13;
+&#13;
+.m-b {  &#13;
+    margin-top: 5px !important;  &#13;
+    margin-bottom: 10px !important;&#13;
+}&#13;
+&#13;
+.icon-container {&#13;
+  position: relative;&#13;
+}&#13;
+&#13;
+.icon-overlay {&#13;
+  position: absolute;&#13;
+  bottom: 0;&#13;
+  left: 0;&#13;
+  right: 0;&#13;
+  overflow: hidden;&#13;
+  width: 100%;&#13;
+  height: 0;&#13;
+  transition: .5s ease;&#13;
+  opacity: 1.0;&#13;
+  filter: alpha(opacity=100); /* For IE8 and earlier */&#13;
+  visibility:hidden;&#13;
+}&#13;
+&#13;
+.icon-container:hover .icon-overlay {&#13;
+  height: 100%;&#13;
+  border-radius: 4px 4px 0px 0px;&#13;
+  background-color: $primary!important;  &#13;
+  visibility:visible;&#13;
+}&#13;
+&#13;
+.icon-text-muted {&#13;
+  color: #ffffff;&#13;
+  font-size: 20px;&#13;
+  position: absolute;&#13;
+  top: 50%;&#13;
+  left: 50%;&#13;
+  -webkit-transform: translate(-50%, -50%);&#13;
+  -ms-transform: translate(-50%, -50%);&#13;
+  transform: translate(-50%, -50%);&#13;
+  text-align: center;&#13;
+  width: 100%;&#13;
+  padding:10px;&#13;
+}&#13;
+&#13;
+.panel-footer:hover {&#13;
+  background-color:#ddd;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>title,color</field_list>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link/>
+        <name>BI Portal - Active Homepage Camp (SAVED)</name>
+        <option_schema>[{"hint":"Number of item cards in the widget","name":"limit","section":"Presentation","default_value":"8","label":"Number of Items","type":"integer"},{"hint":"Panel column width in the widget","name":"panelWidth","section":"Presentation","default_value":"4","label":" Panel column width","type":"integer"},{"hint":"Home page Challenges?","name":"homePage","default_value":"false","label":"Home Page Specific Challenges","type":"boolean"},{"hint":"Show my recent items by view or request","name":"recent_by","section":"Behavior","default_value":"view","label":"My Recent Items By","type":"choice","choices":[{"label":"View","value":"view"},{"label":"Request","value":"request"}]}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+	
+	var limit = options.limit || 8;
+	var homePage = options.homePage || 'false';	
+	var recent_by = options.recent_by || 'view';
+
+	// Active Campaigns
+	var currentTime = new GlideDateTime();
+	data.recentItems = [];
+	var q = new GlideRecordSecure('x_baes2_busimprove_campaigns'); // does ACL checking for us
+	if (homePage == 'true') {
+		q.addQuery('home_page', true);		
+	}
+	q.addQuery('start_date', '<=', currentTime);		
+	q.addQuery('end_date', '>=', currentTime).addOrCondition('end_date', '=', 'NULL');	
+	q.addActiveQuery();
+	q.orderByDesc('sys_created_on');
+	q.setLimit(limit);
+	q.query();
+	while (q.next()) {
+		if (!q.canRead())
+			continue;
+
+		var item = {};
+		item.sys_id = q.getValue('sys_id');
+		item.number = q.getDisplayValue("number");		
+		item.title = q.getDisplayValue("title");		
+		item.description = q.getDisplayValue("description");
+		item.glyph = q.getValue("glyph");		
+		item.updated_on = q.sys_updated_on.getDisplayValue();
+		item.updated_by = q.getDisplayValue("sys_updated_by");
+		item.url = {id: 'ticket', table: 'x_baes2_busimprove_campaigns', sys_id: item.sys_id};		
+		item.published_display = q.getDisplayValue("published");
+		item.published_display = q.getDisplayValue("published");
+		item.viewCount = q.getDisplayValue('sys_view_count');
+		item.voteCount = q.getDisplayValue('total_vote_count');
+		item.commentCount = q.getDisplayValue('comment_count');		
+		data.recentItems.push(item);
+	}
+	
+	data.popularItems = getPopularItems();
+	
+	function getPopularItems () {
+			var catalog = $sp.getValue('sc_catalog');
+			var limit = options.limit || 8;
+			var items = [];
+			var catItems = [];
+			return items;
+	}
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-22 09:54:39</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>34078293db8723c0e9c39334ca9619bc</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>BI Portal - Active Homepage Camp (SAVED)</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_widget_34078293db8723c0e9c39334ca9619bc</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-22 09:54:53</sys_updated_on>
+        <template><![CDATA[<div class="recent-widget">
+  <div class="panel panel-default">
+ 	<div class="panel-heading pad-bottom hidden">
+    	<ul class="nav nav-tabs" style="border-bottom : 0px" role="tablist">
+      	<li class="item" ng-if="data.recentItems.length > 0" role="tab" tabindex="-1" ng-click="c.changePanel('recent')" ng-keydown="c.switchTab($event, 'recent')">
+        	<a ng-class="{'sc-tab-a' : c.show_recent}" href="javascript:void(0)" class="recent">
+          	<span> ${My Recent Items} </span>
+          </a>
+        </li>  
+        <li class="item" role="tab" tabindex="-1" ng-keydown="c.switchTab($event, 'popular')" ng-click="c.changePanel('popular')" >
+        	<a ng-class="{'sc-tab-a' : !c.show_recent}" href="javascript:void(0)" class="popular">
+          	<span > ${Popular Items} </span>
+          </a>
+        </li>  
+    	</ul>
+  </div>
+    
+ <div class="panels-container" ng-if="c.show_recent">
+   <div class="row">
+     <div class="col-sm-6 col-md-{{::c.options.panelWidth}}" ng-repeat="item in data.recentItems track by item.sys_id">
+       
+       <div class="panel panel-default item-card">
+
+         
+             <div class="icon-container">
+               <div class="panel-body block">
+                 <div class="overflow-100 text-center">
+                   <div class="m-b fa fa-{{::item.glyph}} fa-3x text-default"></div>             
+                   <h2 class="h4 m-t-none m-b-xs text-overflow-ellipsis" title="{{::item.title}}">{{::item.title}}</h2>
+                   <img ng-src="{{::item.picture}}" ng-if="::item.picture" class="m-r-sm m-b-sm item-image pull-left" alt="{{::item.title}}" role="presentation" />
+                   <p>
+                     <small>
+                       <span ng-if="item.viewCount == 1" class="views pad-right text-nowrap">
+                         <i class="fa fa-eye pad-right" />
+                         ${{{::item.viewCount}} View}
+                       </span>
+                       <span ng-if="item.viewCount > 1 || item.viewCount == 0" class="views pad-right text-nowrap">
+                         <i class="fa fa-eye pad-right" />
+                         ${{{::item.viewCount}} Views}
+                       </span>
+                       <span ng-if="item.voteCount == 1" class="views pad-right text-nowrap">
+                         <span class="pad-right">&#8226;</span> <i class="fa fa-signal pad-right" />
+                         ${{{::item.voteCount}} Vote}
+                       </span>
+                       <span ng-if="item.voteCount > 1 || item.voteCount == 0" class="views pad-right text-nowrap">
+                         <span class="pad-right">&#8226;</span> <i class="fa fa-signal pad-right" />
+                         ${{{::item.voteCount}} Votes}
+                       </span>
+                       <span ng-if="item.commentCount == 1" class="views pad-right text-nowrap">
+                         <span class="pad-right">&#8226;</span> <i class="fa fa-comments pad-right" />
+                         ${{{item.commentCount}} Comment}
+                       </span>
+                       <span ng-if="item.commentCount > 1 || item.commentCount == 0" class="views pad-right text-nowrap">
+                         <span class="pad-right">&#8226;</span> <i class="fa fa-comments pad-right" />
+                         ${{{item.commentCount}} Comments}
+                       </span>
+                       </p>
+                   </small>                   
+                   <div class="text-muted item-short-desc hidden">{{::item.description}}</div>
+                 </div>                  
+               </div>
+                <div class="icon-overlay icon-link-background-primary" title="Click to view {{::item.title}} summary">
+                  <a href="?id=bi_challenge_overview&sysparm_campaign={{item.sys_id}}" class="text-muted" title="Click to submit idea for {{::item.title}}" tabindex="-1">
+                   <div class="icon-text-muted item-short-desc">{{::item.description}}</div>
+                  </a>
+                </div>
+        	 </div>               
+
+             <a href="?id=sc_cat_item&sys_id=480589a2dbba2780561fb29a689619da&sysparm_campaign={{item.sys_id}}" class="text-muted" title="Click to submit idea for {{::item.title}}" tabindex="-1">
+               <div class="panel-footer text-center">
+                 <span>${Submit Idea}</span> 
+                 <span class="pull-right item-price font-bold"></span> &nbsp;           
+               </div>
+             </a>       
+       </div>
+       
+       
+     </div>
+   </div>
+ </div>
+    
+ <div class="panels-container" ng-if="!c.show_recent">
+   <div class="row">
+     <div class="col-sm-6 col-md-4" ng-repeat="item in data.popularItems | orderBy: 'order' track by item.sys_id">
+       <div class="panel panel-default item-card">
+         <a href="?id={{::item.page}}&sys_id={{::item.sys_id}}" class="panel-body block">
+           <div class="overflow-100">
+             <h2 class="h4 m-t-none m-b-xs text-overflow-ellipsis" title="{{::item.name}}">{{::item.name}}</h2>
+             <img ng-src="{{::item.picture}}" ng-if="::item.picture" class="m-r-sm m-b-sm item-image pull-left" alt="{{::item.name}}" role="presentation" />
+             <div class="text-muted item-short-desc">{{::item.short_description}}</div>
+           </div>
+         </a>
+         <div class="panel-footer">
+           <a href="?id={{::item.page}}&sys_id={{item.sys_id}}" class="text-muted" tabindex="-1">${View Details}</a> 
+           <span ng-if="data.showPrices && item.hasPrice" class="pull-right item-price font-bold">{{::item.price}}</span> &nbsp;
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+   
+    
+</div>]]></template>
+    </sp_widget>
+</record_update>

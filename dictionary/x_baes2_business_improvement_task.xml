@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element audit="true" extends="sm_task" label="Business Improvement Task" max_length="40" name="x_baes2_business_improvement_task" type="collection"/>
+</database>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sm_config_module">
+    <sm_config_module action="INSERT_OR_UPDATE">
+        <app_name display_value="Business Improvement">450cd4aadb3a2780561fb29a68961993</app_name>
+        <aspect>geolocation_maps</aspect>
+        <associated_mobile_module/>
+        <associated_module display_value="My SLA Map">510c18aadb3a2780561fb29a68961900</associated_module>
+        <on>true</on>
+        <sys_class_name>sm_config_module</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-07 07:56:03</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>9d0c18aadb3a2780561fb29a68961901</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>450cd4aadb3a2780561fb29a68961993</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sm_config_module_9d0c18aadb3a2780561fb29a68961901</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-07 07:56:03</sys_updated_on>
+    </sm_config_module>
+</record_update>

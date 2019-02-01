@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_baes2_busimprove.BAEIdeaAjax</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>BAEIdeaAjax</name>
+        <script><![CDATA[var BAEIdeaAjax = Class.create();
+
+BAEIdeaAjax.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	
+	ideaCreateViewUseRecord: function(ideaID) {		
+		var idea = new GlideRecord('x_baes2_busimprove_ideas');
+		if (!idea.get(ideaID))
+			return;
+		
+		var iv = new GlideRecord("x_baes2_busimprove_idea_use");
+		iv.viewed = true;
+		iv.user.setValue(gs.getUserID());
+		iv.idea = ideaID;
+		iv.insert();		
+	},
+		
+	//Process a vote. Users can only upvote or downvote a post one
+	//direction either way. Users may change their votes at any time
+	ideaProcessVoteWithParams : function(params){
+		var returnValue = '';
+		var ideaID = params.sysparm_id;
+		var userID = params.user_id;
+		var voteStyle = params.vote_style;		
+		var vote = new GlideRecord("x_baes2_busimprove_idea_vote");
+		vote.addQuery("user", userID);
+		vote.addQuery("idea", ideaID);
+		vote.query();
+		if (vote.next()) {
+			//If user has already voted this voteStyle, they can't vote again
+			//If they are voting opposite, delete their opposing vote
+			//Business rule adjusts vote counts on parent Idea
+			if (vote.type == voteStyle)
+				returnValue = 'FAILURE';
+			else if (vote.type != voteStyle){
+				vote.deleteRecord();
+				returnValue = 'SUCCESS';
+			}
+		}
+		else{
+			//If note vote records found, create a vote record
+			//Business rule adjusts vote counts on parent Idea
+			this._createVote(ideaID, userID, voteStyle);
+			returnValue = 'SUCCESS';
+		}
+		
+		return returnValue;
+	},	
+	
+	//Retrieve The Current User Vote - Default If None
+	ideaGetCurrVoteWithParams: function(params){		
+		var ideaID = params.sysparm_id;
+		var userID = params.user_id;
+		var voteStyle = params.vote_style;
+		var returnVote = voteStyle;		
+		var vote = new GlideRecord("x_baes2_busimprove_idea_vote");
+		vote.addQuery("idea", ideaID);
+		vote.addQuery("user", userID);
+		vote.query();
+		if (vote.next()) {
+			returnVote = vote.type;
+		}		
+		return returnVote;		
+	},
+	
+	//Toggle The Idea Subscription By Updating The Watch List
+	ideaSubscriptionWithParams: function(params){		
+		var ideaID = params.sysparm_id;
+		var userID = params.user_id;
+		var action = params.action;
+		var idea = new GlideRecord('x_baes2_busimprove_ideas');
+		if (!idea.get(ideaID))
+			return;
+		var wlu = new global.WatchListUtil(idea.watch_list);
+		if (action == 'subscribe') {
+			wlu.addToList(userID);
+			idea.watch_list = wlu.getList();
+			idea.update();
+		} else {
+			if (action == 'unsubscribe') {
+				wlu.removeFromList(userID);
+				idea.watch_list = wlu.getList();				
+				idea.update();
+			}
+		}
+		
+	},	
+	
+	//Create a new vote record for a given user/idea
+	//Business rule adjusts vote counts on parent Idea
+	_createVote: function(ideaID, userID, voteStyle){
+		var vote = new GlideRecord("x_baes2_busimprove_idea_vote");
+		vote.initialize();
+		vote.type = voteStyle;
+		vote.user = userID;
+		vote.idea = ideaID;
+		vote.insert();
+	},	
+	
+	type: "BAEIdeaAjax"
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-14 15:16:58</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>abf3c23cdb876b80561fb29a689619cd</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_name>BAEIdeaAjax</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sys_script_include_abf3c23cdb876b80561fb29a689619cd</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-17 11:49:30</sys_updated_on>
+    </sys_script_include>
+</record_update>

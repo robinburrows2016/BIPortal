@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>idea-open-tooltip</id>
+        <sp_widget display_value="BI Portal - Challenge Overview">6c52974fdbfe6780561fb29a6896197d</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-09 13:38:22</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>848dfb47db72a780561fb29a68961916</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>idea-open-tooltip</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_ng_template_848dfb47db72a780561fb29a68961916</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-09 14:11:41</sys_updated_on>
+        <template><![CDATA[<div class="tooltip-popover" id="tooltip-popover-{{::rtw.sys_id}}">
+  <ul class="color-items">
+    <li class="color-item">
+      <div class="color-label">Category</div>
+      <div class="color-label pull-right">{{::rtw.category_display}}</div>
+    </li>
+    <li class="color-item">
+      <div class="color-label">Submitted For</div>
+      <div class="color-label pull-right">{{::rtw.submitted_for}}</div>
+    </li>
+    <li class="color-item">
+      <div class="color-label">Submitted On</div>
+      <div class="color-label pull-right">{{::rtw.submitted_on}}</div>
+    </li>
+    <li class="color-item">
+      <div class="color-label">Submitted By</div>
+      <div class="color-label pull-right">{{::rtw.submitted_by}}</div>
+    </li>
+    <li class="color-item">
+      <div class="color-label">Keywords</div>
+      <div class="color-label pull-right">{{::rtw.keywords}}</div>
+    </li>    
+    <li class="color-item">
+      <div class="color-label">State</div>
+      <div class="color-label pull-right">{{::rtw.state_display}}</div>
+    </li>     
+  </ul>
+</div>]]></template>
+    </sp_ng_template>
+</record_update>

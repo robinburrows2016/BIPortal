@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_form_sections form_id="500c94aadb3a2780561fb29a689619b6" sys_domain="global" table="sf_x_baes2_business_improvement_task" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-01-07 07:55:59</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>980c94aadb3a2780561fb29a689619b6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="sf_x_baes2_business_improvement_task" name="sf_x_baes2_business_improvement_task" sys_domain="global" view="Default view">500c94aadb3a2780561fb29a689619b6</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="sf_x_baes2_business_improvement_task" sys_domain="global" view="Default view">dc0c94aadb3a2780561fb29a689619b2</sys_ui_section>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-01-07 07:55:59</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-01-07 07:55:59</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>100c94aadb3a2780561fb29a689619bd</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="sf_x_baes2_business_improvement_task" name="sf_x_baes2_business_improvement_task" sys_domain="global" view="Default view">500c94aadb3a2780561fb29a689619b6</sys_ui_form>
+            <sys_ui_section caption="Manual" display_value="Manual" name="sf_x_baes2_business_improvement_task" sys_domain="global" view="Default view">900c94aadb3a2780561fb29a689619bb</sys_ui_section>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-01-07 07:55:59</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>2</position>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-01-07 07:55:59</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>100c94aadb3a2780561fb29a689619c4</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="sf_x_baes2_business_improvement_task" name="sf_x_baes2_business_improvement_task" sys_domain="global" view="Default view">500c94aadb3a2780561fb29a689619b6</sys_ui_form>
+            <sys_ui_section caption="Automatic" display_value="Automatic" name="sf_x_baes2_business_improvement_task" sys_domain="global" view="Default view">140c94aadb3a2780561fb29a689619c1</sys_ui_section>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-01-07 07:55:59</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>3</position>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-01-07 07:55:59</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>d00c94aadb3a2780561fb29a689619d8</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="sf_x_baes2_business_improvement_task" name="sf_x_baes2_business_improvement_task" sys_domain="global" view="Default view">500c94aadb3a2780561fb29a689619b6</sys_ui_form>
+            <sys_ui_section caption="Field Controls" display_value="Field Controls" name="sf_x_baes2_business_improvement_task" sys_domain="global" view="Default view">d80c94aadb3a2780561fb29a689619c8</sys_ui_section>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-01-07 07:55:59</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>sf_x_baes2_business_improvement_task</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-01-07 07:55:59</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_id>500c94aadb3a2780561fb29a689619b6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>sf_x_baes2_business_improvement_task</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+            <sys_update_name>sys_ui_form_sections_500c94aadb3a2780561fb29a689619b6</sys_update_name>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-01-07 07:55:59</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

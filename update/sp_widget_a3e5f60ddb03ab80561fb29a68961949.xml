@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function ($rootScope, $scope, spUtil, $timeout) {
+	var c = this;
+	c.isValid = true;//$rootScope.isValid;
+	c.article_sys_id = $rootScope.article_sys_id;
+	c.properties = $rootScope.properties;
+	c.messages = $rootScope.messages;
+	c.showResolved = false;
+	//c.showComments = c.options.show_user_comments != 'false' && $rootScope.properties && $rootScope.properties.showFeedBack;
+	c.showComments = c.options.show_user_comments === 'Use system properties' ? ($rootScope.properties && $rootScope.properties.showFeedBack) : c.options.show_user_comments === 'Yes';
+	c.commentsPrompt = c.options.add_comment_prompt ? c.options.add_comment_prompt : $rootScope.messages.ADD_COMMENT;
+	//c.showRatings = c.options.show_star_rating != 'false' && $rootScope.properties && $rootScope.properties.showKBStarRating && $rootScope.properties.showKBRatingOptions;
+	c.showRatings = c.options.show_star_rating === 'Use system properties' ? ($rootScope.properties && $rootScope.properties.showKBStarRating && $rootScope.properties.showKBRatingOptions) : c.options.show_star_rating === 'Yes';
+	c.rateStyle = (c.showComments) ? 'pull-right' : 'kb-rate-mobile';
+	
+	$scope.submitComment = function(){
+		$scope.server.get({action : 'add_comment', commentText : $scope.data.comments, article_id : $rootScope.article_sys_id, rating : $scope.data.rating}).then(function(r){
+			$scope.data.response = $rootScope.messages.THANK_YOU;	
+			var feedback = {sys_id: r.data.sys_id, usefulFlag : '', userName : r.data.currentUserName, userID : r.data.currentUserID, createdOn : r.data.timeStamp, commentText : $scope.data.comments, resolvedFlag: "false"};
+			$rootScope.comments.unshift(feedback);
+			$rootScope.commentCount++;
+			$scope.data.comments ="";
+			$scope.clearMessage();
+					
+		});
+	}
+	$scope.$watch("data.rating", function() {
+		if ($scope.data.rating && !$scope.data.allowFeedback){
+					$scope.server.get({action : 'submit_rating', commentText : $scope.data.comments, article_id : $rootScope.article_sys_id, rating : $scope.data.rating}).then(function(r){
+						$scope.data.response = $rootScope.messages.THANK_YOU;
+						$scope.clearMessage();
+					});
+
+		
+	}
+	});
+	
+	$scope.clearMessage = function(){
+		$timeout(function() {
+			$scope.data.response = "";
+		}, 2000);						
+
+	}
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.comments-submit{&#13;
+  //margin-top: 20px;&#13;
+  margin-top: 0px;&#13;
+  //margin-right : 20px;&#13;
+}&#13;
+.kb-comments-content{&#13;
+	margin : 0px 15px; &#13;
+}&#13;
+.kb-comments-header{&#13;
+  display : inline-block;&#13;
+  margin : 10px 0px 0px 0px;&#13;
+}&#13;
+.kb-comment-input{&#13;
+  margin-top : 20px&#13;
+}&#13;
+.kb-comments-list{&#13;
+  margin : 0px;&#13;
+}&#13;
+.kb-line{&#13;
+    border-color : #ccc;&#13;
+}&#13;
+.kb-rate-mobile{&#13;
+  padding-bottom:10px;&#13;
+  margin-top : -15px;&#13;
+}&#13;
+.kb-end-button{&#13;
+  text-align : right;&#13;
+}&#13;
+.kb-wrapper{&#13;
+  padding : 0px 0px 0px 0px;&#13;
+}&#13;
+&#13;
+.kb-rate-article{&#13;
+  padding-right : 10px;&#13;
+}&#13;
+.glyphicon:hover{&#13;
+  background-color : grey;&#13;
+}&#13;
+.glyphicon:focus{&#13;
+  background-color : grey;&#13;
+}&#13;
+&#13;
+.glyphicon-star:before{&#13;
+    color: #ffca1f;&#13;
+    //text-shadow: 0 0 0 #C0A909, 0 0 0 #C0A909, 0 0px 0 #C0A909, 0 1px 0 #C0A909;&#13;
+}&#13;
+.glyphicon-star-empty{&#13;
+  color: #BDC0C4;&#13;
+  //text-shadow:0 0 0 #BDC0C4, 0 0 0 #BDC0C4, 0 0px 0 #BDC0C4, 0 1px 0 #BDC0C4;&#13;
+}&#13;
+.rating-stars [role="button"] {&#13;
+  cursor: text;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>color,css</field_list>
+        <has_preview>false</has_preview>
+        <id>bi-idea-comments</id>
+        <internal>false</internal>
+        <link/>
+        <name>BI Portal - Idea Comments</name>
+        <option_schema>[{"name":"show_star_rating","hint":"Show Star Rating","default_value":"Use system properties","label":"Show Star Rating","type":"choice","choices":[{"label":"Yes","value":"Yes"},{"label":"No","value":"No"},{"label":"Use system properties","value":"Use system properties"}]},{"name":"show_user_comments","hint":"Show User Comments","default_value":"Use system properties","label":"Show User Comments","type":"choice","choices":[{"label":"Yes","value":"Yes"},{"label":"No","value":"No"},{"label":"Use system properties","value":"Use system properties"}]},{"hint":"Label for comment input field","name":"add_comment_prompt","label":"Add Comment Label","type":"string"}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[data.disabled = false;
+data.isLoggedInUser = gs.getSession().isLoggedIn();
+data.userID = gs.getUserID();
+data.isAdmin = gs.hasRole('bi_manager') || gs.hasRole('admin');
+
+if(input && input.article_id){
+	var action = input.action;
+	if(action === 'fetch_comments'){
+		if(input.article_id){
+				fetchComments(input.article_id);			
+		}
+	}
+	else if (action === 'add_comment'){
+		addNewFeedback(true, false);
+	}
+	else if (action === 'submit_rating'){
+		addNewFeedback(false, true);
+	}
+	
+}
+function fetchComments(articleId){
+	data.feedback = getFeedback(articleId);
+}
+
+
+function addNewFeedback(hasComments, hasRatings){
+	if (input.article_id) {
+		data.sys_id = input.article_id;
+		var articleGR = new GlideRecord("x_baes2_busimprove_ideas");
+		articleGR.get(data.sys_id);
+		var gr = new GlideRecord('x_baes2_busimprove_idea_feedback');
+		gr.user = gs.getUserID();
+		if (hasComments && input.commentText)
+			gr.comments = input.commentText;
+		if (hasRatings && input.rating) 
+			gr.rating = input.rating;
+
+		gr.idea = input.article_id;
+		gr.insert();
+		
+		data.currentUserName = gr.user.getDisplayValue();
+		data.timeStamp = new Date();
+		data.disabled = true;
+	}	
+}
+
+function add(name) {
+	if (gr[name].getED().isDateType())
+		f[name] = gr.getValue(name);
+	else
+		f[name] = gr[name].getDisplayValue();
+}
+function getFeedback(articleID) {
+  var feedback = [];
+  var gr = new GlideRecord("x_baes2_busimprove_idea_feedback");
+  gr.addQuery("idea", articleID);
+	gr.addNotNullQuery("comments");
+  gr.orderByDesc('sys_created_on');
+  gr.query();
+  while (gr.next()) {
+    var f = {};
+    add('comments');
+    add('rating');
+    add('user');
+    add('useful');
+    add('sys_created_on');	  
+    feedback.push(f);
+  }
+
+  return feedback;
+
+
+}
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-15 13:33:18</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>a3e5f60ddb03ab80561fb29a68961949</sys_id>
+        <sys_mod_count>22</sys_mod_count>
+        <sys_name>BI Portal - Idea Comments</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_widget_a3e5f60ddb03ab80561fb29a68961949</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-21 15:51:53</sys_updated_on>
+        <template><![CDATA[<div class="kb-wrapper" ng-if="data.isLoggedInUser && !$root.hideFeedbackOptions && $root.isValid">
+  
+
+  <div ng-if="$root.isValid">
+    <form class="form-group">
+      <span class="visible-md visible-lg hidden-sm hidden-xs">
+		<div ng-if="c.showComments" class="kb-end-button">
+          <h4 ng-if="c.showComments" class="kb-comments-header pull-left" id="commentLabel">{{c.commentsPrompt}}</h4>          
+          <button id="submit" ng-click="submitComment()" class="btn btn-primary comments-submit" ng-disabled="!data.comments">
+            {{$root.messages.SUBMIT}}
+          </button>        
+        </div>        
+		      <span ng-if="c.showRatings" ng-class="c.rateStyle"><h4 class="kb-comments-header"><span class="kb-rate-article">${Rate this article}</span><uib-rating ng-model="data.rating" max="5"></uib-rating></h4></span>
+      </span>
+      <span class="visible-xs visible-sm hidden-md hidden-lg">
+		    <div ng-if="c.showRatings" class="kb-rate-mobile" width="100%"><h4><span class="kb-rate-article">${Rate this article}</span><uib-rating ng-model="data.rating" max="5"></uib-rating></h4></div>
+        <h4 ng-if="c.showComments" width="100%" id="commentLabel">{{c.commentsPrompt}}</h4>
+      </span>
+
+      <textarea ng-if="c.showComments" aria-labelledby="commentLabel" ng-model="::data.comments" class="form-control kb-comment-input" rows="2" id="comment" placeholder="Please enter your comments here .. the submit button will be enabled when you start typing"></textarea>
+
+    </form>  
+  </div>
+  
+  <div ng-if="data.response" class="alert alert-success">{{::data.response}}</div>
+  
+  <hr ng-if="c.showComments || c.showRatings" class="kb-line hidden"/>
+  
+  <div ng-if="c.showComments">
+    <span ng-if="$root.comments.length > 0">
+      <h4 class="kb-comments-header">{{$root.messages.COMMENTS}}</h4><p class="pull-right hidden"><input type="checkbox" ng-model="c.showResolved"> Show Resolved?</p>
+      <hr class="kb-line"/>
+    </span>
+
+
+
+    <div ng-if="$root.comments" ng-repeat="feedback in $root.comments">
+      <div ng-if="(feedback.resolvedFlag == 'false' && feedback.usefulFlag == 'Yes') || (feedback.resolvedFlag == 'true' && feedback.usefulFlag == 'Yes' && c.showResolved) || (feedback.resolvedFlag == 'false' && (feedback.userID == c.data.userID || c.data.isAdmin)) || (feedback.resolvedFlag == 'true' && (feedback.userID == c.data.userID || c.data.isAdmin) && c.showResolved)">
+        <p style="font-weight: bold" class="author pad-right kb-comments-list">
+           {{::feedback.userName}}
+            <span class="published pad-right">
+              <span class="pad-right"> - </span>
+              <span ng-if="feedback.justNow === 'Y'">{{$root.messages.JUST_NOW}}</span>
+              <sn-time-ago ng-if="!feedback.justNow" timestamp="::feedback.createdOn"/>
+            </span>
+          <span ng-if="(feedback.resolvedFlag == 'true') && (feedback.userID != c.data.userID) && !c.data.isAdmin" class="pull-right">RESOLVED</span>                    
+          <span ng-if="(feedback.userID == c.data.userID) || c.data.isAdmin" class="pull-right hidden"><a class="btn btn-primary" ng-href="?id=ticket&table=kb_feedback&sys_id={{::feedback.sys_id}}">View</a></span>         
+        </p>
+        <p class="break-word kb-comments-list" style="white-space: pre-wrap" ng-bind-html="feedback.commentText"></p>
+        <hr class="kb-line"/>
+
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<style>
+@media only screen and (max-width :992px){
+  .kb-wrapper{
+    padding : 15px !important;
+  }
+  .kb-container-column{
+    padding-left : 0px;
+    padding-right: 0px;
+    padding-top : 0px;
+  }
+}
+  
+  
+</style>
+]]></template>
+    </sp_widget>
+</record_update>

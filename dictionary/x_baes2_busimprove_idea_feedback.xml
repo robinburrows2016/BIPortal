@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Idea Feedback" max_length="40" name="x_baes2_busimprove_idea_feedback" type="collection">
+        <element label="Comments" max_length="4000" name="comments" type="string_full_utf8"/>
+        <element label="Flagged" max_length="40" name="flagged" type="boolean"/>
+        <element label="Idea" mandatory="true" max_length="32" name="idea" reference="x_baes2_busimprove_ideas" type="reference"/>
+        <element label="Internal Notes (NOT visible to user)" max_length="4000" name="internal_notes" type="string_full_utf8"/>
+        <element label="Live message" max_length="32" name="live_message" reference="live_message" type="reference"/>
+        <element label="Parent feedback" max_length="32" name="parent_feedback" reference="live_message" type="reference"/>
+        <element label="Rating" max_length="40" name="rating" type="integer"/>
+        <element label="Resolved" max_length="40" name="resolved" type="boolean"/>
+        <element label="Root feedback" max_length="32" name="root_feedback" reference="live_message" type="reference"/>
+        <element label="Useful" max_length="40" name="useful" type="string_full_utf8"/>
+        <element label="User" max_length="32" name="user" reference="sys_user" type="reference"/>
+        <element label="Work notes (visible to user)" max_length="4000" name="work_notes" type="journal"/>
+        <index name="index">
+            <element name="parent_feedback"/>
+        </index>
+        <index name="index2">
+            <element name="idea"/>
+        </index>
+        <index name="index3">
+            <element name="live_message"/>
+        </index>
+        <index name="index4">
+            <element name="root_feedback"/>
+        </index>
+        <index name="index5">
+            <element name="user"/>
+        </index>
+    </element>
+</database>

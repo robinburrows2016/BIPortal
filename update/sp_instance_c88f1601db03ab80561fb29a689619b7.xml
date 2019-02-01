@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>primary</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>0</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="2">fa41998bdb8bef80e9c39334ca961947</sp_column>
+        <sp_widget display_value="BI Portal - Most Viewed">25050183db8bef80e9c39334ca961999</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>Andy.bourner@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-15 11:55:18</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>c88f1601db03ab80561fb29a689619b7</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>Most Viewed Ideas</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_instance_c88f1601db03ab80561fb29a689619b7</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-21 15:09:13</sys_updated_on>
+        <title>Most Viewed Ideas</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"max_number": {
+		"value": null,
+		"displayValue": ""
+	},
+	"kb_category": {
+		"value": "",
+		"displayValue": ""
+	},
+	"campaign": {
+		"value": "",
+		"displayValue": ""
+	}
+}]]></widget_parameters>
+    </sp_instance>
+</record_update>

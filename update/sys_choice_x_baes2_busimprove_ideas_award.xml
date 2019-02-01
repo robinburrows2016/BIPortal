@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="award" table="x_baes2_busimprove_ideas" version="3">
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>award</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Bronze</label>
+            <language>en</language>
+            <name>x_baes2_busimprove_ideas</name>
+            <sequence/>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-01-21 08:45:03</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>b06d6443db4bef80e9c39334ca9619b7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-01-21 08:45:03</sys_updated_on>
+            <value>1</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>award</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Silver</label>
+            <language>en</language>
+            <name>x_baes2_busimprove_ideas</name>
+            <sequence/>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-01-21 08:45:14</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>748d2c0fdb0bef80e9c39334ca9619a3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-01-21 08:45:14</sys_updated_on>
+            <value>2</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>award</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Gold</label>
+            <language>en</language>
+            <name>x_baes2_busimprove_ideas</name>
+            <sequence/>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-01-21 08:45:28</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>409d6443db4bef80e9c39334ca961932</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-01-21 08:45:47</sys_updated_on>
+            <value>3</value>
+        </sys_choice>
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>award</element>
+            <name>x_baes2_busimprove_ideas</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-01-21 08:44:29</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>d35d2043db4bef80e9c39334ca96193f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>award</sys_name>
+            <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+            <sys_update_name>sys_choice_x_baes2_busimprove_ideas_award</sys_update_name>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-01-21 08:44:29</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+</record_update>

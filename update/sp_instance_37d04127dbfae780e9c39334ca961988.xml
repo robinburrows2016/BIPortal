@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="2">54bf74e3dbfae780e9c39334ca9619f5</sp_column>
+        <sp_widget display_value="HTML">8679ef89cb21120000f8d856634c9c4f</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>Andy.bourner@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-10 13:10:59</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>37d04127dbfae780e9c39334ca961988</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>December Blog</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_instance_37d04127dbfae780e9c39334ca961988</sys_update_name>
+        <sys_updated_by>Andy.bourner@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-10 13:50:30</sys_updated_on>
+        <title>December Blog</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"html": {
+		"value": "<div class=\"panel panel-default\">\n<div class=\"panel-body\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dignissim lacus commodo sapien aliquam, vel tincidunt libero lacinia. Proin dictum lectus id dolor fringilla, ut pretium mauris fermentum. Suspendisse dictum sapien eros, lobortis rutrum arcu vehicula vel. Fusce a dictum diam, quis ultrices ante. Nulla at urna efficitur, rutrum urna quis, lobortis ipsum. Sed non rutrum sem. Aenean finibus ligula risus. Donec nunc mi, imperdiet a tempus in, condimentum ut nisi. Donec dapibus risus nisl, quis mattis urna pharetra in.</div>\n</div>",
+		"displayValue": "<div class=\"panel panel-default\">\n<div class=\"panel-body\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dignissim lacus commodo sapien aliquam, vel tincidunt libero lacinia. Proin dictum lectus id dolor fringilla, ut pretium mauris fermentum. Suspendisse dictum sapien eros, lobortis rutrum arcu vehicula vel. Fusce a dictum diam, quis ultrices ante. Nulla at urna efficitur, rutrum urna quis, lobortis ipsum. Sed non rutrum sem. Aenean finibus ligula risus. Donec nunc mi, imperdiet a tempus in, condimentum ut nisi. Donec dapibus risus nisl, quis mattis urna pharetra in.</div>\n</div>"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+</record_update>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_properties_category_m2m">
+    <sys_properties_category_m2m action="INSERT_OR_UPDATE">
+        <category display_value="Business Improvement">3efbd0aadb3a2780561fb29a689619ee</category>
+        <order>1</order>
+        <property display_value="x_baes2_busimprove.default.start.time" name="x_baes2_busimprove.default.start.time">c7db50aadb3a2780561fb29a68961985</property>
+        <sys_class_name>sys_properties_category_m2m</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-07 07:55:53</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>b2fbd0aadb3a2780561fb29a689619f1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_baes2_busimprove.default.start.time.Business Improvement</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sys_properties_category_m2m_b2fbd0aadb3a2780561fb29a689619f1</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-07 07:55:53</sys_updated_on>
+    </sys_properties_category_m2m>
+</record_update>

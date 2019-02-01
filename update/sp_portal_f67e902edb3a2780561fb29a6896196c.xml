@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_portal">
+    <sp_portal action="INSERT_OR_UPDATE">
+        <css_variables>$grid-gutter-width: 15px !default;&#13;
+$color-blue : #4b96d1;&#13;
+$color-accent : #278EFC;&#13;
+$color-accent-light: #BDDCFC;&#13;
+$color-darker: #485563;&#13;
+$color-dark : #81878E;&#13;
+$color-light: #BDC0C4;&#13;
+$color-lighter: #E6E8EA;&#13;
+$color-lightest: #FFFFFF;&#13;
+$color-darkest : #343D47;&#13;
+$border-color : #DDDDDD;&#13;
+$color-yellow: #FCC742;&#13;
+$color-red : #F95050;&#13;
+$color-green : #71E279;&#13;
+$color-gantt-cell : #82878F;&#13;
+$color-gantt-shadow-task : #CED4DB;&#13;
+$color-gantt-shadow-task-progress : #313A46;&#13;
+$color-lightest-border : #F8F8F8;&#13;
+$color-light-border : #F95050;&#13;
+$color-danger-background : #D9534F;&#13;
+$color-danger-border : #AC2925;&#13;
+$color-required-filled : #bdc0c4;&#13;
+$color-required : #f95050;&#13;
+&#13;
+.breadcrumbs-container {&#13;
+  height: 180px;&#13;
+}</css_variables>
+        <default>false</default>
+        <homepage display_value="spbi_index">00be582edb3a2780561fb29a68961949</homepage>
+        <icon/>
+        <kb_knowledge_base display_value="Business Improvement Knowledge">c40c94aadb3a2780561fb29a6896195f</kb_knowledge_base>
+        <kb_knowledge_page display_value="kb_view2">26c2e030d7201200a9addd173e24d437</kb_knowledge_page>
+        <login_page display_value="landing">36c61807cb31120000f8d856634c9ca9</login_page>
+        <logo/>
+        <notfound_page display_value="404">3c2c9063cb11020000f8d856634c9c1f</notfound_page>
+        <quick_start_config/>
+        <sc_catalog display_value="Business Improvement Catalog">77fb94aadb3a2780561fb29a6896194f</sc_catalog>
+        <sc_catalog_page display_value="sc_home">fe87a11147132100ba13a5554ee490b9</sc_catalog_page>
+        <sc_category_page/>
+        <sp_chat_queue/>
+        <sp_rectangle_menu display_value="SPBI Mega Menu">0e1f1caadb3a2780561fb29a68961945</sp_rectangle_menu>
+        <sqanda_knowledge_base/>
+        <sys_class_name>sp_portal</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-07 08:06:48</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>f67e902edb3a2780561fb29a6896196c</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>Business Improvement Portal</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_portal_f67e902edb3a2780561fb29a6896196c</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-21 16:12:55</sys_updated_on>
+        <theme display_value="Mega-Menu-BI">5ac21236db766780561fb29a6896198d</theme>
+        <title>Business Improvement Portal</title>
+        <url_suffix>spbi</url_suffix>
+    </sp_portal>
+</record_update>

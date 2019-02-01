@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>idea-flag-article-modal-bae</id>
+        <sp_widget display_value="BI Portal - Idea Content">e5fc05ebdb3ea780561fb29a689619ce</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-14 15:22:49</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>ab45027cdb876b80561fb29a689619a2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>idea-flag-article-modal-bae</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_ng_template_ab45027cdb876b80561fb29a689619a2</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-14 15:22:49</sys_updated_on>
+        <template><![CDATA[              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" ng-click="c.clearComment()" aria-label="{{data.messages.CLOSE}}"><i class="fa fa-times" aria-hidden="true"></i></button>
+                  <h4 id="flagTitle" class="modal-title">{{::data.messages.FLAG_THIS_ARTICLE}}</h4>
+                </div>
+                  <div class="modal-body">
+                    <textarea aria-required="true" ng-required="true" aria-label="{{data.messages.ADD_COMMENT}}" placeholder="{{data.messages.ADD_COMMENT}}" ng-model="::data.comment" class="form-control" rows="5" id="flagComment"></textarea>
+                    <div role="alert" aria-live="assertive" class="alert-danger" ng-shown="!c.flagMessage">{{c.flagMessage}}</div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="c.clearComment()">{{data.messages.CANCEL}}</button>
+                    <button type="button" class="btn btn-primary" aria-label="{{!data.comment ? c.submitFlagWithoutComment : c.submitFlagWithComment }}" data-dismiss="modal" ng-click="c.submitFlagComments()">{{data.messages.SUBMIT}}</button>
+                  </div>                  
+
+              </div>]]></template>
+    </sp_ng_template>
+</record_update>

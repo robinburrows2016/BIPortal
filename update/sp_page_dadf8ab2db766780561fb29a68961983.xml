@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_page">
+    <sp_page action="INSERT_OR_UPDATE">
+        <css>.panel-default {&#13;
+    margin-top: 20px;&#13;
+}&#13;
+&#13;
+#portalSearch.input-lg {&#13;
+  padding-top:0px!important;&#13;
+  padding-bottom:0px!important;&#13;
+  height: 34px;&#13;
+  font-size: 14px;  &#13;
+}&#13;
+&#13;
+.breadcrumbs-container {&#13;
+  background-color: transparent;&#13;
+  border-bottom: none;&#13;
+}</css>
+        <draft>false</draft>
+        <id>bi_blog</id>
+        <internal>false</internal>
+        <public>false</public>
+        <roles/>
+        <short_description>BI Blog</short_description>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-08 11:00:35</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>dadf8ab2db766780561fb29a68961983</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>bi_blog</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_page_dadf8ab2db766780561fb29a68961983</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-09 09:28:29</sys_updated_on>
+        <title>BI Blog</title>
+    </sp_page>
+</record_update>

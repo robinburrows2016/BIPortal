@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope) {
+//Add greeting based on time of day and add user's first name
+var c = this;
+var today = new Date()
+var curHr = today.getHours()
+ 
+if (curHr < 12) {
+  c.data.greeting = 'Good morning ' + $scope.user.first_name + ', ' + c.options.title;
+} else if (curHr < 18) {
+  c.data.greeting = 'Good afternoon ' + $scope.user.first_name + ', ' + c.options.title;
+} else {
+  c.data.greeting = 'Good evening ' + $scope.user.first_name + ', ' + c.options.title;
+}
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.sp-tagline-color {&#13;
+	color: $sp-tagline-color;&#13;
+}&#13;
+&#13;
+.wrapper-xl {&#13;
+    padding-left: 25px !important;&#13;
+    padding-right: 25px !important;&#13;
+    padding-top: 25px !important;&#13;
+    padding-bottom: 5px !important;  &#13;
+}&#13;
+&#13;
+.wrapper-xl.visible-xs {&#13;
+    padding: 10px !important;&#13;
+}&#13;
+&#13;
+#homepage-search  h1 {&#13;
+    font-size: 20pt;&#13;
+    font-weight: 300;&#13;
+    text-align: center;&#13;
+    margin-top: 0px;&#13;
+    margin-bottom: 15px;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>title,short_description</field_list>
+        <has_preview>false</has_preview>
+        <id>bi-homepage-search</id>
+        <internal>false</internal>
+        <link/>
+        <name>BI Portal - Homepage Search V2</name>
+        <option_schema>[{"name":"prompt","default_value":"How can we help?","label":"Prompt text","type":"string"},{"name":"textColour","default_value":"#fc8a3d","label":"Text colour","type":"string"}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[options.prompt = options.prompt || gs.getMessage('How can we help?');
+options.textColour = options.textColour || '#fc8a3d';
+var typeAheadSearchOpts = {title: options.prompt, size: 'lg', color: 'primary', textColour: options.textColour};
+options.title = options.title || gs.getMessage('Welcome to the Ideas Community');
+data.typeAheadSearch = $sp.getWidget('typeahead-search-bi', typeAheadSearchOpts);
+data.user = gs.getUserName();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-16 11:13:23</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>e77fd79ddb8bab80561fb29a68961911</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>BI Portal - Homepage Search V2</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_widget_e77fd79ddb8bab80561fb29a68961911</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-16 11:16:58</sys_updated_on>
+        <template><![CDATA[<div id="homepage-search">
+  <div class="wrapper-xl hidden-xs">
+    <h1 class="text-center text-4x m-b-lg sp-tagline-color" ng-bind="data.greeting"></h1>
+  	<h4 ng-if="options.short_description" class="text-center m-b-lg sp-tagline-color" ng-bind="options.short_description">Large</h4>
+  	<sp-widget widget="data.typeAheadSearch" />
+  </div>
+  <div class="wrapper-xl visible-xs">
+  	<h4 ng-if="options.short_description" class="text-center m-b-lg sp-tagline-color" ng-bind="options.short_description">Small</h4>
+  	<sp-widget widget="data.typeAheadSearch" />
+  </div>  
+</div>]]></template>
+    </sp_widget>
+</record_update>

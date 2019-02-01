@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-14 14:14:06</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>afa53534db876b80561fb29a689619c4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_baes2_busimprove_idea_use.x_baes2_busimprove.idea_use_user</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_security_acl display_value="x_baes2_busimprove_idea_use">27a53134db876b80561fb29a689619de</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_afa53534db876b80561fb29a689619c4</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-14 14:14:06</sys_updated_on>
+        <sys_user_role display_value="x_baes2_busimprove.idea_use_user" name="x_baes2_busimprove.idea_use_user">afa53134db876b80561fb29a689619d7</sys_user_role>
+        <transaction_id/>
+    </sys_security_acl_role>
+</record_update>

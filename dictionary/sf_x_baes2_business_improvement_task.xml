@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element attributes="update_synch=true" extends="sf_sm_flow" label="Business Improvement Task Flow" max_length="40" name="sf_x_baes2_business_improvement_task" type="collection"/>
+</database>

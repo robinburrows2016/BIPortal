@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope) {
+	/* widget controller */
+	var c = this;	
+	
+	c.showTooltip = function(headingID, id) {
+		// Hide Any Open Tooltips
+		jQuery(".tooltip").tooltip("hide");
+
+		// Tooltip
+		$scope.server.get({
+			action: "getTooltip",
+			itemID: id
+		}).then(function(response) {
+			var tt_target = '#' + headingID + id;
+			jQuery(tt_target).attr('data-title', response.data.tooltip);
+			jQuery(tt_target).tooltip('show');
+		});
+
+	};
+	
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>tooltip tip {&#13;
+  text-align: left!important;&#13;
+  width: auto!important;&#13;
+  max-width: auto!important;&#13;
+  min-width: 400px!important;  &#13;
+}&#13;
+&#13;
+.tip-header {&#13;
+  border-bottom: 1px solid #ccc!important;&#13;
+  background-color: #f5f5f5!important;  &#13;
+  color: #428bca!important;  &#13;
+  margin-top: -8px!important;  &#13;
+  margin-left: -16px!important;&#13;
+  margin-right: -16px!important;&#13;
+  padding-top: 8px!important;&#13;
+  padding-left: 16px!important;&#13;
+  padding-bottom: 8px!important;&#13;
+  margin-bottom: 5px!important;   &#13;
+}&#13;
+&#13;
+tooltip tip IMG {&#13;
+  max-width: 400px!important;   &#13;
+}&#13;
+&#13;
+tooltip._top tip {&#13;
+  transform: none!important;&#13;
+  left: 15px!important;&#13;
+  color: #717171!important;&#13;
+  background-color: #f5f5f5!important;&#13;
+  border: 1px solid #ccc!important;&#13;
+  -moz-box-shadow: 0px 5px 5px 0px rgba(221,221,221,1) !important;&#13;
+  box-shadow: 0px 5px 5px 0px rgba(221,221,221,1) !important;  &#13;
+}&#13;
+&#13;
+tooltip._top tip tip-arrow {&#13;
+  display: none!important;&#13;
+}&#13;
+&#13;
+.tip-row {&#13;
+  padding-bottom: 10px!important;  &#13;
+}&#13;
+&#13;
+.tip-col {&#13;
+  vertical-align: top!important;  &#13;
+}&#13;
+&#13;
+&#13;
+/*****************************************/&#13;
+/*     REPLACEMENT TOOLTIP RULES         */&#13;
+/*****************************************/&#13;
+&#13;
+.tooltip-popover{&#13;
+  color: $color-black;&#13;
+  padding: 6px 0;&#13;
+  .popover-title{&#13;
+    font-size: 18px;&#13;
+    margin-bottom: 25px;&#13;
+    border: none;&#13;
+    padding:0 21px;&#13;
+  }&#13;
+  .color-items{&#13;
+    list-style: none;&#13;
+    padding:0;&#13;
+    max-height: calc(100vh - 147px);&#13;
+    overflow-y: auto;&#13;
+    padding: 0 5px;&#13;
+    margin-bottom: 0px;&#13;
+    .color-item{&#13;
+      border-bottom: 1px solid $color-lighter;&#13;
+      margin-bottom: 5px;&#13;
+      padding-bottom: 5px;&#13;
+      .color-label{&#13;
+        display: inline-block;&#13;
+        font-size: 12px;&#13;
+        margin-right: 5px;&#13;
+      }&#13;
+      .color-box{&#13;
+        width: 24px;&#13;
+        height: 24px;&#13;
+        border: 1px solid $color-light;&#13;
+        border-radius: 3px;&#13;
+        display: inline-block;&#13;
+      }&#13;
+    }&#13;
+  }&#13;
+}&#13;
+&#13;
+.viewBtn {&#13;
+  border:none!important;&#13;
+  padding:0px!important;&#13;
+  outline:none!important;  &#13;
+  height: 20px!important;&#13;
+  width: 20px!important;&#13;
+  vertical-align:top!important;&#13;
+  text-align:left!important;&#13;
+}&#13;
+&#13;
+.btn-default {&#13;
+	color: #fff;&#13;
+    color: inherit!important;  &#13;
+	background-color: #fff;&#13;
+    background-color: transparent!important;  &#13;
+	border-color: #ccc;&#13;
+}&#13;
+.btn-default:focus, .btn-default.focus {&#13;
+	color: #fff;&#13;
+	/* background-color: #e6e6e6; */&#13;
+	border-color: #8c8c8c;&#13;
+}&#13;
+.btn-default:hover {&#13;
+	color: #fff;&#13;
+	/* background-color: #e6e6e6; */&#13;
+	border-color: #adadad;&#13;
+}&#13;
+.btn-default:active, .btn-default.active, .open &gt; .btn-default.dropdown-toggle {&#13;
+	color: #fff;&#13;
+	background-color: #e6e6e6;&#13;
+	border-color: #adadad;&#13;
+}&#13;
+.btn-default:active:hover, .btn-default:active:focus, .btn-default.focus:active, .btn-default.active:hover, .btn-default.active:focus, .btn-default.active.focus, .open &gt; .btn-default.dropdown-toggle:hover, .open &gt; .btn-default.dropdown-toggle:focus, .open &gt; .btn-default.dropdown-toggle.focus {&#13;
+	color: #fff;&#13;
+	background-color: #d4d4d4;&#13;
+	border-color: #8c8c8c;&#13;
+}&#13;
+.btn-default:active, .btn-default.active, .open &gt; .btn-default.dropdown-toggle {&#13;
+	background-image: none;&#13;
+}&#13;
+.btn-default.disabled:hover, .btn-default.disabled:focus, .btn-default.disabled.focus, .btn-default[disabled]:hover, .btn-default[disabled]:focus, .btn-default[disabled].focus, fieldset[disabled] .btn-default:hover, fieldset[disabled] .btn-default:focus, fieldset[disabled] .btn-default.focus {&#13;
+	background-color: #fff;&#13;
+	border-color: #ccc;&#13;
+}&#13;
+.btn-default .badge {&#13;
+	color: #fff;&#13;
+	background-color: #333;&#13;
+}&#13;
+&#13;
+.icon-info:before {&#13;
+    vertical-align: baseline;&#13;
+}&#13;
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>title,color</field_list>
+        <has_preview>false</has_preview>
+        <id>bi-most-viewed</id>
+        <internal>false</internal>
+        <link/>
+        <name>BI Portal - Most Viewed</name>
+        <option_schema>[{"name":"max_number","label":"Max number","type":"integer"},{"displayValue":"Campaign","name":"campaign","label":"Campaign","type":"reference","value":"x_baes2_busimprove_campaigns","ed":{"reference":"x_baes2_busimprove_campaigns"}}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	
+	data.tooltip = "";
+	
+	if (input) {
+		
+		// Client Request For Tooltip
+		if (input && input.action === "getTooltip") {
+			var gr = new GlideRecord("x_baes2_busimprove_ideas");
+			if (gr.get(input.itemID)) {
+				var display_field = gr.getDisplayValue("short_description").replace(/\"/g, "'");
+				var author = gr.getDisplayValue("submitted_for");				
+				var created_on = gr.getDisplayValue("sys_created_on");
+				var created_by = gr.getDisplayValue("sys_created_by");
+				var viewCount = gr.getDisplayValue('sys_view_count');
+				var voteCount = gr.getDisplayValue('total_vote_count');
+				var commentCount = gr.getDisplayValue('comment_count');					
+				
+				data.tooltip = "<div class='tooltip-popover'><div class='tip-header'>" + gr.number + " - " + display_field + "<p><small><span class='author pad-right text-nowrap'><i class='fa fa-user pad-right'/>" + author + "</span><span class='published pad-right text-nowrap'><i class='fa fa-calendar pad-right'/>" + created_on + "</span></br><span class='views pad-right text-nowrap'><i class='fa fa-eye pad-right'/>" + viewCount + " Views </span><span class='views pad-right text-nowrap'><span class='pad-right'>&#8226;</span><i class='fa fa-signal pad-right'/>" + voteCount + " Votes </span><span class='pad-right'>&#8226;</span><i class='fa fa-comments pad-right'/>" + commentCount + " Comments </span></small></p></div><ul class='color-items'>";
+				
+				var text_desc = gr.getDisplayValue('description');
+				var text_bene = gr.getDisplayValue('business_case');				
+				data.tooltip += "<li class='color-item'><h5>Description</h5><div class='color-label'>" + text_desc + "</div>";
+				data.tooltip += "<h5>Benefits</h5><div class='color-label'>" + text_bene + "</div></li>";				
+				data.tooltip += "</ul></div></div>";			
+			}
+			return;
+		}		
+		
+	}  
+	else {  
+		// Initial load	
+		data.articles = [];
+		var z = new GlideRecord("x_baes2_busimprove_ideas");
+		z.addQuery('state', 'IN', '-5,1');		
+		z.addQuery("sys_view_count", ">", "0");
+		if (options.campaign) {
+			z.addQuery("campaign", options.campaign);
+		}
+		z.orderByDesc('sys_view_count');
+		z.setLimit(options.max_number || 5);
+		z.query();
+		while (z.next()) {
+			if (!z.canRead())
+				continue;
+
+			var a = {};
+			$sp.getRecordValues(a, z, 'short_description,sys_view_count,sys_id,sys_created_on');	
+			a.short_description = z.getValue('short_description');
+			a.sys_id = z.getValue('sys_id');
+			a.number = z.getValue('number');			
+			a.published = z.getValue('sys_created_on');
+			a.published_display = gs.getMessage("Created {0}", z.getDisplayValue('sys_created_on'));
+			a.display_field = z.getDisplayValue("short_description");
+			a.description = z.getDisplayValue('description');
+			a.business_case = z.getDisplayValue('business_case');			
+			a.viewCount = z.getDisplayValue('sys_view_count');
+			a.voteCount = z.getDisplayValue('vote_count'); 			
+			a.commentCount = z.getDisplayValue('comment_count'); 			
+			a.author = z.getDisplayValue('submitter');			
+			a.updated_on = z.getValue("sys_updated_on");
+			a.updated_by = z.getDisplayValue("sys_updated_by");			
+			
+			data.articles.push(a);
+		}
+	}
+})()
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-21 10:27:51</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>25050183db8bef80e9c39334ca961999</sys_id>
+        <sys_mod_count>14</sys_mod_count>
+        <sys_name>BI Portal - Most Viewed</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_widget_25050183db8bef80e9c39334ca961999</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-21 11:30:35</sys_updated_on>
+        <template><![CDATA[<sp-panel ng-if="data.articles.length > 0" >
+  <div ng-repeat="a in data.articles" class="m-b">
+    <div style="float:left;">
+        <button id="tooltip-button-{{a.sys_id}}" type="button" class="cd-tooltip viewBtn btn btn-default icon-info btn-icon" uib-popover-template="'bi-most-viewed-tooltip'" popover-placement='bottom-left' popover-trigger='outsideClick' popover-is-open='a.isInfoPopoverOpen' aria-haspopup='true' aria-expanded="{{a.isInfoPopoverOpen}}" data-container="body"><span class="sr-only">${Information}</span></button>              
+    </div>
+    <div>
+      <a href="?id=bi_idea_view&sys_idea_id={{::a.sys_id}}" title="Click to view idea">
+        {{::a.short_description}}
+      </a>
+    </div>    
+    <div>			
+      <span ng-if="a.sys_view_count == 1" class="views pad-right">
+        <glyph sn-char="eye-open" class="pad-right" />
+        ${{{::a.sys_view_count}} View}
+      </span>
+      <span ng-if="a.sys_view_count > 1" class="views pad-right">
+        <glyph sn-char="eye-open" class="pad-right" />
+        ${{{::a.sys_view_count}} Views}
+      </span>
+      <span ng-if="a.voteCount == 1" class="views pad-right text-nowrap">
+        <span class="pad-right">&#8226;</span> <i class="fa fa-signal pad-right" />
+        ${{{::a.voteCount}} Vote}
+      </span>
+      <span ng-if="a.voteCount > 1 || item.voteCount == 0" class="views pad-right text-nowrap">
+        <span class="pad-right">&#8226;</span> <i class="fa fa-signal pad-right" />
+        ${{{::a.voteCount}} Votes}
+      </span>
+      <span ng-if="a.commentCount == 1" class="views pad-right text-nowrap">
+        <span class="pad-right">&#8226;</span> <i class="fa fa-comments pad-right" />
+        ${{{::a.commentCount}} Comment}
+      </span>
+      <span ng-if="a.commentCount > 1 || item.commentCount == 0" class="views pad-right text-nowrap">
+        <span class="pad-right">&#8226;</span> <i class="fa fa-comments pad-right" />
+        ${{{::a.commentCount}} Comments}
+      </span>      
+      <span ng-if="false" class="published pad-right">
+        <span ng-if="a.sys_view_count > 0" class="pad-right">&#8226;</span> <glyph sn-char="calendar" class="pad-right" />
+        <sn-day-ago date="a.published"/>
+      </span>
+    </div>
+  </div>
+</sp-panel>]]></template>
+    </sp_widget>
+</record_update>

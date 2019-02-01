@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>0</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="2">54bf74e3dbfae780e9c39334ca9619f5</sp_column>
+        <sp_widget display_value="HTML">8679ef89cb21120000f8d856634c9c4f</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>Andy.bourner@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-10 13:05:20</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>959fb023dbfae780e9c39334ca961918</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>Blog Text</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_instance_959fb023dbfae780e9c39334ca961918</sys_update_name>
+        <sys_updated_by>Andy.bourner@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-10 13:50:30</sys_updated_on>
+        <title>Blog Text</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"html": {
+		"value": "<div class=\"panel panel-default\">\n<div class=\"panel-body\">Curabitur consectetur purus eu quam vulputate, ac dignissim nulla sollicitudin. Donec feugiat elementum interdum. Sed elementum ut urna vitae ornare. Aliquam ullamcorper pretium dolor, et pellentesque nisl pellentesque vitae. Aliquam mollis massa ac diam molestie posuere. Pellentesque a quam dapibus, tristique massa et, lobortis augue. Donec porttitor vestibulum dolor, eget laoreet ligula porta eget. Pellentesque elit tortor, euismod a tincidunt ut, viverra quis eros. Mauris consequat pulvinar massa, sed suscipit ipsum viverra at.</div>\n</div>",
+		"displayValue": "<div class=\"panel panel-default\">\n<div class=\"panel-body\">Curabitur consectetur purus eu quam vulputate, ac dignissim nulla sollicitudin. Donec feugiat elementum interdum. Sed elementum ut urna vitae ornare. Aliquam ullamcorper pretium dolor, et pellentesque nisl pellentesque vitae. Aliquam mollis massa ac diam molestie posuere. Pellentesque a quam dapibus, tristique massa et, lobortis augue. Donec porttitor vestibulum dolor, eget laoreet ligula porta eget. Pellentesque elit tortor, euismod a tincidunt ut, viverra quis eros. Mauris consequat pulvinar massa, sed suscipit ipsum viverra at.</div>\n</div>"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+</record_update>

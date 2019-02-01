@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($http, $location, $rootScope) {
+  
+	var c = this;
+	c.data.portal = $rootScope.portal.url_suffix;
+	c.getFeaturedContent = function() {
+		// Get content sorted by most views here. Top 3 by default.
+		$http.get(c.data.url).then(function(response){
+			if(response.data) {
+				c.data.contributors = c.populateInitials(response.data.result);
+				//console.log(c.data.contributors);
+			}
+		});
+	};
+	c.populateInitials = function(contributors) {
+		return contributors.map(function(item) {
+			loadUserAvatar(item);
+			return item;
+		});
+	};
+	
+	c.buildInitial = function(name) {
+		if (!name)
+			return "";
+		
+		return name.match(/\b(\w)/g).join('').toUpperCase();
+	};
+	
+	c.getUrl = function(item) {
+		return c.data.portal + "?id=community_user_profile&user=" + item.profile_id;
+	};
+	c.getFeaturedContent();
+	
+	
+	c.formatMessage = function(messageText, params) {
+	    return messageText.replace(/\{(\d+)\}/g, function() {
+	        return params[arguments[1]];
+	    });
+	};
+	
+	function getProfileLink(profileId) {
+		if(profileId)
+			return $rootScope.portal.url_suffix + "?id=community_user_profile&user=" + profileId;
+		else return;
+	}
+	
+	function loadUserAvatar(item){
+		item.userAvatarObject = createUserAvatar(item.name,null,item.photo,item.profile_id);
+	}
+	function createUserAvatar(name, initials, image, userSysId){
+		var avatar = {};
+		if(image && image.indexOf('?t=')==-1) image = image + '?t=small';
+		avatar.userImage = image;
+		avatar.initials = initials || getUserInitials(name);
+		avatar.userId = userSysId;
+		avatar.isLoaded = true;
+		avatar.profileLink = getProfileLink(userSysId);
+		return avatar;
+	}
+
+	function getUserInitials(name){
+		if (!name)
+			return "--";
+
+		var initials = name.split(" ").map(function(word) {
+			return word.toUpperCase();
+		}).filter(function(word) {
+			return word.match(/^[A-Z]/);
+		}).map(function(word) {
+			return word.substring(0,1);
+		}).join("");
+
+		return (initials.length > 3)? initials.substr(0, 3): initials;
+	}
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.cm-people-list {
+  .image50px .avatar-container {
+    height: 50px !important;
+    width: 50px !important;
+    .sub-avatar{
+      justify-content: center;
+      align-items: center;
+      display: inline-flex;
+      span {
+        font-size:16px;
+      }
+    }
+  }
+  a:hover {
+    text-decoration: none;
+
+    .user-info .user-name {
+      text-decoration: underline;
+    }
+  }
+  .user-avatar {
+	float: left;
+    margin-right: 10px;
+    height: 50px;
+    width: 50px;
+    margin-bottom: 10px;
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  .user-info {
+	margin-top: 6px;
+  	display: inline-block;
+	  
+    p {
+      margin-bottom: 0px;
+    }
+    .user-contribution {
+      color: $text-muted;
+    }
+  }
+}
+
+.self-clear:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.circle-img {
+  color: $csm-border-color;
+}
+.av-initial {
+  position: absolute;
+  top: 17px;
+  color: #828890;
+  left: 15px;
+  letter-spacing: 1px;
+}
+.rel-position {
+	position: relative;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>List of the top contributors.</description>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>bi-top-contrib</id>
+        <internal>false</internal>
+        <link/>
+        <name>BI Portal - Top Contributors</name>
+        <option_schema>[{"name":"panel_type","default_value":"default","label":"Panel type","type":"string"}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+ /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	data.count = options.count || 3;
+	data.obj = options.object;
+	data.id = $sp.getParameter("sys_id");
+	data.url = '/api/sn_communities/v1/community/profiles/topContributors?limit=' + data.count ;
+	data.invalidInput = false;
+	data.itemMessage = gs.getMessage("Top {0} contributor is {1}, has {2} answers");
+	data.answerCountMessage = gs.getMessage("{0} Comments");
+	data.linkMessage = gs.getMessage("{0} profile");
+	
+	if(data.id && data.obj) {
+		if(data.obj === 'forum') {
+			data.url = '/api/sn_communities/v1/community/profiles/topContributors?forum_id=' + data.id +'&limit=' + data.count;
+		} else if(data.obj === 'topic') {
+			data.url = '/api/sn_communities/v1/community/profiles/topContributors?topic_id=' + data.id +'&limit=' + data.count;
+		}		
+	} 
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-21 15:51:14</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>660f0ecfdb0fef80e9c39334ca96196a</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>BI Portal - Top Contributors</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_widget_660f0ecfdb0fef80e9c39334ca96196a</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-21 15:57:42</sys_updated_on>
+        <template><![CDATA[<div tabindex="0" aria-label="${Top Contributors}">
+  <div class="cm-people-list">
+    <div ng-show="c.data.contributors.length" class="panel panel-{{::options.panel_type}} csm-widget">
+      <div class="panel-heading">
+        <h4 role="header" class="panel-title">${Top Idea Contributors}</h4>
+      </div>
+      <div class="panel-body">
+        <ul class="list-unstyled">
+          <li class="self-clear" ng-repeat="item in data.contributors"
+              aria-label="{{c.formatMessage(c.data.itemMessage, [$index+1, item.name, item.answers])}}">
+            <a ng-href="{{c.getUrl(item)}}" aria-label="{{c.formatMessage(c.data.linkMessage, [item.name])}}">
+              <div class="user-avatar">             	
+                <span data-ng-if="item.userAvatarObject.isLoaded"  class="image50px">
+                    <sn-avatar primary="item.userAvatarObject" show-presence="false"/>
+                </span>
+              </div>
+            </a>
+            <div class="user-info">
+              <p class="user-name"><a ng-href="{{c.getUrl(item)}}" class="csm-link-inverse" aria-label="{{c.formatMessage(c.data.linkMessage, [item.name])}}">{{item.name}}</a></p>
+              <p class="user-contribution">{{c.formatMessage(c.data.answerCountMessage, [item.answers])}}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

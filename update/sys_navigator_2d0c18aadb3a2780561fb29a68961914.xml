@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_navigator">
+    <sys_navigator action="INSERT_OR_UPDATE">
+        <class_name/>
+        <script><![CDATA[var url = '';
+var sysid = g_uri.get('sys_id');
+var isCompatible = sn_sm.SMTemplateCompatibility.getCompatibility();
+if (isCompatible == 'block') {
+	url =  g_uri.toString(); 
+}
+else {
+   g_uri.set('sysparm_sys_id', sysid);
+   g_uri.set('sysparm_record_target','x_baes2_business_improvement_request_template');
+   g_uri.set('sysparm_title','Business Improvement Request Template');
+   g_uri.set('sysparm_app_name','business_improvement');
+   url =  g_uri.toString('$sm_templates.do');
+}
+url;]]></script>
+        <sys_class_name>sys_navigator</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-01-07 07:56:03</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>2d0c18aadb3a2780561fb29a68961914</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_baes2_business_improvement_request_template</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sys_navigator_2d0c18aadb3a2780561fb29a68961914</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-01-07 07:56:03</sys_updated_on>
+        <table>x_baes2_business_improvement_request_template</table>
+    </sys_navigator>
+</record_update>
