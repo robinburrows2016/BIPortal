@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Counts" section_id="e93116c4db7b2300561fb29a6896193b" sys_domain="global" table="x_baes2_busimprove_campaigns" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>idea_count</element>
+            <position>0</position>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-02-18 15:09:45</sys_created_on>
+            <sys_id>3b025608db7b2300561fb29a68961944</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Counts" display_value="Counts" name="x_baes2_busimprove_campaigns" sys_domain="global" view="Default view">e93116c4db7b2300561fb29a6896193b</sys_ui_section>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-02-18 15:09:45</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>sys_view_count</element>
+            <position>1</position>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-02-18 15:09:45</sys_created_on>
+            <sys_id>bb025608db7b2300561fb29a68961944</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Counts" display_value="Counts" name="x_baes2_busimprove_campaigns" sys_domain="global" view="Default view">e93116c4db7b2300561fb29a6896193b</sys_ui_section>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-02-18 15:09:45</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>comment_count</element>
+            <position>2</position>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-02-18 15:09:45</sys_created_on>
+            <sys_id>3f025608db7b2300561fb29a68961944</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Counts" display_value="Counts" name="x_baes2_busimprove_campaigns" sys_domain="global" view="Default view">e93116c4db7b2300561fb29a6896193b</sys_ui_section>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-02-18 15:09:45</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>total_vote_count</element>
+            <position>3</position>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-02-18 15:09:45</sys_created_on>
+            <sys_id>bf025608db7b2300561fb29a68961944</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Counts" display_value="Counts" name="x_baes2_busimprove_campaigns" sys_domain="global" view="Default view">e93116c4db7b2300561fb29a6896193b</sys_ui_section>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-02-18 15:09:45</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>vote_count</element>
+            <position>4</position>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-02-18 15:09:45</sys_created_on>
+            <sys_id>33025608db7b2300561fb29a68961945</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Counts" display_value="Counts" name="x_baes2_busimprove_campaigns" sys_domain="global" view="Default view">e93116c4db7b2300561fb29a6896193b</sys_ui_section>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-02-18 15:09:45</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Counts</caption>
+            <header>false</header>
+            <name>x_baes2_busimprove_campaigns</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-02-18 15:06:02</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_id>e93116c4db7b2300561fb29a6896193b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Counts</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+            <sys_update_name>sys_ui_section_e93116c4db7b2300561fb29a6896193b</sys_update_name>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-02-18 15:06:02</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

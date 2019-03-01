@@ -1,25 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sys_ui_view">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_view">
     <sys_ui_view action="INSERT_OR_UPDATE">
         <group/>
         <hidden>false</hidden>
-        <name>rpt-temp1b4cfe654ff5fa403625e3518110c724_ae49343c6f7b81006b8746916e3ee4b9</name>
+        <name>pa_new_tab_2</name>
         <roles/>
         <sys_class_name>sys_ui_view</sys_class_name>
         <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-        <sys_created_on>2019-01-18 08:27:32</sys_created_on>
+        <sys_created_on>2019-02-18 15:24:38</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>79bc8d06db8feb80561fb29a6896196c</sys_id>
+        <sys_id>4a7516c8db7b2300561fb29a689619b6</sys_id>
         <sys_mod_count>0</sys_mod_count>
-        <sys_name/>
-        <sys_package/>
+        <sys_name>Pa_new_tab_2</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
-        <sys_update_name/>
+        <sys_update_name>sys_ui_view_4a7516c8db7b2300561fb29a689619b6</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-01-18 08:27:32</sys_updated_on>
-        <title>Rpt-temp1b4cfe654ff5fa403625e3518110c724_ae49343c6f7b81006b8746916e3ee4b9</title>
+        <sys_updated_on>2019-02-18 15:24:38</sys_updated_on>
+        <title>Pa_new_tab_2</title>
         <user/>
     </sys_ui_view>
 </record_update>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<database>
+<?xml version="1.0" encoding="UTF-8"?><database>
     <element label="Idea Use" max_length="40" name="x_baes2_busimprove_idea_use" type="collection">
         <element label="Idea" max_length="32" name="idea" reference="x_baes2_busimprove_ideas" type="reference"/>
         <element label="Times viewed" max_length="40" name="times_viewed" type="integer"/>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sf_x_baes2_business_improvement_task">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sf_x_baes2_business_improvement_task">
     <sf_x_baes2_business_improvement_task action="INSERT_OR_UPDATE">
         <active>true</active>
         <automatic_condition table="x_baes2_business_improvement_task">work_startISNOTEMPTY^EQ<item endquery="false" field="work_start" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
@@ -21,7 +20,7 @@ if (requestDriven && parent && parent.assigned_to.nil() && parent.assignment_gro
         <comment>Business Improvement Request State flow</comment>
         <derived_from display_value="Start Work">edfeb353df312100dca6a5f59bf263e4</derived_from>
         <end_text>18</end_text>
-        <ending_state display_value="Work In Progress">aecb9c6adb3a2780561fb29a6896198c</ending_state>
+        <ending_state/>
         <event/>
         <event_rule/>
         <mandatory_fields/>
@@ -52,7 +51,7 @@ action.setRedirectURL(current);]]></manual_script>
         <read_only_fields/>
         <roles/>
         <start_text>17</start_text>
-        <starting_state display_value="Accepted">e6cb9c6adb3a2780561fb29a68961988</starting_state>
+        <starting_state/>
         <sys_class_name>sf_x_baes2_business_improvement_task</sys_class_name>
         <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
         <sys_created_on>2019-01-07 07:55:10</sys_created_on>

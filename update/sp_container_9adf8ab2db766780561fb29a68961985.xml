@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sp_container">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container">
     <sp_container action="INSERT_OR_UPDATE">
         <background_color/>
         <background_image/>
@@ -30,6 +29,7 @@
     </sp_container>
     <sys_attachment action="INSERT_OR_UPDATE">
         <average_image_color>#614d44</average_image_color>
+        <chunk_size_bytes/>
         <compressed>true</compressed>
         <content_type>image/png</content_type>
         <encryption_context/>
@@ -38,6 +38,7 @@
         <image_width>1137</image_width>
         <size_bytes>752964</size_bytes>
         <size_compressed>753212</size_compressed>
+        <state/>
         <sys_created_by>Andy.bourner@baesystems.com</sys_created_by>
         <sys_created_on>2019-01-10 13:27:37</sys_created_on>
         <sys_id>97a409a7dbfae780e9c39334ca9619fa</sys_id>

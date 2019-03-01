@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sp_ng_template">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_ng_template">
     <sp_ng_template action="INSERT_OR_UPDATE">
         <id>idea-flag-article-modal-bae</id>
         <sp_widget display_value="BI Portal - Idea Content">e5fc05ebdb3ea780561fb29a689619ce</sp_widget>

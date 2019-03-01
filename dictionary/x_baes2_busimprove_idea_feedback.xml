@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<database>
+<?xml version="1.0" encoding="UTF-8"?><database>
     <element label="Idea Feedback" max_length="40" name="x_baes2_busimprove_idea_feedback" type="collection">
         <element label="Comments" max_length="4000" name="comments" type="string_full_utf8"/>
         <element label="Flagged" max_length="40" name="flagged" type="boolean"/>

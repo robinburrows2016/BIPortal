@@ -1,23 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<database>
-    <element audit="true" extends="idea" label="Ideas" max_length="40" name="x_baes2_busimprove_ideas" sizeclass="9" type="collection">
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element audit="true" extends="idea" label="Ideas" max_length="40" name="x_baes2_busimprove_ideas" sizeclass="7" type="collection">
         <element choice="1" label="Award" max_length="40" name="award" type="choice">
             <choice>
-                <element label="Bronze" value="1"/>
-                <element label="Gold" value="3"/>
-                <element label="Silver" value="2"/>
+                <element inactive_on_update="false" label="Bronze" value="1"/>
+                <element inactive_on_update="false" label="Gold" value="3"/>
+                <element inactive_on_update="false" label="Silver" value="2"/>
             </choice>
         </element>
         <element label="Campaign" mandatory="true" max_length="32" name="campaign" reference="x_baes2_busimprove_campaigns" reference_qual="active=true^EQ" reference_qual_condition="active=true^EQ" type="reference"/>
         <element label="Category" mandatory="true" max_length="32" name="category" reference="x_baes2_busimprove_category" reference_qual="active=true^EQ" reference_qual_condition="active=true^EQ" type="reference"/>
-        <element default="0" label="Comment count" max_length="40" name="comment_count" type="integer"/>
+        <element default="0" label="Comment count" max_length="40" name="comment_count" read_only="true" type="integer"/>
         <element label="Confidential" mandatory="true" max_length="40" name="confidential" type="boolean"/>
         <element choice="1" label="Keywords" max_length="40" name="keywords" reference="x_baes2_busimprove_keyword" reference_qual="active=true^EQ" reference_qual_condition="active=true^EQ" type="glide_list">
             <choice/>
         </element>
         <element label="Submitted for" mandatory="true" max_length="100" name="submitted_for" type="string"/>
-        <element default="0" label="Sys View Count" max_length="40" name="sys_view_count" type="integer"/>
-        <element default="0" label="Total vote count" max_length="40" name="total_vote_count" type="integer"/>
-        <element default="0" label="Vote score" max_length="40" name="vote_count" type="integer"/>
+        <element default="0" label="Sys View Count" max_length="40" name="sys_view_count" read_only="true" type="integer"/>
+        <element default="0" label="Total vote count" max_length="40" name="total_vote_count" read_only="true" type="integer"/>
+        <element default="0" label="Vote score" max_length="40" name="vote_count" read_only="true" type="integer"/>
     </element>
 </database>

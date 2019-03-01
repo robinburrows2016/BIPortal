@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="m2m_sp_widget_dependency">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_widget_dependency">
     <m2m_sp_widget_dependency action="INSERT_OR_UPDATE">
         <sp_dependency display_value="RetinaIconsCSS">ed4d86b06700320080c6c3105685ef41</sp_dependency>
-        <sp_widget display_value="BI Portal - Challenge Overview">6c52974fdbfe6780561fb29a6896197d</sp_widget>
+        <sp_widget display_value="BI Portal - Campaign Overview">6c52974fdbfe6780561fb29a6896197d</sp_widget>
         <sys_class_name>m2m_sp_widget_dependency</sys_class_name>
         <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
         <sys_created_on>2019-01-09 10:29:30</sys_created_on>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sc_cat_item_category">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item_category">
     <sc_cat_item_category action="INSERT_OR_UPDATE">
         <sc_cat_item display_value="Submit Idea">480589a2dbba2780561fb29a689619da</sc_cat_item>
         <sc_category display_value="Business Improvement Forms">6b0649e2dbba2780561fb29a689619f6</sc_category>

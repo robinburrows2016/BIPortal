@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
         <client_script><![CDATA[function($rootScope, $scope, $window, $timeout, spUtil, $sce, spModal, $uibModal) {
   /* widget controller */
   var c = this;
@@ -20,6 +20,7 @@
 	$rootScope.displayAttachments = $scope.data.displayAttachments;
 	$rootScope.hideFeedbackOptions = $scope.data.hideFeedbackOptions;
 	$rootScope.helpfulContent = $scope.data.helpfulContent;
+	$rootScope.isArticleActive = $scope.data.isArticleActive;	
 	$scope.data.isSubscribed = $scope.data.isArticleSubscribed || $scope.data.isArticleSubscribedAtKB;
 	$scope.data.subscribeLabel = ($scope.data.isSubscribed ? $scope.data.messages.SUBSCRIBED : $scope.data.messages.SUBSCRIBE);
 	c.createIncidentURL = c.options.create_task_url || ($scope.data.properties && $scope.data.properties.createIncidentURL);
@@ -34,6 +35,7 @@
 	c.submitFlagWithComment = "${Press this button to flag the article}";
 	$scope.data.toggleSubscribed = ($scope.data.isSubscribed ? true : false);
 	c.data.markasreadLabel = "${Mark As Read}";
+	c.data.sendaslinkLabel = "${Share As Link}";	
 	
 	if(c.data.langList.length > 1){
 		for(lng in c.data.langList){
@@ -660,7 +662,8 @@ function populateSystemProperties(){
 	//data.properties.createIncidentURL = getProperty('glide.knowman.create_incident_link', 'create_incident_link', '', false);
 	data.properties.createIncidentURL = '';
 	
-	data.properties.isSubscriptionEnabled = ideaViewModel.isSubscriptionEnabled;
+	//data.properties.isSubscriptionEnabled = ideaViewModel.isSubscriptionEnabled;
+	data.properties.isSubscriptionEnabled = true;
 	data.properties.isEditable = ideaViewModel.isEditable;	
 	data.properties.isEditable = ideaViewModel.isEditable;
 	data.properties.showFeedBack = ideaViewModel.showKBFeedback;
@@ -708,6 +711,7 @@ function populateCommonProperties(){
 
 function populateDataFromIdeaViewModel(){
 			data.isValid = true;
+			data.active = ideaRecord.getDisplayValue('active');	
 			data.isLoggedInUser = gs.getSession().isLoggedIn();
 			data.canContributeToKnowledge = ideaViewModel.canContributeToKnowledgeBase; //canContributeHelper.canContribute(ideaViewModel.Record);
 			data.article_sys_id = ideaRecord.sys_id + '';	
@@ -727,22 +731,30 @@ function populateDataFromIdeaViewModel(){
 			data.commentCount = ideaRecord.getDisplayValue('comment_count');	
 			data.viewCount = ideaRecord.getDisplayValue('sys_view_count');
 			data.voteStyle = getCurrVote(ideaRecord.sys_id.toString(), gs.getUserID()).toString();
-			data.award = ideaRecord.getDisplayValue('award');	
+			data.award = ideaRecord.getDisplayValue('award');
+			data.confidential = ideaRecord.getDisplayValue('confidential');	
 			data.displayAttachments = ideaRecord.display_attachments + '';
 			data.disableSuggesting = ideaRecord.disable_suggesting;
 			//data.revisionString = ideaViewModel.revisionString;
-	        data.revisionString = 'Authored by ' + ideaRecord.submitted_for;
-			data.isSubscriptionEnabled = ideaViewModel.isSubscriptionEnabled;
+	        data.revisionString = 'Submitted by ' + ideaRecord.submitted_for;
+			//data.isSubscriptionEnabled = ideaViewModel.isSubscriptionEnabled;
+            data.isSubscriptionEnabled = true;
+			data.campaignState = ideaRecord.campaign.state.getValue();
+			if (data.campaignState == '0' && data.active) {
+				data.isArticleActive = true;
+			} else {
+				data.isArticleActive = false;
+			}
 			data.helpfulContent = ideaViewModel.helpfulText;
 			if(data.isSubscriptionEnabled === true){
 				//data.isArticleSubscribed = (new global.ActivitySubscriptionContext().getSubscriptionService().isSubscribed(ideaRecord.sys_id).subscriptionId) ? true : false;ideaViewModel.isArticleSubscribed;
 				//data.isArticleSubscribedAtKB = (new global.ActivitySubscriptionContext().getSubscriptionService().isSubscribed(ideaRecord.kb_knowledge_base).subscriptionId) ? true : false;
 				data.isArticleSubscribed = ideaViewModel.isArticleSubscribed;
-				data.isArticleSubscribedAtKB = ideaViewModel.isArticleSubscribedAtKB;
+				data.isArticleSubscribedAtKB = ideaViewModel.isArticleSubscribedAtKB;				
 			}
 			else{
 				data.isArticleSubscribed = false;
-				data.isArticleSubscribedAtKB = false;
+				data.isArticleSubscribedAtKB = false;				
 			}
 
 			//data.kbSysId = ideaRecord.kb_knowledge_base.sys_id + '';
@@ -843,7 +855,7 @@ function populateFeedback(){
         <sys_created_on>2019-01-10 14:03:48</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>e5fc05ebdb3ea780561fb29a689619ce</sys_id>
-        <sys_mod_count>134</sys_mod_count>
+        <sys_mod_count>185</sys_mod_count>
         <sys_name>BI Portal - Idea Content</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -851,7 +863,7 @@ function populateFeedback(){
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sp_widget_e5fc05ebdb3ea780561fb29a689619ce</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-01-21 15:52:09</sys_updated_on>
+        <sys_updated_on>2019-02-25 12:52:14</sys_updated_on>
         <template><![CDATA[<div ng-if="data.versionWarningMessage && c.options.show_version_info != 'false'" class="alert alert-info alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <div ng-bind-html="data.versionWarningMessage">
@@ -873,7 +885,7 @@ function populateFeedback(){
         <div ng-if="!$root.hideFeedbackOptions && c.options.hide_all_actions != 'true'" class="col-md-7 kb-end-buttons">
 				
           
-          <div class="dropdown kb-end-buttons">
+          <div class="dropdown kb-end-buttons">           
             <span class="hidden-sm hidden-xs">
               <a tabindex="0" ng-if="data.isMarkAsReadEnabled && data.isMarkedAsRead == 'false'" 
                  role="button"
@@ -884,6 +896,18 @@ function populateFeedback(){
               </a>
             </span>
             <span class="hidden-sm hidden-xs">
+              <a tabindex="0"
+                 id="sendlinkButton"
+                 role="button"
+                 class="btn btn-primary kb-sendaslink" 
+                 data-toggle="modal"
+                 data-target="#sendlinkModal">
+                <span  class="kb-sub-icon" aria-label="{{data.sendaslinkLabel}}">
+                  {{data.sendaslinkLabel}}
+                </span>
+              </a>
+            </span>            
+            <span class="hidden-sm hidden-xs">
               <a tabindex="0" ng-mouseover="c.handleSubscribeButtonFocus()" 
                  ng-if="data.properties.isSubscriptionEnabled && !data.isMarkAsReadEnabled" 
                  ng-mouseleave="c.handleSubscribeButtonBlur()"
@@ -891,7 +915,7 @@ function populateFeedback(){
                  ng-blur="c.handleSubscribeButtonBlur()"
                  role="button"
                  ng-class="{'btn-primary': data.isArticleSubscribed == true, 'btn-default': data.isArticleSubscribed == false}"
-                 class="btn kb-subscribe" ng-click="c.handleSubscription()" href="javascript:void(5)">
+                 class="btn kb-subscribe" ng-click="data.isArticleActive && c.handleSubscription()" href="javascript:void(5)">
                 <span  class="kb-sub-icon" aria-label="{{data.subscribeLabel}}">
                   {{data.subscribeLabel}}
                 </span>
@@ -957,14 +981,13 @@ function populateFeedback(){
             </div>
           </div>
            </div>
-         <span ng-if="data.revisionString" class="author pad-right text-nowrap">
+         <span ng-if="data.revisionString && data.confidential == 'false'" class="author pad-right text-nowrap">
           <span ng-if="data.langList.length > 1" class="pad-right">&#8226;</span>
           <i class="fa fa-user pad-right" />
-          {{data.revisionString}}
+           {{data.revisionString}}
         </span>
-
         <span class="published pad-right text-nowrap">
-          <span class="pad-right">&#8226;</span> <i class="fa fa-calendar pad-right" />
+          <span ng-if="data.revisionString && data.confidential == 'false'" class="pad-right">&#8226;</span> <i class="fa fa-calendar pad-right" />
           <sn-time-ago timestamp="data.sys_created_on"/>
         </span>
         <span ng-if="data.viewCount == 1" class="views pad-right text-nowrap">
@@ -999,7 +1022,7 @@ function populateFeedback(){
     <div ng-show="data.properties.allowVotes == 'true'" class="col-xs-1" style="text-align: center">
       <div>
         <div class="row">
-          <div ng-click="c.upVote();">
+          <div ng-click="data.isArticleActive && c.upVote();">
             <a ng-class="{'glyphicon glyphicon-chevron-up':true, 'upvote':c.isUpvote(data.voteStyle), 'novote':c.isNovote('upvote',data.voteStyle)}" style="font-size: 18px; margin-left: 2px;"></a>
           </div>
         </div>
@@ -1009,7 +1032,7 @@ function populateFeedback(){
           </div>
         </div>
         <div class="row">
-          <div ng-show="data.properties.allowDownvotes == 'true'" ng-click="c.downVote();">
+          <div ng-show="data.properties.allowDownvotes == 'true'" ng-click="data.isArticleActive && c.downVote();">
             <a ng-class="{'glyphicon glyphicon-chevron-down':true, 'downvote':c.isDownvote(data.voteStyle), 'novote':c.isNovote('downvote', data.voteStyle)}" style="font-size: 18px; margin-right: 1px;"></a>
           </div>
         </div>
@@ -1046,6 +1069,8 @@ function populateFeedback(){
   <div class="panel-heading">{{data.messages.INSUFFICIENT_PREVILEGES}}</div>
 </div>
 
+<!-- Include Feedback Mechanism -->
+<widget id="simplesendlink" options='{"dataTable": "x_baes2_busimprove_ideas", "dataRecord": data.article_sys_id, "event": "send.email.link", "hdrTitle": "Share A Link To This Idea", "autoHideTY": "true", "autoHideDuration": "2.00"}'></widget>
 
 <style>
   #uiNotificationContainer{

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sys_documentation element="home_page" label="Home Page" language="en" table="x_baes2_busimprove_campaigns">
         <sys_documentation action="INSERT_OR_UPDATE">
             <element>home_page</element>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="db_image">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="db_image">
     <db_image action="INSERT_OR_UPDATE">
         <active>true</active>
         <category>kb</category>
@@ -27,6 +26,7 @@
     </db_image>
     <sys_attachment action="INSERT_OR_UPDATE">
         <average_image_color>#ede8e7</average_image_color>
+        <chunk_size_bytes/>
         <compressed>true</compressed>
         <content_type>image/png</content_type>
         <encryption_context/>
@@ -35,6 +35,7 @@
         <image_width>240</image_width>
         <size_bytes>98793</size_bytes>
         <size_compressed>98843</size_compressed>
+        <state/>
         <sys_created_by>Andy.bourner@baesystems.com</sys_created_by>
         <sys_created_on>2019-01-09 09:17:34</sys_created_on>
         <sys_id>03d1c343dbfe6780561fb29a6896194f</sys_id>

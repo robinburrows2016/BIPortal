@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
         <client_script><![CDATA[function($scope, $http, $filter, $rootScope, $timeout, $location, $q, $interval) {
 	/* widget controller */
 	var c = this;
@@ -18,8 +18,7 @@
 			minimumActivityCount = parseInt(c.options.minimum_activity_count),
 			defaultTopic = '',
 			forumDepthLevel = c.options.forum_level,
-			nextRecord;
-
+			nextRecord;	
 	c.hideContentFeed = true;
 
 	function initiateContentFeed() {
@@ -96,7 +95,7 @@
 				}
 				//fetch data from filters
 				var selectedForum = c.selectedFilters.forum.sys_id ? c.selectedFilters.forum.sys_id: '',
-						selectedContent = c.selectedFilters.contentType.sys_id ? c.selectedFilters.contentType.sys_id : '';
+				selectedContent = c.selectedFilters.contentType.sys_id ? c.selectedFilters.contentType.sys_id : '';
 
 				url = '/contents?last='+fetchTill+'&stFrom='+startFrom + '&before='+ encodeURI(sessionTimeStamp);
 				url = url + '&forum=' + selectedForum + '&type=' + selectedContent;
@@ -117,38 +116,36 @@
 
 				loadingMore = true;
 				c.showLoading = true;
-				c.showNoResults = false;	
-				$http.get(apiBaseUrl + url)
-					.then(function(data){
+				c.showNoResults = false;
+				c.server.get({action : 'getIdeas', campaign_id : selectedForum, sort_by : c.selectedSortBy.name }).then(function(data){
 					loadingMore = false;
 					if(data){
-						if(data.data.result.contents.length){
-							processRawFeeds(data.data.result.contents);
+						if(data.data.ideaItems.length){
+							processRawFeeds(data.data.ideaItems);
 							if(firstLoad || filterChanged){
-								c.feeds = data.data.result.contents;
+								c.feeds = data.data.ideaItems;
 								//putting timeout to make sure 'sn-time-ago' refreshes
 								c.feedList = [];
 								$timeout(function(){
 									c.showLoading = false;
 									c.showFilters = true;
-									c.feedList = data.data.result.contents;
+									c.feedList = data.data.ideaItems;
 									if(firstLoad)
 										filterContentTypes();
 								});
 							}
 							else{
-								c.feeds = c.feeds.concat(data.data.result.contents);
+								c.feeds = c.feeds.concat(data.data.ideaItems);
 								//putting timeout to make sure 'sn-time-ago' refreshes
 								c.feedList = [];
 								c.showLoading = false;
 								c.showFilters = true;
 								$timeout(function(){
-									c.feedList = c.feedList.length ? c.feedList.concat(data.data.result.contents) : c.feeds;
-									//filterContentTypes();
+									c.feedList = c.feedList.length ? c.feedList.concat(data.data.ideaItems) : c.feeds;
 								});
 							}
-							c.hasMoreContents = data.data.result.hasMoreRecords;
-							nextRecord = data.data.result.nextRecord;
+							c.hasMoreContents = data.data.hasMoreRecords;
+							nextRecord = data.data.nextRecord;
 						}
 						else{
 							//clear feeds display if no record fetched
@@ -370,19 +367,16 @@
 
 		/*------- Get Forums --------*/
 		function fetchForums(){
-			$http.get(apiBaseUrl + '/forums?getDetail=1&depth_level=' + forumDepthLevel)
-				.then(function(data){
-				if(data && data.data && data.data.result){
-					c.filters.forums = data.data.result;
-					createFlatList(c.filters.forums, c.flatForumList);
-					initFeeds();	
-				}
+			c.server.get({action : 'getCampaigns'}).then(function(data){
+				c.filters.forums = data.data.campaignItems;
+				createFlatList(c.filters.forums, c.flatForumList);
+				initFeeds();	
 			}, function(error){
 				console.error(error);
 			});
 		}
 		/**--- Get the Content Types-- */
-		$http.get(apiBaseUrl + '/user/contentTypes')
+		/*$http.get(apiBaseUrl + '/user/contentTypes')
 			.then(function(data){
 			if(data && data.data && data.data.result){
 				c.rawContentTypes = data.data.result.result;
@@ -390,7 +384,8 @@
 			}
 		}, function(error){
 			console.error(error);
-		});
+		});*/
+        fetchForums();
 
 	} //initcontentFeed END
 
@@ -398,19 +393,6 @@
 	if(c.data.isLoggedIn) {
 		//check whether to show the widget or not
 		if($rootScope.page.sys_id == '3150fe57531032007a97e192d5dc3427'){
-			/*		$http.get('/api/now/actsub/subscriptions/'+ c.data.liveProfileId)
-				.then(function(data){
-				if(data && data.data && data.data.result){
-					if(data.data.result.subscriptions.length){
-						if(data.data.result.activity_count < minimumActivityCount)
-							initiateContentFeed();
-					}
-					else
-						initiateContentFeed();
-				}
-			}, function(error){
-				console.warn(error);
-			});	*/
 			if(c.data.subsResult){
 				if(c.data.subsResult.subscriptionsCount && c.data.subsResult.subscriptionsCount > 0 ){
 					if(c.data.subsResult.activityStreamCount < minimumActivityCount)
@@ -644,57 +626,127 @@
         <public>true</public>
         <roles/>
         <script><![CDATA[(function() {
-	/* populate the 'data' object */
-	/* e.g., data.table = $sp.getValue('table'); */
+	
+	if(!input){	
+		/* populate the 'data' object */
+		/* e.g., data.table = $sp.getValue('table'); */
 
-	var liveProfileGR = new GlideRecord("live_profile");
-	liveProfileGR.addQuery("document",gs.getUser().getID());
-	liveProfileGR.query();
+		var liveProfileGR = new GlideRecord("live_profile");
+		liveProfileGR.addQuery("document",gs.getUser().getID());
+		liveProfileGR.query();
 
-	data.liveProfileId = "";
+		data.liveProfileId = "";
 
-	if (liveProfileGR.next()) {
-		data.liveProfileId = liveProfileGR.getUniqueValue();
-	}
+		if (liveProfileGR.next()) {
+			data.liveProfileId = liveProfileGR.getUniqueValue();
+		}
 
-	data.isLoggedIn = gs.getSession().isLoggedIn();
+		data.isLoggedIn = gs.getSession().isLoggedIn();
 
-	data.sortBy = [
-		{
+		data.sortBy = [
+			{
+				name: 'publish',
+				label: gs.getMessage('Recent')
+			},
+			{
+				name: 'view',
+				label: gs.getMessage('Popular')
+			}
+		];
+
+		data.selectedSortBy = {
 			name: 'publish',
 			label: gs.getMessage('Recent')
-		},
-		{
-			name: 'view',
-			label: gs.getMessage('Popular')
-		}
-	];
+		};
 
-	data.selectedSortBy = {
-		name: 'publish',
-		label: gs.getMessage('Recent')
-	};
+		///Load subscription 
+		var actSubCtx = global.ActivitySubscriptionContext.getContext();
+		var subscriptionService = actSubCtx.getSubscriptionService();
+		data.subsResult = subscriptionService.getActSubCounts(data.liveProfileId);	
 
-	///Load subscription 
-	var actSubCtx = global.ActivitySubscriptionContext.getContext();
-	var subscriptionService = actSubCtx.getSubscriptionService();
-	//data.subsResult = subscriptionService.getSubscriptionsBySubscriber(data.liveProfileId, '', '');
-        data.subsResult = subscriptionService.getActSubCounts(data.liveProfileId);	
+		data.msg = {
+			itemtitle: gs.getMessage("{0} in {1} by {2}"),
+			itemlinktitle: gs.getMessage("{0} under {1} by {2}"),
+			profilelink : gs.getMessage("{0} profile"),
+			viewtext: gs.getMessage("{0} view"),
+			viewstext: gs.getMessage("{0} views"),
+			Video: gs.getMessage("Video"),
+			Blog: gs.getMessage("Blog"),
+			Question: gs.getMessage("Question"),
+			reply: gs.getMessage("{0} reply"),
+			replies: gs.getMessage("{0} replies"),
+			comment: gs.getMessage("{0} comment"),
+			comments: gs.getMessage("{0} comments")
+		};
+		
+	}
 	
-        data.msg = {
-		itemtitle: gs.getMessage("{0} in {1} by {2}"),
-		itemlinktitle: gs.getMessage("{0} under {1} by {2}"),
-		profilelink : gs.getMessage("{0} profile"),
-		viewtext: gs.getMessage("{0} view"),
-		viewstext: gs.getMessage("{0} views"),
-		Video: gs.getMessage("Video"),
-		Blog: gs.getMessage("Blog"),
-		Question: gs.getMessage("Question"),
-		reply: gs.getMessage("{0} reply"),
-		replies: gs.getMessage("{0} replies"),
-		comment: gs.getMessage("{0} comment"),
-		comments: gs.getMessage("{0} comments")
-	};
+	if(input){
+		if(input.action === 'getCampaigns'){
+			// Active Campaigns
+			var currentTime = new GlideDateTime();
+			data.campaignItems = [];
+			var gr_campaign = new GlideRecordSecure('x_baes2_busimprove_campaigns'); // does ACL checking for us
+			gr_campaign.addActiveQuery();	
+			gr_campaign.addQuery('start_date', '<=', currentTime);		
+			gr_campaign.addQuery('end_date', '>=', currentTime).addOrCondition('end_date', '=', 'NULL');	
+			gr_campaign.addActiveQuery();
+			gr_campaign.orderBy('title');
+			gr_campaign.query();
+			while (gr_campaign.next()) {
+				if (!gr_campaign.canRead())
+					continue;
+				var item = {};
+				item.sys_id = gr_campaign.getValue('sys_id');		
+				item.name = gr_campaign.getDisplayValue("title");				
+				data.campaignItems.push(item);
+			}
+		}
+		
+		if(input.action === 'getIdeas'){
+			// Active Ideas - Filtered As Required
+			data.ideaItems = [];
+			var gr_idea = new GlideRecordSecure('x_baes2_busimprove_ideas'); // does ACL checking for us
+			if (input.campaign_id) {
+				gr_idea.addQuery('campaign', input.campaign_id);				
+			}
+			gr_idea.addActiveQuery();			 
+			gr_idea.addActiveQuery();		
+			gr_idea.addActiveQuery();
+			if (!input.sort_by || input.sort_by == 'publish' ) {
+				gr_idea.orderByDesc('sys_updated_on');				
+			} else {
+				gr_idea.orderByDesc('sys_view_count');
+			}			
+			
+			gr_idea.query();
+			while (gr_idea.next()) {
+				if (!gr_idea.canRead())
+					continue;
+				var item = {};
+				item.sys_id = gr_idea.getValue('sys_id');		
+				item.title = gr_idea.getDisplayValue('short_description');
+				item.forum = gr_idea.getDisplayValue("campaign");
+				item.forum_id = gr_idea.getValue("campaign");				
+				item.updated_date = gr_idea.getValue("sys_updated_on");
+				item.created_by = gr_idea.getDisplayValue("sys_created_by");				
+				item.updated_by = gr_idea.getDisplayValue("sys_updated_by");
+				item.view_count = gr_idea.getDisplayValue('sys_view_count');
+				item.vote_count = gr_idea.getDisplayValue('total_vote_count');
+				item.comment_count = gr_idea.getDisplayValue('comment_count');
+			    item.confidential = gr_idea.getDisplayValue('confidential');
+				if (item.created_by != item.updated_by) {
+					item.confidential = 'false';
+				}
+				item.icon = 'fa fa-quote-left';
+				data.ideaItems.push(item);
+			}
+			data.hasMoreRecords = false;
+			data.nextRecord = 10;
+		}		
+		
+	}
+	
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
@@ -702,7 +754,7 @@
         <sys_created_on>2019-01-21 15:45:34</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>6fbd4e4fdb0fef80e9c39334ca96190e</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>73</sys_mod_count>
         <sys_name>BI Portal - Idea Content Feed</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -710,27 +762,27 @@
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sp_widget_6fbd4e4fdb0fef80e9c39334ca96190e</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-01-21 15:46:00</sys_updated_on>
-        <template><![CDATA[<div class="cm-content-feed" data-ng-show="!c.hideContentFeed">
+        <sys_updated_on>2019-02-26 14:04:11</sys_updated_on>
+        <template><![CDATA[<div class="cm-content-feed">
   <div class="csm-content-list">
     <div class="cm-list-filter self-clear">
       <div class="cm-content-filters row" data-ng-show="c.showFilters">
         <div class="col-xs-12 col-sm-12 col-md-9">
           <div class="row">
-            <div class="cm-filter content-filter col-xs-12 col-sm-12 col-md-4">
+            <div class="cm-filter forum-filter col-xs-12 col-sm-12 col-md-5" data-ng-if="!c.needForumDefault" data-ng-click="c.testing($event)">
+              <select data-ng-model="c.selectedFilters.forum" class="cm-feed-forum-select cm-select2">
+                <option value="" data-ng-show="false"></option>
+                <option value="{{c.dummyFilter.forum}}">${All Campaigns}</option>
+                <option value="{{forum}}" data-ng-repeat="forum in c.flatForumList">{{forum.name}}</option>
+              </select>
+            </div>
+            <div class="cm-filter content-filter col-xs-12 col-sm-12 col-md-4 hidden">
               <select data-ng-model="c.selectedFilters.contentType" class="cm-feed-content-select cm-select2">
                 <option value="" data-ng-show="false"></option>
                 <option value="{{c.dummyFilter.contentType}}">${All Content}</option>
                 <option value="{{content}}" data-ng-repeat="content in c.filters.contentTypes">{{c.data.msg[content.name] ? c.data.msg[content.name]: content.name}}</option>
               </select>
-            </div>
-            <div class="cm-filter forum-filter col-xs-12 col-sm-12 col-md-5" data-ng-if="!c.needForumDefault" data-ng-click="c.testing($event)">
-              <select data-ng-model="c.selectedFilters.forum" class="cm-feed-forum-select cm-select2">
-                <option value="" data-ng-show="false"></option>
-                <option value="{{c.dummyFilter.forum}}">${All Forums}</option>
-                <option value="{{forum}}" data-ng-repeat="forum in c.flatForumList">{{forum.name}}</option>
-              </select>
-            </div>
+            </div>            
           </div>
         </div>
         <div class="cm-filter sort-by col-xs-12 col-sm-12 col-md-3">
@@ -746,28 +798,25 @@
           <div class="cm-content-item">
             <div class="content-main">
               <div class="content-icon">
-                <i class="fa {{feed.content_type.icon}}" alt="${feed.content_type.name}" data-ng-if="!c.showAnsweredIcon(feed)"></i>
+                <i class="fa {{feed.icon}}" alt="${feed.content_type.name}" data-ng-if="!c.showAnsweredIcon(feed)"></i>
                 <i class="fa fa-check-circle cm-green" aria-hidden="true" data-ng-if="c.showAnsweredIcon(feed)"></i>
               </div>
               <div class="content-header">
                 <header>
                   <h4 class="font-normal">
-                    <!--- Commenting out this part as it was giving error when localization is turned on. Seems like something is missing here.
-                    <a aria-label="{{c.formatMesage(c.data.msg.itemlinktitle, [feed.title, feed.forum.name])}} {{c.showAnsweredIcon(feed) ? ${', This has accepted solution'} : ''}}" 
-                       data-ng-href="{{c.portal}}?id=community_{{feed.content_type.name.toLowerCase()}}&sys_id={{feed.sys_id}}">{{feed.title}}</a> --->
-                    <a data-ng-href="{{c.portal}}?id=community_{{feed.content_type.name.toLowerCase()}}&sys_id={{feed.sys_id}}">{{feed.title}}</a>
+                    <a data-ng-href="{{c.portal}}?id=bi_idea_view&sys_idea_id={{feed.sys_id}}">{{feed.title}}</a>
                   </h4>
                   <h5 class="forum-name font-normal">
-                    <a data-ng-href="{{c.portal}}?id=community_forum&sys_id={{feed.forum.sys_id}}" 
-                       class="">{{feed.forum ? feed.forum.name : ''}}</a>
+                    <a data-ng-href="{{c.portal}}?id=bi_campaign_overview&sysparm_campaign={{feed.forum_id}}" 
+                       class="">{{feed.forum}}</a>
                   </h5>
                 </header>
               </div>
             </div>
             <div class="content-meta" tabindex="0">
               <div class="info">
-                <span class="">${By} <a aria-label="{{c.formatMessage(c.data.msg.profilelink, [feed.user_details.name])}}" data-ng-href="{{c.portal}}?id=community_user_profile&user={{feed.user_details.profile_id}}" class="">{{feed.user_details.name}}</a></span>
-                <span class="csm-separator-dot" aria-label="${separator}">&bull;</span>
+                <span ng-if="feed.confidential == 'false'" class="">${By} <a aria-label="{{c.formatMessage(c.data.msg.profilelink, [feed.updated_by])}}" data-ng-href="{{c.portal}}?id=community_user_profile&user={{feed.user_details.profile_id}}" class="">{{feed.updated_by}}</a></span>
+                <span ng-if="feed.confidential == 'false'" class="csm-separator-dot" aria-label="${separator}">&bull;</span>
                 <span ng-if = "feed.content_type.sys_id!='57f785863b2b220085f76b4ee3efc449'" tabindex="0" class="">${Updated } <!-- {{c.getDateObject(feed.updated_date)}} -->
                   <span data-ng-hide="feed.hideTimeAgo"><sn-time-ago timestamp="feed.updated_date"/></span> 
                   <span data-ng-show="feed.hideTimeAgo">${Just Now}</span> 

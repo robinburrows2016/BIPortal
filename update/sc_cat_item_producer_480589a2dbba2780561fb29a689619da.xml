@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sc_cat_item_producer">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_cat_item_producer">
     <sc_cat_item_producer action="INSERT_OR_UPDATE">
         <active>true</active>
         <availability>on_both</availability>
@@ -14,6 +13,7 @@
         <description/>
         <entitlement_script/>
         <group/>
+        <hide_sp>false</hide_sp>
         <icon/>
         <ignore_price>true</ignore_price>
         <image/>
@@ -35,6 +35,7 @@
         <order>0</order>
         <ordered_item_link/>
         <picture/>
+        <post_insert_script/>
         <preview>JavaScript: popupOpenStandard("com.glideapp.servicecatalog_cat_item_view.do?v=1&amp;sysparm_id=480589a2dbba2780561fb29a689619da&amp;sysparm_preview=true", "summary");</preview>
         <price>0</price>
         <recurring_frequency/>
@@ -44,10 +45,11 @@
         <sc_catalogs>77fb94aadb3a2780561fb29a6896194f</sc_catalogs>
         <sc_ic_item_staging/>
         <sc_ic_version/>
-        <script><![CDATA[current.state ='idea';
-var s = 'Idea <a href ="/idea.do?sysparm_query=number%3D' + current.number + '">'+ current.number +'</a>'+' has been submitted.<br/>';
-gs.addInfoMessage(s);
-producer.redirect = "idea_list.do";]]></script>
+        <script><![CDATA[// Set Default Values
+current.state ='idea';
+
+//Redirection Processing
+producer.portal_redirect="/spbi?id=bi_idea_view&sys_idea_id=" + current.sys_id;]]></script>
         <short_description>Please share your idea or suggestion with us</short_description>
         <show_variable_help_on_load>false</show_variable_help_on_load>
         <start_closed>false</start_closed>
@@ -56,7 +58,7 @@ producer.redirect = "idea_list.do";]]></script>
         <sys_created_on>2019-01-07 10:55:05</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>480589a2dbba2780561fb29a689619da</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>Submit Idea</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -64,7 +66,7 @@ producer.redirect = "idea_list.do";]]></script>
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sc_cat_item_producer_480589a2dbba2780561fb29a689619da</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-01-23 07:44:27</sys_updated_on>
+        <sys_updated_on>2019-02-27 08:55:04</sys_updated_on>
         <table_name>x_baes2_busimprove_ideas</table_name>
         <template/>
         <type>item</type>

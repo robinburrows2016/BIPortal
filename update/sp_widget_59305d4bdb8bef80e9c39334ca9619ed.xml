@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
         <client_script><![CDATA[function($scope) {
 	/* widget controller */
 	var c = this;	
@@ -236,8 +236,13 @@ tooltip._top tip tip-arrow {&#13;
 			a.voteCount = z.getDisplayValue('vote_count'); 			
 			a.commentCount = z.getDisplayValue('comment_count'); 			
 			a.author = z.getDisplayValue('submitter');			
+			a.created_by = z.getDisplayValue("sys_created_by");			
 			a.updated_on = z.getValue("sys_updated_on");
-			a.updated_by = z.getDisplayValue("sys_updated_by");			
+			a.updated_by = z.getDisplayValue("sys_updated_by");
+			a.confidential = z.getDisplayValue('confidential');
+			if (a.created_by != a.updated_by) {
+				a.confidential = 'false';
+			}			
 			
 			data.articles.push(a);
 		}
@@ -250,7 +255,7 @@ tooltip._top tip tip-arrow {&#13;
         <sys_created_on>2019-01-21 11:16:43</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>59305d4bdb8bef80e9c39334ca9619ed</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>BI Portal - Most Voted</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -258,7 +263,7 @@ tooltip._top tip tip-arrow {&#13;
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sp_widget_59305d4bdb8bef80e9c39334ca9619ed</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-01-21 11:29:49</sys_updated_on>
+        <sys_updated_on>2019-02-26 14:13:33</sys_updated_on>
         <template><![CDATA[<sp-panel ng-if="data.articles.length > 0" >
   <div ng-repeat="a in data.articles" class="m-b">
     <div style="float:left;">

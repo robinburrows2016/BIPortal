@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sp_ng_template">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_ng_template">
     <sp_ng_template action="INSERT_OR_UPDATE">
         <id>ideaModalTemplate</id>
         <sp_widget display_value="BI Portal - Active Homepage Campaigns">8a2f5162dbfa2780561fb29a689619f1</sp_widget>

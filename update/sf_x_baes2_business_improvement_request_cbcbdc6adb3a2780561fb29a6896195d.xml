@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sf_x_baes2_business_improvement_request">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sf_x_baes2_business_improvement_request">
     <sf_x_baes2_business_improvement_request action="INSERT_OR_UPDATE">
         <active>true</active>
         <automatic_condition/>
@@ -12,7 +11,7 @@
         <comment>Business Improvement Request State flow</comment>
         <derived_from display_value="Ready for work (approval off)">29feb353df312100dca6a5f59bf263e3</derived_from>
         <end_text>10</end_text>
-        <ending_state display_value="Ready">66cb9c6adb3a2780561fb29a6896195f</ending_state>
+        <ending_state/>
         <event/>
         <event_rule/>
         <mandatory_fields/>
@@ -29,7 +28,7 @@
         <read_only_fields/>
         <roles/>
         <start_text>1</start_text>
-        <starting_state display_value="Draft">e6cb9c6adb3a2780561fb29a6896194e</starting_state>
+        <starting_state/>
         <sys_class_name>sf_x_baes2_business_improvement_request</sys_class_name>
         <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
         <sys_created_on>2019-01-07 07:55:05</sys_created_on>

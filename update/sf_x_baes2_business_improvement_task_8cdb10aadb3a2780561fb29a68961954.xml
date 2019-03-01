@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sf_x_baes2_business_improvement_task">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sf_x_baes2_business_improvement_task">
     <sf_x_baes2_business_improvement_task action="INSERT_OR_UPDATE">
         <active>true</active>
         <automatic_condition/>
@@ -12,7 +11,7 @@
         <comment>Business Improvement Request initial task state</comment>
         <derived_from display_value="Initial State">60e174e1df23210068c37a0d3df26303</derived_from>
         <end_text>1</end_text>
-        <ending_state display_value="Draft">eacb9c6adb3a2780561fb29a6896197c</ending_state>
+        <ending_state/>
         <event/>
         <event_rule/>
         <mandatory_fields/>

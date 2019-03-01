@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sm_config_module">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sm_config_module">
     <sm_config_module action="INSERT_OR_UPDATE">
         <app_name display_value="Business Improvement">450cd4aadb3a2780561fb29a68961993</app_name>
         <aspect>geolocation_maps</aspect>

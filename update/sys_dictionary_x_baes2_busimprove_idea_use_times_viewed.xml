@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sys_dictionary action="INSERT_OR_UPDATE" element="times_viewed" table="x_baes2_busimprove_idea_use">
         <active>true</active>
         <array>false</array>
@@ -31,6 +30,8 @@
         <element>times_viewed</element>
         <element_reference>false</element_reference>
         <foreign_database/>
+        <function_definition/>
+        <function_field>false</function_field>
         <internal_type display_value="Integer">integer</internal_type>
         <mandatory>false</mandatory>
         <max_length>40</max_length>
@@ -53,7 +54,7 @@
         <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
         <sys_created_on>2019-01-14 14:16:55</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>e846b534db876b80561fb29a68961911</sys_id>
+        <sys_id>2119eea21b97af80da8f87fe6e4bcbdb</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Times viewed</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
@@ -61,8 +62,8 @@
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sys_dictionary_x_baes2_busimprove_idea_use_times_viewed</sys_update_name>
-        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-01-14 14:16:55</sys_updated_on>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2019-02-01 14:43:55</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

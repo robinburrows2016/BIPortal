@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sys_ui_form_sections form_id="ac0cd4aadb3a2780561fb29a68961923" sys_domain="global" table="x_baes2_business_improvement_task" version="3">
         <sys_ui_form_section action="INSERT_OR_UPDATE">
             <position>0</position>

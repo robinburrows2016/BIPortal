@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update sys_domain="global" table="cxs_table_field_config">
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="cxs_table_field_config">
     <cxs_table_field_config action="INSERT_OR_UPDATE">
         <cxs_table_config display_value="Ideas [x_baes2_busimprove_ideas]">624870f0db076b80561fb29a689619ff</cxs_table_config>
         <default_config>true</default_config>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update sys_domain="global" table="cxs_rp_config">
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="cxs_rp_config">
     <cxs_rp_config action="INSERT_OR_UPDATE">
         <active>true</active>
         <allow_expand_collapse>false</allow_expand_collapse>

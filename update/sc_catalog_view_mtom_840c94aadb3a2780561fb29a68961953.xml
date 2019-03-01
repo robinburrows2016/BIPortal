@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sc_catalog_view_mtom">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sc_catalog_view_mtom">
     <sc_catalog_view_mtom action="INSERT_OR_UPDATE">
         <default>true</default>
         <sc_catalog display_value="Business Improvement Catalog">77fb94aadb3a2780561fb29a6896194f</sc_catalog>

@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sys_app">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_app">
     <sys_app action="INSERT_OR_UPDATE">
         <active>true</active>
         <enforce_license>log</enforce_license>
         <js_level>helsinki_es5</js_level>
         <licensable>true</licensable>
+        <license_category>none</license_category>
         <license_model>none</license_model>
         <logo/>
         <menu/>
         <name>Business Improvement Portal</name>
         <private>false</private>
         <restrict_table_access>false</restrict_table_access>
-        <runtime_access_tracking>permissive</runtime_access_tracking>
+        <runtime_access_tracking/>
         <scope>x_baes2_busimprove</scope>
         <scoped_administration>false</scoped_administration>
         <short_description/>
@@ -21,12 +21,12 @@
         <sys_class_name>sys_app</sys_class_name>
         <sys_code/>
         <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-        <sys_created_on>2019-01-07 07:55:01</sys_created_on>
+        <sys_created_on>2019-02-01 14:43:23</sys_created_on>
         <sys_id>cecbd46adb3a2780561fb29a6896192f</sys_id>
-        <sys_mod_count>2</sys_mod_count>
-        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-02-01 11:44:52</sys_updated_on>
-        <template>esa</template>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_updated_by>guest</sys_updated_by>
+        <sys_updated_on>2019-02-13 04:08:12</sys_updated_on>
+        <template/>
         <trackable>true</trackable>
         <user_role/>
         <vendor/>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sys_user_role_contains">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_role_contains">
     <sys_user_role_contains action="INSERT_OR_UPDATE">
         <contains display_value="skill_model_user" name="skill_model_user">c7fac003c3232000c111113e5bba8fe5</contains>
         <role display_value="x_baes2_busimprove_dispatcher" name="x_baes2_busimprove_dispatcher">72cb9c6adb3a2780561fb29a689619af</role>

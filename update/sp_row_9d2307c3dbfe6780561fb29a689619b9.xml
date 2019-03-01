@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sp_row">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_row">
     <sp_row action="INSERT_OR_UPDATE">
         <class_name/>
         <order>1</order>
         <sp_column/>
-        <sp_container display_value="BI Challenge List - Container 2">952307c3dbfe6780561fb29a689619b8</sp_container>
+        <sp_container display_value="BI Campaign List - Container 2">952307c3dbfe6780561fb29a689619b8</sp_container>
         <sys_class_name>sp_row</sys_class_name>
         <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
         <sys_created_on>2019-01-09 09:23:11</sys_created_on>

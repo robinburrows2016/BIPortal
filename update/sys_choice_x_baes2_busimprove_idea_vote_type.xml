@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sys_choice action="INSERT_OR_UPDATE" field="type" table="x_baes2_busimprove_idea_vote" version="3">
         <sys_choice action="INSERT_OR_UPDATE">
             <dependent_value/>
@@ -10,13 +9,13 @@
             <language>en</language>
             <name>x_baes2_busimprove_idea_vote</name>
             <sequence/>
-            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-            <sys_created_on>2019-01-15 08:27:57</sys_created_on>
+            <sys_created_by>system</sys_created_by>
+            <sys_created_on>2019-02-01 14:43:47</sys_created_on>
             <sys_domain>global</sys_domain>
-            <sys_id>2dff2dc1db8f6b80561fb29a689619ec</sys_id>
+            <sys_id>a519eea21b97af80da8f87fe6e4bcbd2</sys_id>
             <sys_mod_count>0</sys_mod_count>
-            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-            <sys_updated_on>2019-01-15 08:27:57</sys_updated_on>
+            <sys_updated_by>system</sys_updated_by>
+            <sys_updated_on>2019-02-01 14:43:47</sys_updated_on>
             <value>downvote</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
@@ -28,23 +27,23 @@
             <language>en</language>
             <name>x_baes2_busimprove_idea_vote</name>
             <sequence/>
-            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-            <sys_created_on>2019-01-15 08:27:30</sys_created_on>
+            <sys_created_by>system</sys_created_by>
+            <sys_created_on>2019-02-01 14:43:47</sys_created_on>
             <sys_domain>global</sys_domain>
-            <sys_id>6ddf6dc1db8f6b80561fb29a68961951</sys_id>
+            <sys_id>e519eea21b97af80da8f87fe6e4bcbd2</sys_id>
             <sys_mod_count>0</sys_mod_count>
-            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-            <sys_updated_on>2019-01-15 08:27:30</sys_updated_on>
+            <sys_updated_by>system</sys_updated_by>
+            <sys_updated_on>2019-02-01 14:43:47</sys_updated_on>
             <value>upvote</value>
         </sys_choice>
         <sys_choice_set action="INSERT_OR_UPDATE">
             <element>type</element>
             <name>x_baes2_busimprove_idea_vote</name>
             <sys_class_name>sys_choice_set</sys_class_name>
-            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-            <sys_created_on>2019-01-15 08:27:30</sys_created_on>
+            <sys_created_by>system</sys_created_by>
+            <sys_created_on>2019-02-01 14:43:47</sys_created_on>
             <sys_customer_update>false</sys_customer_update>
-            <sys_id>8cff29c1db8f6b80561fb29a68961942</sys_id>
+            <sys_id>e919eea21b97af80da8f87fe6e4bcbd2</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>type</sys_name>
             <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
@@ -52,8 +51,8 @@
             <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
             <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
             <sys_update_name>sys_choice_x_baes2_busimprove_idea_vote_type</sys_update_name>
-            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-            <sys_updated_on>2019-01-15 08:27:30</sys_updated_on>
+            <sys_updated_by>system</sys_updated_by>
+            <sys_updated_on>2019-02-01 14:43:47</sys_updated_on>
         </sys_choice_set>
     </sys_choice>
 </record_update>

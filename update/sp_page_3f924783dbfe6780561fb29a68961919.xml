@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sp_page">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
     <sp_page action="INSERT_OR_UPDATE">
-        <css>.panel-default {&#13;
+        <category>custom</category>
+        <css>body .padding-top {&#13;
+  padding-top: 0px;&#13;
+}&#13;
+&#13;
+.panel-default {&#13;
     margin-top: 20px;&#13;
 }&#13;
 &#13;
@@ -257,25 +261,26 @@
   }&#13;
 }</css>
         <draft>false</draft>
-        <id>bi_challenge_overview</id>
+        <dynamic_title_structure/>
+        <id>bi_campaign_overview</id>
         <internal>false</internal>
         <public>false</public>
         <roles/>
-        <short_description>BI Challenge Overview</short_description>
+        <short_description>BI Campaign Overview</short_description>
         <sys_class_name>sp_page</sys_class_name>
         <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
         <sys_created_on>2019-01-09 09:20:54</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>3f924783dbfe6780561fb29a68961919</sys_id>
-        <sys_mod_count>8</sys_mod_count>
-        <sys_name>bi_challenge_overview</sys_name>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>bi_campaign_overview</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sp_page_3f924783dbfe6780561fb29a68961919</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-01-21 16:12:31</sys_updated_on>
-        <title>BI Challenge Overview</title>
+        <sys_updated_on>2019-02-18 08:38:44</sys_updated_on>
+        <title>BI Campaign Overview</title>
     </sp_page>
 </record_update>

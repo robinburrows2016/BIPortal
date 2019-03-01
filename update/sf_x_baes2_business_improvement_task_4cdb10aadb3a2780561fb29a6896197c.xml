@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sf_x_baes2_business_improvement_task">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sf_x_baes2_business_improvement_task">
     <sf_x_baes2_business_improvement_task action="INSERT_OR_UPDATE">
         <active>true</active>
         <automatic_condition/>

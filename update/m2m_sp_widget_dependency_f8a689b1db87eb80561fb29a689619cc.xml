@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="m2m_sp_widget_dependency">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_widget_dependency">
     <m2m_sp_widget_dependency action="INSERT_OR_UPDATE">
         <sp_dependency display_value="PPSRetinaIcons">73ff305b0b713200b7d0c32c15673a90</sp_dependency>
         <sp_widget display_value="BI Portal - Challenge Overview (SAVED2)">38a689b1db87eb80561fb29a689619c8</sp_widget>

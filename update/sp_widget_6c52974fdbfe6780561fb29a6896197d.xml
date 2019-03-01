@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sp_widget">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-        <client_script><![CDATA[function($scope, $timeout) {
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, $rootScope,$timeout, $uibModal, spUtil, spModal) {	
 	// widget controller
 	var c = this;
 	extScope = $scope;
@@ -191,6 +191,20 @@
 			jQuery('.breadcrumbs-container').css('background-image',imageURL);
 		    //alert('Apply background: ' + $scope.data.background);			
 		}		
+	};
+	
+	c.ideaModal = function(ev, sysId){
+		// Create Instance Of The Idea Record Producer Widget - widget-sc-cat-item-v2-bae
+		spUtil.get('widget-sc-cat-item-v2-bae', {sysparm_campaign: sysId, sys_id: '480589a2dbba2780561fb29a689619da'}).then(function(response){	
+			c.ideaModalInstance = response;
+			c.ideaModalInstance.options = {show_add_cart_button: 'false', show_add_to_wishlist_button: 'true', display_cart_on_right: 'false', show_field_validation_messages: 'true'};
+		});
+		// Open the Idea Modal
+		$uibModal.open({
+			templateUrl: 'ideaModalTemplate2',
+			size : 'lg',
+			scope: $scope
+		});		
 	};	
 	
 }]]></client_script>
@@ -218,7 +232,7 @@
     font-size: 14px!important;&#13;
 }&#13;
 .panel-body {&#13;
-    padding: 0px!important;&#13;
+    padding: 5px!important;&#13;
 }&#13;
 &#13;
 .percent_complete_wrapper {&#13;
@@ -545,7 +559,14 @@ display:none;&#13;
   visibility:hidden;&#13;
 }&#13;
 &#13;
-.icon-container:hover .icon-overlay {&#13;
+/*.icon-container:hover .icon-overlay {&#13;
+  height: 100%;&#13;
+  border-radius: 4px 4px 0px 0px;&#13;
+  background-color: $primary!important;  &#13;
+  visibility:visible;&#13;
+}*/&#13;
+&#13;
+.icon-container.overlay .icon-overlay {&#13;
   height: 100%;&#13;
   border-radius: 4px 4px 0px 0px;&#13;
   background-color: $primary!important;  &#13;
@@ -582,6 +603,16 @@ display:none;&#13;
     color: #D6AF36;&#13;
 }&#13;
 &#13;
+.countBtns {&#13;
+  display: inline-block;&#13;
+  padding: 6px 0px 6px 0px;&#13;
+}&#13;
+&#13;
+.submitBtns {&#13;
+  display: inline-block;&#13;
+  padding: 6px 0px 6px 0px;&#13;
+}&#13;
+&#13;
  /*.breadcrumbs-container {&#13;
  background-image: url(${{data.background}});&#13;
   background-image: url('17b897b2db76a780e9c39334ca961967.iix');&#13;
@@ -597,7 +628,7 @@ display:none;&#13;
         <docs/>
         <field_list/>
         <has_preview>false</has_preview>
-        <id>bi-challenge-overview</id>
+        <id>bi-campaign-overview</id>
         <internal>false</internal>
         <link><![CDATA[function(scope, element, attrs){	
 	
@@ -612,10 +643,16 @@ display:none;&#13;
 		}
 		// Apply Filter
 		scope.applyFilter('selectChallenge', challengeId);	
-	});	
+	});
+	
+	scope.toggleOverlay = function(evt) {
+		// Toggle Overlay Functionality
+		var $target = $(evt.target);
+		$target.closest("div.icon-container").toggleClass('overlay');		
+	};	
 	
 }]]></link>
-        <name>BI Portal - Challenge Overview</name>
+        <name>BI Portal - Campaign Overview</name>
         <option_schema/>
         <public>false</public>
         <roles/>
@@ -639,7 +676,25 @@ display:none;&#13;
 					data.viewCount = gr_challenge.getDisplayValue('sys_view_count');
 					data.voteCount = gr_challenge.getDisplayValue('total_vote_count');
 					data.commentCount = gr_challenge.getDisplayValue('comment_count');
-					data.background = gr_challenge.getDisplayValue('background');					
+					data.background = gr_challenge.getDisplayValue('background');
+					data.state = gr_challenge.getValue('state');
+					data.stateDisplay = gr_challenge.getDisplayValue("state");
+					data.start_date = gr_challenge.getValue("start_date");
+					data.end_date = gr_challenge.getValue("end_date");		
+					data.expiry_days = '';
+					if (data.end_date) {
+						var one_day=1000*60*60*24; 
+						var due = new GlideDateTime();
+						due.setValue(data.end_date);
+						var now = new GlideDateTime();
+						var dur = GlideDateTime.subtract(due, now);
+						var durms = dur.getNumericValue();
+						if (due < now) {
+							data.expiry_days = Math.round(durms/one_day) + " days overdue";
+						} else {
+							data.expiry_days = Math.round(durms/one_day)*-1 + " days";
+						}		
+					}					
 					//if (gr_user.getValue('manager') == gs.getUserID()) {
 						validChallenge = true;					
 						getRTWTotals();
@@ -683,7 +738,25 @@ display:none;&#13;
 				data.viewCount = gr_challenge.getDisplayValue('sys_view_count');
 				data.voteCount = gr_challenge.getDisplayValue('total_vote_count');
 				data.commentCount = gr_challenge.getDisplayValue('comment_count');
-				data.background = gr_challenge.getDisplayValue('background');					
+				data.background = gr_challenge.getDisplayValue('background');
+				data.state = gr_challenge.getValue('state');
+				data.stateDisplay = gr_challenge.getDisplayValue("state");
+				data.start_date = gr_challenge.getValue("start_date");
+				data.end_date = gr_challenge.getValue("end_date");		
+				data.expiry_days = '';
+				if (data.end_date) {
+					var one_day=1000*60*60*24; 
+					var due = new GlideDateTime();
+					due.setValue(data.end_date);
+					var now = new GlideDateTime();
+					var dur = GlideDateTime.subtract(due, now);
+					var durms = dur.getNumericValue();
+					if (due < now) {
+						data.expiry_days = Math.round(durms/one_day) + " days overdue";
+					} else {
+						data.expiry_days = Math.round(durms/one_day)*-1 + " days";
+					}		
+				}				
 				//if (gr_user.getValue('manager') == gs.getUserID()) {
 					validChallenge = true;
 					getRTWTotals();
@@ -718,7 +791,8 @@ function getRTW(filter) {
 	// Get all RTW
 	var gr_RTW = new GlideRecord('x_baes2_busimprove_ideas');
 	gr_RTW.addQuery('campaign', data.challengeId);
-	gr_RTW.addQuery('state', 'IN', '-5,1');	
+	gr_RTW.addActiveQuery();	
+	//gr_RTW.addQuery('state', 'IN', '-5,1');	
 
 	// Constrain by Selection
 	if (filter == 'select12MthRTW') {
@@ -734,7 +808,7 @@ function getRTW(filter) {
 	}
 	
 	// Order by descending number
-	gr_RTW.orderByDesc('number');
+	gr_RTW.orderByDesc('sys_created_on');
 
 	gr_RTW.query();
 
@@ -759,7 +833,9 @@ function getRTW(filter) {
 		rec_RTW.viewCount = gr_RTW.getDisplayValue('sys_view_count');
 		rec_RTW.voteCount = gr_RTW.getDisplayValue('total_vote_count');
 		rec_RTW.commentCount = gr_RTW.getDisplayValue('comment_count');
-		rec_RTW.award = gr_RTW.getDisplayValue('award');			
+		rec_RTW.award = gr_RTW.getDisplayValue('award');
+		rec_RTW.revisionString = 'Submitted by ' + rec_RTW.submitted_for;
+		rec_RTW.confidential = gr_RTW.getDisplayValue('confidential');		
         $sp.getRecordElements(rec_RTW, gr_RTW, data.rtwfields);
 		for (var f in data.rtwfields_array) { 
 			var fld = data.rtwfields_array[f];
@@ -792,6 +868,7 @@ function getAR(filter) {
 	// Get all AR
 	var gr_AR = new GlideRecord('x_baes2_busimprove_ideas');
 	gr_AR.addQuery("campaign", data.challengeId);
+	gr_AR.addActiveQuery();	
 	gr_AR.addQuery('state', 'NOT IN', '-5,1');	
 
 	// Constrain by Selection
@@ -808,7 +885,7 @@ function getAR(filter) {
 	}	
 	
 	// Order by descending number
-	gr_AR.orderByDesc('number');	
+	gr_AR.orderByDesc('sys_created_on');	
 
 	gr_AR.query();		
 
@@ -833,7 +910,9 @@ function getAR(filter) {
 		rec_AR.viewCount = gr_AR.getDisplayValue('sys_view_count');
 		rec_AR.voteCount = gr_AR.getDisplayValue('total_vote_count');
 		rec_AR.commentCount = gr_AR.getDisplayValue('comment_count');
-		rec_AR.award = gr_AR.getDisplayValue('award');		
+		rec_AR.award = gr_AR.getDisplayValue('award');
+		rec_AR.revisionString = 'Submitted by ' + rec_AR.submitted_for;
+		rec_AR.confidential = gr_AR.getDisplayValue('confidential');		
         $sp.getRecordElements(rec_AR, gr_AR, data.arfields);
 		for (var f in data.arfields_array) { 
 			var fld = data.arfields_array[f];
@@ -867,6 +946,7 @@ function getMY(filter) {
 	// Get all MY
 	var gr_MY = new GlideRecord('x_baes2_busimprove_ideas');
 	gr_MY.addQuery("campaign", data.challengeId);
+	gr_MY.addActiveQuery();	
 	gr_MY.addQuery('submitter', userID);	
 
 	// Constrain by Selection
@@ -883,7 +963,7 @@ function getMY(filter) {
 	}	
 	
 	// Order by descending number
-	gr_MY.orderByDesc('number');	
+	gr_MY.orderByDesc('sys_created_on');	
 
 	gr_MY.query();		
 
@@ -908,7 +988,9 @@ function getMY(filter) {
 		rec_MY.viewCount = gr_MY.getDisplayValue('sys_view_count');
 		rec_MY.voteCount = gr_MY.getDisplayValue('total_vote_count');
 		rec_MY.commentCount = gr_MY.getDisplayValue('comment_count');
-		rec_MY.award = gr_MY.getDisplayValue('award');		
+		rec_MY.award = gr_MY.getDisplayValue('award');
+		rec_MY.revisionString = 'Submitted by ' + rec_MY.submitted_for;
+		rec_MY.confidential = gr_MY.getDisplayValue('confidential');		
         $sp.getRecordElements(rec_MY, gr_MY, data.myfields);
 		for (var f in data.myfields_array) { 
 			var fld = data.myfields_array[f];
@@ -934,14 +1016,16 @@ function getRTWTotals() {
 	// All Record Count	
 	var gr_RTW = new GlideRecord("x_baes2_busimprove_ideas");
 	gr_RTW.addQuery('campaign', data.challengeId);
-	gr_RTW.addQuery('state', 'IN', '-5,1');	
+	gr_RTW.addActiveQuery();	
+	//gr_RTW.addQuery('state', 'IN', '-5,1');	
 	gr_RTW.query();
 	data.total_allRTW = gr_RTW.getRowCount();
 	
 	// 12Mth Record Count
     gr_RTW = new GlideRecord("x_baes2_busimprove_ideas");
 	gr_RTW.addQuery('campaign', data.challengeId);
-	gr_RTW.addQuery('state', 'IN', '-5,1');	
+	gr_RTW.addActiveQuery();	
+	//gr_RTW.addQuery('state', 'IN', '-5,1');	
 	gr_RTW.addQuery('sys_created_on', '>=', 'javascript:gs.monthsAgoStart(12)');		
 	gr_RTW.query();
 	data.total_12MthRTW = gr_RTW.getRowCount();
@@ -949,7 +1033,8 @@ function getRTWTotals() {
 	// 6Mth Record Count
     gr_RTW = new GlideRecord("x_baes2_busimprove_ideas");
 	gr_RTW.addQuery('campaign', data.challengeId);
-	gr_RTW.addQuery('state', 'IN', '-5,1');	
+	gr_RTW.addActiveQuery();	
+	//gr_RTW.addQuery('state', 'IN', '-5,1');	
 	gr_RTW.addQuery('sys_created_on', '>=', 'javascript:gs.monthsAgoStart(6)');	
 	gr_RTW.query();
 	data.total_6MthRTW = gr_RTW.getRowCount();
@@ -957,7 +1042,8 @@ function getRTWTotals() {
 	// 3Mth Record Count
     gr_RTW = new GlideRecord("x_baes2_busimprove_ideas");
 	gr_RTW.addQuery('campaign', data.challengeId);
-	gr_RTW.addQuery('state', 'IN', '-5,1');	
+	gr_RTW.addActiveQuery();	
+	//gr_RTW.addQuery('state', 'IN', '-5,1');	
 	gr_RTW.addQuery('sys_created_on', '>=', 'javascript:gs.monthsAgoStart(3)');	
 	gr_RTW.query();
 	data.total_3MthRTW = gr_RTW.getRowCount();
@@ -970,14 +1056,16 @@ function getARTotals() {
 	// All Record Count	
 	var gr_AR = new GlideRecord("x_baes2_busimprove_ideas");
 	gr_AR.addQuery('campaign', data.challengeId);
-	gr_AR.addQuery('state', 'NOT IN', '-5,1');	
+	gr_AR.addQuery('state', 'NOT IN', '-5,1');
+	gr_AR.addActiveQuery();	
 	gr_AR.query();
 	data.total_allAR = gr_AR.getRowCount();
 	
 	// 12Mth Record Count
     gr_AR = new GlideRecord("x_baes2_busimprove_ideas");
 	gr_AR.addQuery('campaign', data.challengeId);
-	gr_AR.addQuery('state', 'NOT IN', '-5,1');	
+	gr_AR.addQuery('state', 'NOT IN', '-5,1');
+	gr_AR.addActiveQuery();		
 	gr_AR.addQuery('sys_created_on', '>=', 'javascript:gs.monthsAgoStart(12)');		
 	gr_AR.query();
 	data.total_12MthAR = gr_AR.getRowCount();
@@ -985,7 +1073,8 @@ function getARTotals() {
 	// 6Mth Record Count
     gr_AR = new GlideRecord("x_baes2_busimprove_ideas");
 	gr_AR.addQuery('campaign', data.challengeId);
-	gr_AR.addQuery('state', 'NOT IN', '-5,1');	
+	gr_AR.addQuery('state', 'NOT IN', '-5,1');
+	gr_AR.addActiveQuery();		
 	gr_AR.addQuery('sys_created_on', '>=', 'javascript:gs.monthsAgoStart(6)');	
 	gr_AR.query();
 	data.total_6MthAR = gr_AR.getRowCount();
@@ -993,7 +1082,8 @@ function getARTotals() {
 	// 3Mth Record Count
     gr_AR = new GlideRecord("x_baes2_busimprove_ideas");
 	gr_AR.addQuery('campaign', data.challengeId);
-	gr_AR.addQuery('state', 'NOT IN', '-5,1');	
+	gr_AR.addQuery('state', 'NOT IN', '-5,1');
+	gr_AR.addActiveQuery();		
 	gr_AR.addQuery('sys_created_on', '>=', 'javascript:gs.monthsAgoStart(3)');	
 	gr_AR.query();
 	data.total_3MthAR = gr_AR.getRowCount();
@@ -1008,14 +1098,16 @@ function getMYTotals() {
 	// All Record Count	
 	var gr_MY = new GlideRecord("x_baes2_busimprove_ideas");
 	gr_MY.addQuery('campaign', data.challengeId);
-	gr_MY.addQuery('submitter', userID);	
+	gr_MY.addQuery('submitter', userID);
+	gr_MY.addActiveQuery();		
 	gr_MY.query();
 	data.total_allMY = gr_MY.getRowCount();
 	
 	// 12Mth Record Count
     gr_MY = new GlideRecord("x_baes2_busimprove_ideas");
 	gr_MY.addQuery('campaign', data.challengeId);
-	gr_MY.addQuery('submitter', userID);	
+	gr_MY.addQuery('submitter', userID);
+	gr_MY.addActiveQuery();	
 	gr_MY.addQuery('sys_created_on', '>=', 'javascript:gs.monthsAgoStart(12)');		
 	gr_MY.query();
 	data.total_12MthMY = gr_MY.getRowCount();
@@ -1023,7 +1115,8 @@ function getMYTotals() {
 	// 6Mth Record Count
     gr_MY = new GlideRecord("x_baes2_busimprove_ideas");
 	gr_MY.addQuery('campaign', data.challengeId);
-	gr_MY.addQuery('submitter', userID);	
+	gr_MY.addQuery('submitter', userID);
+	gr_MY.addActiveQuery();	
 	gr_MY.addQuery('sys_created_on', '>=', 'javascript:gs.monthsAgoStart(6)');	
 	gr_MY.query();
 	data.total_6MthMY = gr_MY.getRowCount();
@@ -1031,7 +1124,8 @@ function getMYTotals() {
 	// 3Mth Record Count
     gr_MY = new GlideRecord("x_baes2_busimprove_ideas");
 	gr_MY.addQuery('campaign', data.challengeId);
-	gr_MY.addQuery('submitter', userID);	
+	gr_MY.addQuery('submitter', userID);
+	gr_MY.addActiveQuery();	
 	gr_MY.addQuery('sys_created_on', '>=', 'javascript:gs.monthsAgoStart(3)');	
 	gr_MY.query();
 	data.total_3MthMY = gr_MY.getRowCount();
@@ -1045,15 +1139,15 @@ function getMYTotals() {
         <sys_created_on>2019-01-09 10:29:30</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>6c52974fdbfe6780561fb29a6896197d</sys_id>
-        <sys_mod_count>226</sys_mod_count>
-        <sys_name>BI Portal - Challenge Overview</sys_name>
+        <sys_mod_count>357</sys_mod_count>
+        <sys_name>BI Portal - Campaign Overview</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sp_widget_6c52974fdbfe6780561fb29a6896197d</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-01-23 16:03:38</sys_updated_on>
+        <sys_updated_on>2019-02-27 08:01:10</sys_updated_on>
         <template><![CDATA[<div class="row">
     <div class="col-md-12" style="padding :0px;">
 
@@ -1064,16 +1158,34 @@ function getMYTotals() {
                   <div id="title" class="navbar-title pull-left">
                     <label class="text-primary entity-console-name">{{data.challengeName}}</label>
                   </div>
-                  <button class="btn icon-arrow-down-triangle dropdown-toggle pull-left" id="show-all-reports" ng-click="showAllReports()" uib-tooltip="${Challenges}" tooltip-placement="bottom-left" aria-label="${Show or hide more lists}" aria-haspopup="true" aria-expanded="false">
+                  <button class="btn icon-arrow-down-triangle dropdown-toggle pull-left" id="show-all-reports" ng-click="showAllReports()" uib-tooltip="${Campaigns}" tooltip-placement="bottom-left" aria-label="${Show or hide more lists}" aria-haspopup="true" aria-expanded="false">
                     <div class="console-reference-picker">
-                      <sn-record-picker class="add-members-dd" field="data.inputFiledChallenge" table="'x_baes2_busimprove_campaigns'" default-query="data.challengeFilter" display-field="'title'" value-field="'sys_id'" search-fields="'title'"  options="{allowClear: false}" tabindex="-1" placeholder="${Select a challenge}"/>
+                      <sn-record-picker class="add-members-dd" field="data.inputFiledChallenge" table="'x_baes2_busimprove_campaigns'" default-query="data.challengeFilter" display-field="'title'" value-field="'sys_id'" search-fields="'title'"  options="{allowClear: false}" tabindex="-1" placeholder="${Select a campaign}"/>
                     </div>
                   </button>
+                  <div ng-if="data.state == 0" class="submitBtns"> 
+                    <div class="btn-group" role="group">
+                        <button id="itemViewBtn" type="button" ng-click="c.ideaModal($event, item.sys_id)" class="btn btn-primary" role="button">${Submit Idea}</button>          
+                    </div>
+                  </div>
+                  <div ng-if="data.state != 0" class="submitBtns">
+                    <div class="btn-group" role="group">
+                        <button id="itemViewBtn" type="button" class="btn btn-primary" role="button">{{::data.challengeName}} is currently {{::data.stateDisplay}} and new ideas cannot be submitted</button>          
+                    </div>                                
+                  </div>                  
+                  <div class="countBtns pull-right"> 
+                    <div class="btn-group" role="group">
+                        <button id="itemViewBtn" type="button" class="btn btn-default itemViewBtn" role="button">${Views}<span class="label label-as-badge sp-navbar-badge-count ng-binding ng-scope label-primary" style="margin-left:5px;">{{data.viewCount}}</span></button>          
+                        <button id="itemVoteBtn" type="button" class="btn btn-default itemVoteBtn" role="button">${Votes}<span class="label label-as-badge sp-navbar-badge-count ng-binding ng-scope label-primary" style="margin-left:5px;">{{data.voteCount}}</span></button>       
+                        <button id="itemCommBtn" type="button" class="btn btn-default itemCommBtn" role="button">${Comments}<span class="label label-as-badge sp-navbar-badge-count ng-binding ng-scope label-primary" style="margin-left:5px;">{{data.commentCount}}</span></button>          
+                        <button ng-if="data.end_date" id="itemDaysBtn" type="button" class="btn btn-default itemDaysBtn" role="button">${Closes In}<span class="label label-as-badge sp-navbar-badge-count ng-binding ng-scope label-primary" style="margin-left:5px;">{{data.expiry_days}}</span></button>                      
+                    </div>
+                  </div> 
                 </div>
               </div>
             </nav>
           
-            <div class="psp-overview-top-rbns-cntr clearfix">
+            <div class="psp-overview-top-rbns-cntr clearfix hidden">
               
                        <div class="row">
                          <div class="col-sm-6 col-md-3">
@@ -1172,7 +1284,7 @@ function getMYTotals() {
             </div>
           
           
-            <div class="psp-overview-top-rbns-cntr clearfix">
+            <div class="psp-overview-top-rbns-cntr clearfix hidden">
               <div ng-show="data.showRTW" class="ribbons-cntr clearfix col-md-3">
                   <div class="total-projects-cntr panel panel-default top-ribbon clearfix actionable" ng-class="{'active' : data.showAllRTW}" ng-click="selectAllRTW()">
                       <div class="panel-heading ribbon-hdr">
@@ -1272,61 +1384,77 @@ function getMYTotals() {
             </div>
             <div class="status-timeline-cntr panel panel-default clearfix">
                 <ul class="nav nav-tabs"> 
-                  <li ng-class="{'active': data.showRTW}" class="active" style=""><a href="javascript:void(0)" ng-click="showRTW()" role="link">Open Ideas</a></li> 
-                  <li ng-class="{'active': data.showAR}" class="" style=""><a href="javascript:void(0)" ng-click="showAR()" role="link">Closed Ideas</a></li> 
+                  <li ng-class="{'active': data.showRTW}" class="active" style=""><a href="javascript:void(0)" ng-click="showRTW()" role="link">All Ideas</a></li> 
+                  <li ng-class="{'active': data.showAR}" class="hidden" style=""><a href="javascript:void(0)" ng-click="showAR()" role="link">Closed Ideas</a></li> 
                   <li ng-class="{'active': data.showMY}" class="" style=""><a href="javascript:void(0)" ng-click="showMY()" role="link">My Ideas</a></li>                  
                 </ul>
                 <div class="panel-body">
                   <div ng-show="data.showRTW" class="clearfix" aria-hidden="false" style="">
                      <div class="panels-container ideas-panel">
                        <div class="row">
-                         <div class="col-sm-6 col-md-4" ng-repeat="item in data.RTW track by item.sys_id">
+                         <div class="col-sm-12 col-md-12" ng-repeat="item in data.RTW track by item.sys_id">
 
                            <div class="panel panel-default item-card">
 
-                                 <div class="icon-container">
+                                 <div class="icon-container">                                                 
                                    <div class="panel-body block">
-                                     <div class="overflow-100 text-center">
-                                       <div class="h4 m-b fa-1x text-default text-overflow-ellipsis">
+                                     <div class="overflow-100 text-left">
+                                       <div class="h4 m-b fa-1x text-default text-overflow-ellipsis pull-left">
+                                    	 <div id="tooltip-button" type="button" class="cd-tooltip viewBtn btn btn-default icon-info btn-icon pull-left" ng-mouseover="toggleOverlay($event)"><span class="sr-only">${Information}</span></div>                                         
                                          <i ng-if="item.award" class="fa fa-trophy pad-right trophy-{{::item.award}}" />                                         
                                          {{::item.number_display}} - {{::item.title_display | limitTo: 32}}<span ng-if="::item.title_display.length > 32">...</span>
-                                       </div>             
-                                       <h2 class="h4 m-t-none m-b-xs text-overflow-ellipsis" title="{{::item.title}}">{{::item.description_display | limitTo: 98}}<span ng-if="::item.description_display.length > 98">...</span></h2>
-                                       <p>
+                                       </div>                                         
+                                         <span class="pull-right">
+                                           <small>
+                                             <span ng-if="item.viewCount == 1" class="views pad-right text-nowrap">
+                                               <i class="fa fa-eye pad-right" />
+                                               ${{{::item.viewCount}} View}
+                                             </span>
+                                             <span ng-if="item.viewCount > 1 || item.viewCount == 0" class="views pad-right text-nowrap">
+                                               <i class="fa fa-eye pad-right" />
+                                               ${{{::item.viewCount}} Views}
+                                             </span>
+                                             <span ng-if="item.voteCount == 1" class="views pad-right text-nowrap">
+                                               <span class="pad-right">&#8226;</span> <i class="fa fa-signal pad-right" />
+                                               ${{{::item.voteCount}} Vote}
+                                             </span>
+                                             <span ng-if="item.voteCount > 1 || item.voteCount == 0" class="views pad-right text-nowrap">
+                                               <span class="pad-right">&#8226;</span> <i class="fa fa-signal pad-right" />
+                                               ${{{::item.voteCount}} Votes}
+                                             </span>
+                                             <span ng-if="item.commentCount == 1" class="views pad-right text-nowrap">
+                                               <span class="pad-right">&#8226;</span> <i class="fa fa-comments pad-right" />
+                                               ${{{item.commentCount}} Comment}
+                                             </span>
+                                             <span ng-if="item.commentCount > 1 || item.commentCount == 0" class="views pad-right text-nowrap">
+                                               <span class="pad-right">&#8226;</span> <i class="fa fa-comments pad-right" />
+                                               ${{{item.commentCount}} Comments}
+                                             </span>
+                                           </small>
+                                         </span>              
+                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis" style="clear:both;" title="{{::item.title}}"><span style="display: inline-block; width:75px;">Description:</span>{{::item.description_display | limitTo: 200}}<span ng-if="::item.description_display.length > 200">...</span></h2>                                      
+                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis" style="clear:both;" title="{{::item.title}}"><span style="display: inline-block; width:75px;">Benefits:</span>{{::item.business_case_display | limitTo: 200}}<span ng-if="::item.business_case_display.length > 200">...</span></h2>                                                                             
+                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis pull-left" title="{{::item.title}}"><span style="display: inline-block; width:75px;">Category:</span>{{::item.category_display}}</h2>
+                                       <span class="pull-right">
                                          <small>
-                                           <span ng-if="item.viewCount == 1" class="views pad-right text-nowrap">
-                                             <i class="fa fa-eye pad-right" />
-                                             ${{{::item.viewCount}} View}
-                                           </span>
-                                           <span ng-if="item.viewCount > 1 || item.viewCount == 0" class="views pad-right text-nowrap">
-                                             <i class="fa fa-eye pad-right" />
-                                             ${{{::item.viewCount}} Views}
-                                           </span>
-                                           <span ng-if="item.voteCount == 1" class="views pad-right text-nowrap">
-                                             <span class="pad-right">&#8226;</span> <i class="fa fa-signal pad-right" />
-                                             ${{{::item.voteCount}} Vote}
-                                           </span>
-                                           <span ng-if="item.voteCount > 1 || item.voteCount == 0" class="views pad-right text-nowrap">
-                                             <span class="pad-right">&#8226;</span> <i class="fa fa-signal pad-right" />
-                                             ${{{::item.voteCount}} Votes}
-                                           </span>
-                                           <span ng-if="item.commentCount == 1" class="views pad-right text-nowrap">
-                                             <span class="pad-right">&#8226;</span> <i class="fa fa-comments pad-right" />
-                                             ${{{item.commentCount}} Comment}
-                                           </span>
-                                           <span ng-if="item.commentCount > 1 || item.commentCount == 0" class="views pad-right text-nowrap">
-                                             <span class="pad-right">&#8226;</span> <i class="fa fa-comments pad-right" />
-                                             ${{{item.commentCount}} Comments}
-                                           </span>
-                                           </p>
-                                       </small>                                       
-                                       <img ng-src="{{::item.picture}}" ng-if="::item.picture" class="m-r-sm m-b-sm item-image pull-left" alt="{{::item.title}}" role="presentation" />
+                                           <span ng-if="item.revisionString && item.confidential == 'false'" class="author pad-right text-nowrap">
+                                            <span ng-if="item.langList.length > 1" class="pad-right">&#8226;</span>
+                                            <i class="fa fa-user pad-right" />
+                                             {{item.revisionString}}
+                                          </span>
+                                          <span class="published pad-right text-nowrap">
+                                            <span ng-if="item.revisionString && item.confidential == 'false'" class="pad-right">&#8226;</span> <i class="fa fa-calendar pad-right" />
+                                            <sn-time-ago timestamp="item.submitted_on"/>
+                                          </span>                                           
+                                         </small>
+                                       </span>                                       
+                                       <img ng-src="{{::item.picture}}" ng-if="::item.picture" class="m-r-sm m-b-sm item-image pull-left" alt="{{::item.title}}" role="presentation" />                                       
                                        <div class="text-muted item-short-desc hidden">{{::item.business_case_display}}</div>
                                      </div>                  
                                    </div>
-                                    <div class="icon-overlay icon-link-background-primary">
-                                       <div class="icon-text-muted item-short-desc">{{::item.business_case_display | limitTo: 118}}<span ng-if="::item.business_case_display.length > 118">...</span></div>
-                                    </div>
+                                   <div class="icon-overlay icon-link-background-primary" ng-mouseleave="toggleOverlay($event)">                                      
+                                     <div class="icon-text-muted item-short-desc" style="font-size:14px;">{{::item.description_display | limitTo: 800}}<span ng-if="::item.description_display.length > 800">...</span></div>                                      
+                                   </div>                                     
                                  </div>               
 
                                  <a href="?id=bi_idea_view&sys_idea_id={{item.sys_id}}" class="text-muted" title="Click to view idea" tabindex="-1">
@@ -1346,7 +1474,7 @@ function getMYTotals() {
                   <div ng-show="data.showAR" class="clearfix" aria-hidden="false" style="">                    
                      <div class="panels-container ideas-panel">
                        <div class="row">
-                         <div class="col-sm-6 col-md-4" ng-repeat="item in data.AR track by item.sys_id">
+                         <div class="col-sm-12 col-md-12" ng-repeat="item in data.AR track by item.sys_id">
 
                            <div class="panel panel-default item-card">
 
@@ -1412,52 +1540,68 @@ function getMYTotals() {
                   <div ng-show="data.showMY" class="clearfix" aria-hidden="false" style="">
                      <div class="panels-container ideas-panel">
                        <div class="row">
-                         <div class="col-sm-6 col-md-4" ng-repeat="item in data.MY track by item.sys_id">
+                         <div class="col-sm-12 col-md-12" ng-repeat="item in data.MY track by item.sys_id">
 
                            <div class="panel panel-default item-card">
 
                                  <div class="icon-container">
                                    <div class="panel-body block">
-                                     <div class="overflow-100 text-center">
-                                       <div class="h4 m-b fa-1x text-default text-overflow-ellipsis">
-                                         <i ng-if="item.award" class="fa fa-trophy pad-right trophy-{{::item.award}}" />
+                                     <div class="overflow-100 text-left">
+                                       <div class="h4 m-b fa-1x text-default text-overflow-ellipsis pull-left">
+                                    	 <div id="tooltip-button" type="button" class="cd-tooltip viewBtn btn btn-default icon-info btn-icon pull-left" ng-mouseover="toggleOverlay($event)"><span class="sr-only">${Information}</span></div>                                                                                  
+                                         <i ng-if="item.award" class="fa fa-trophy pad-right trophy-{{::item.award}}" />                                         
                                          {{::item.number_display}} - {{::item.title_display | limitTo: 32}}<span ng-if="::item.title_display.length > 32">...</span>
-                                       </div>             
-                                       <h2 class="h4 m-t-none m-b-xs text-overflow-ellipsis" title="{{::item.title}}">{{::item.description_display | limitTo: 98}}<span ng-if="::item.description_display.length > 98">...</span></h2>
-                                       <img ng-src="{{::item.picture}}" ng-if="::item.picture" class="m-r-sm m-b-sm item-image pull-left" alt="{{::item.title}}" role="presentation" />
-                                       <p>
+                                       </div>                                         
+                                         <span class="pull-right">
+                                           <small>
+                                             <span ng-if="item.viewCount == 1" class="views pad-right text-nowrap">
+                                               <i class="fa fa-eye pad-right" />
+                                               ${{{::item.viewCount}} View}
+                                             </span>
+                                             <span ng-if="item.viewCount > 1 || item.viewCount == 0" class="views pad-right text-nowrap">
+                                               <i class="fa fa-eye pad-right" />
+                                               ${{{::item.viewCount}} Views}
+                                             </span>
+                                             <span ng-if="item.voteCount == 1" class="views pad-right text-nowrap">
+                                               <span class="pad-right">&#8226;</span> <i class="fa fa-signal pad-right" />
+                                               ${{{::item.voteCount}} Vote}
+                                             </span>
+                                             <span ng-if="item.voteCount > 1 || item.voteCount == 0" class="views pad-right text-nowrap">
+                                               <span class="pad-right">&#8226;</span> <i class="fa fa-signal pad-right" />
+                                               ${{{::item.voteCount}} Votes}
+                                             </span>
+                                             <span ng-if="item.commentCount == 1" class="views pad-right text-nowrap">
+                                               <span class="pad-right">&#8226;</span> <i class="fa fa-comments pad-right" />
+                                               ${{{item.commentCount}} Comment}
+                                             </span>
+                                             <span ng-if="item.commentCount > 1 || item.commentCount == 0" class="views pad-right text-nowrap">
+                                               <span class="pad-right">&#8226;</span> <i class="fa fa-comments pad-right" />
+                                               ${{{item.commentCount}} Comments}
+                                             </span>
+                                           </small>
+                                         </span>              
+                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis" style="clear:both;" title="{{::item.title}}"><span style="display: inline-block; width:75px;">Description:</span>{{::item.description_display | limitTo: 200}}<span ng-if="::item.description_display.length > 200">...</span></h2>                                      
+                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis" style="clear:both;" title="{{::item.title}}"><span style="display: inline-block; width:75px;">Benefits:</span>{{::item.business_case_display | limitTo: 200}}<span ng-if="::item.business_case_display.length > 200">...</span></h2>                                                                             
+                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis pull-left" title="{{::item.title}}"><span style="display: inline-block; width:75px;">Category:</span>{{::item.category_display}}</h2>
+                                       <span class="pull-right">
                                          <small>
-                                           <span ng-if="item.viewCount == 1" class="views pad-right text-nowrap">
-                                             <i class="fa fa-eye pad-right" />
-                                             ${{{::item.viewCount}} View}
-                                           </span>
-                                           <span ng-if="item.viewCount > 1 || item.viewCount == 0" class="views pad-right text-nowrap">
-                                             <i class="fa fa-eye pad-right" />
-                                             ${{{::item.viewCount}} Views}
-                                           </span>
-                                           <span ng-if="item.voteCount == 1" class="views pad-right text-nowrap">
-                                             <span class="pad-right">&#8226;</span> <i class="fa fa-signal pad-right" />
-                                             ${{{::item.voteCount}} Vote}
-                                           </span>
-                                           <span ng-if="item.voteCount > 1 || item.voteCount == 0" class="views pad-right text-nowrap">
-                                             <span class="pad-right">&#8226;</span> <i class="fa fa-signal pad-right" />
-                                             ${{{::item.voteCount}} Votes}
-                                           </span>
-                                           <span ng-if="item.commentCount == 1" class="views pad-right text-nowrap">
-                                             <span class="pad-right">&#8226;</span> <i class="fa fa-comments pad-right" />
-                                             ${{{item.commentCount}} Comment}
-                                           </span>
-                                           <span ng-if="item.commentCount > 1 || item.commentCount == 0" class="views pad-right text-nowrap">
-                                             <span class="pad-right">&#8226;</span> <i class="fa fa-comments pad-right" />
-                                             ${{{item.commentCount}} Comments}
-                                           </span>
-                                           </p>
-                                       </small>                                        
+                                           <span ng-if="item.revisionString && item.confidential == 'false'" class="author pad-right text-nowrap">
+                                            <span ng-if="item.langList.length > 1" class="pad-right">&#8226;</span>
+                                            <i class="fa fa-user pad-right" />
+                                             {{item.revisionString}}
+                                          </span>
+                                          <span class="published pad-right text-nowrap">
+                                            <span ng-if="item.revisionString && item.confidential == 'false'" class="pad-right">&#8226;</span> <i class="fa fa-calendar pad-right" />
+                                            <sn-time-ago timestamp="item.submitted_on"/>
+                                          </span>                                           
+                                         </small>
+                                       </span>                                       
+                                       <img ng-src="{{::item.picture}}" ng-if="::item.picture" class="m-r-sm m-b-sm item-image pull-left" alt="{{::item.title}}" role="presentation" />                                       
                                        <div class="text-muted item-short-desc hidden">{{::item.business_case_display}}</div>
                                      </div>                  
                                    </div>
-                                    <div class="icon-overlay icon-link-background-primary">
-                                       <div class="icon-text-muted item-short-desc">{{::item.business_case_display | limitTo: 118}}<span ng-if="::item.business_case_display.length > 118">...</span></div>
+                                    <div class="icon-overlay icon-link-background-primary" ng-mouseleave="toggleOverlay($event)">                                      
+                                       <div class="icon-text-muted item-short-desc" style="font-size:14px;">{{::item.description_display | limitTo: 800}}<span ng-if="::item.description_display.length > 800">...</span></div>                                      
                                     </div>
                                  </div>               
 
@@ -1466,7 +1610,7 @@ function getMYTotals() {
                                      <span>${View Idea}</span> 
                                      <span class="pull-right item-price font-bold"></span> &nbsp;           
                                    </div>
-                                 </a>       
+                                 </a>
                            </div>
                          </div>
                        </div>
