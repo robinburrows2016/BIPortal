@@ -48,46 +48,10 @@
 	    // Hide Any Open Tooltips
 		jQuery(".tooltip").tooltip("hide");
 		
-		// Request Item Tooltip
-		if (table == 'x_baes2_legal_port_cao_request') {
-			$scope.server.get({
-				action: "getTooltip_REQ",
-				itemID: id
-			}).then(function(response) {
-				var tt_target = '#' + headingID + id;				
-				jQuery(tt_target).attr('data-title', response.data.tooltip);
-				jQuery(tt_target).tooltip('show');
-			});
-		}
-		
 		// Idea Tooltip
-		if (table == 'x_baes2_legal_port_f680_request') {
+		if (table == 'x_baes2_busimprove_ideas') {
 			$scope.server.get({
 				action: "getTooltip_IDEA",
-				itemID: id
-			}).then(function(response) {
-				var tt_target = '#' + headingID + id;				
-				jQuery(tt_target).attr('data-title', response.data.tooltip);
-				jQuery(tt_target).tooltip('show');
-			});
-		}
-		
-		// Demand Tooltip
-		if (table == 'dmn_demand') {
-			$scope.server.get({
-				action: "getTooltip_DMN",
-				itemID: id
-			}).then(function(response) {
-				var tt_target = '#' + headingID + id;				
-				jQuery(tt_target).attr('data-title', response.data.tooltip);
-				jQuery(tt_target).tooltip('show');
-			});
-		}
-		
-		// Incident Tooltip
-		if (table == 'incident') {
-			$scope.server.get({
-				action: "getTooltip_INC",
 				itemID: id
 			}).then(function(response) {
 				var tt_target = '#' + headingID + id;				
@@ -157,6 +121,98 @@ tooltip._top tip tip-arrow {&#13;
 &#13;
 .m-b {&#13;
     margin-bottom: 5px!important;&#13;
+}&#13;
+&#13;
+/*****************************************/&#13;
+/*     REPLACEMENT TOOLTIP RULES         */&#13;
+/*****************************************/&#13;
+&#13;
+.tooltip-popover{&#13;
+  color: $color-black;&#13;
+  padding: 6px 0;&#13;
+  .popover-title{&#13;
+    font-size: 18px;&#13;
+    margin-bottom: 25px;&#13;
+    border: none;&#13;
+    padding:0 21px;&#13;
+  }&#13;
+  .color-items{&#13;
+    list-style: none;&#13;
+    padding:0;&#13;
+    max-height: calc(100vh - 147px);&#13;
+    overflow-y: auto;&#13;
+    padding: 0 5px;&#13;
+    margin-bottom: 0px;&#13;
+    .color-item{&#13;
+      border-bottom: 1px solid $color-lighter;&#13;
+      margin-bottom: 5px;&#13;
+      padding-bottom: 5px;&#13;
+      .color-label{&#13;
+        display: inline-block;&#13;
+        font-size: 12px;&#13;
+        margin-right: 5px;&#13;
+      }&#13;
+      .color-box{&#13;
+        width: 24px;&#13;
+        height: 24px;&#13;
+        border: 1px solid $color-light;&#13;
+        border-radius: 3px;&#13;
+        display: inline-block;&#13;
+      }&#13;
+    }&#13;
+  }&#13;
+}&#13;
+&#13;
+.viewBtn {&#13;
+  border:none!important;&#13;
+  padding:0px!important;&#13;
+  outline:none!important;  &#13;
+  height: 20px!important;&#13;
+  width: 20px!important;&#13;
+  vertical-align:top!important;&#13;
+  text-align:left!important;&#13;
+}&#13;
+&#13;
+.btn-default {&#13;
+	color: #333;&#13;
+	background-color: #fff;&#13;
+    background: transparent;&#13;
+	border-color: #ccc;&#13;
+}&#13;
+.btn-default:focus, .btn-default.focus {&#13;
+	color: #333;&#13;
+	/* background-color: #e6e6e6; */&#13;
+	border-color: #8c8c8c;&#13;
+}&#13;
+.btn-default:hover {&#13;
+	color: #333;&#13;
+	/* background-color: #e6e6e6; */&#13;
+	border-color: #adadad;&#13;
+}&#13;
+.btn-default:active, .btn-default.active, .open &gt; .btn-default.dropdown-toggle {&#13;
+	color: #333;&#13;
+	background-color: #e6e6e6;&#13;
+	border-color: #adadad;&#13;
+}&#13;
+.btn-default:active:hover, .btn-default:active:focus, .btn-default.focus:active, .btn-default.active:hover, .btn-default.active:focus, .btn-default.active.focus, .open &gt; .btn-default.dropdown-toggle:hover, .open &gt; .btn-default.dropdown-toggle:focus, .open &gt; .btn-default.dropdown-toggle.focus {&#13;
+	color: #333;&#13;
+	background-color: #d4d4d4;&#13;
+	border-color: #8c8c8c;&#13;
+}&#13;
+.btn-default:active, .btn-default.active, .open &gt; .btn-default.dropdown-toggle {&#13;
+	background-image: none;&#13;
+}&#13;
+.btn-default.disabled:hover, .btn-default.disabled:focus, .btn-default.disabled.focus, .btn-default[disabled]:hover, .btn-default[disabled]:focus, .btn-default[disabled].focus, fieldset[disabled] .btn-default:hover, fieldset[disabled] .btn-default:focus, fieldset[disabled] .btn-default.focus {&#13;
+	background-color: #fff;&#13;
+	border-color: #ccc;&#13;
+}&#13;
+.btn-default .badge {&#13;
+	color: #fff;&#13;
+	background-color: #333;&#13;
+}&#13;
+&#13;
+.icon-info:before {&#13;
+    vertical-align: baseline;&#13;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -188,21 +244,18 @@ tooltip._top tip tip-arrow {&#13;
 	var sysUserGR = new GlideRecord("sys_user");
 	data.user = sysUserGR.get(data.sysUserID);
 	data.ACA = false;
-	/*if (sysUserGR.getDisplayValue("u_business_group") == 'ACA') {
-		data.ACA = true;
-	} else {
-		data.ACA = false;
-	}*/
 
 	var fPortalRec = $sp.getPortalRecord();	
 	data.kb = fPortalRec.getValue('kb_knowledge_base');
 	data.secondary_fields = ['number','sys_updated_on','sys_updated_by'];
 
-	// Open CAO Requests
+	// Open Ideas
 
 	data.requests_open = [];
-	var q = new GlideRecordSecure('x_baes2_legal_port_cao_request'); // does ACL checking for us
-	q.addEncodedQuery('opened_by=javascript:gs.getUserID()^active=true');
+	var q = new GlideRecordSecure('x_baes2_busimprove_ideas'); // does ACL checking for us
+	q.addQuery('campaign.classification', '1');	
+	q.addQuery('state', 'IN', '-5,1,3,4,5,6,7');
+	q.addEncodedQuery('submitter=javascript:gs.getUserID()');
 	//q.addActiveQuery();
 	q.orderByDesc('sys_created_on');
 	q.setLimit(5);
@@ -217,24 +270,27 @@ tooltip._top tip tip-arrow {&#13;
 		b.display_field = q.getDisplayValue("short_description");
 		b.updated_on = q.sys_updated_on.getDisplayValue();
 		b.updated_by = q.getDisplayValue("sys_updated_by");
-		b.table = 'x_baes2_legal_port_cao_request';
+		b.table = 'x_baes2_busimprove_ideas';
 		b.secondary_fields = [];
 		data.secondary_fields.forEach(function(f) {
 			b.secondary_fields.push(getField(q, f));
 		});
 
-		b.url = {id: 'ticket', table: 'x_baes2_legal_port_cao_request', sys_id: b.sys_id};
+		b.url = "?id=bi_idea_view&sys_idea_id=" + b.sys_id;
 		$sp.getRecordValues(b, q, 'short_description,sys_view_count,sys_id,published');
+		b.variables = $sp.getRecordVariablesArray(q);
 		b.published_display = q.getDisplayValue("published");				
 
 		data.requests_open.push(b);
 	}
 
-	// Closed CAO Requests
+	// Closed Ideas
 
 	data.requests_closed = [];
-	var q = new GlideRecordSecure('x_baes2_legal_port_cao_request'); // does ACL checking for us
-	q.addEncodedQuery('opened_by=javascript:gs.getUserID()^active=false');
+	var q = new GlideRecordSecure('x_baes2_busimprove_ideas'); // does ACL checking for us
+	q.addQuery('campaign.classification', '1');		
+	q.addQuery('state', 'NOT IN', '-5,1,3,4,5,6,7');	
+	q.addEncodedQuery('submitter=javascript:gs.getUserID()');
 	//q.addInactiveQuery();
 	q.orderByDesc('sys_created_on');
 	q.setLimit(5);
@@ -250,25 +306,29 @@ tooltip._top tip tip-arrow {&#13;
 		b.updated_on = q.sys_updated_on.getDisplayValue();
 		b.updated_by = q.getDisplayValue("sys_updated_by");
 		b.state = q.getDisplayValue("state");
-		b.table = 'x_baes2_legal_port_cao_request';		
+		b.table = 'x_baes2_busimprove_ideas';		
 		b.secondary_fields = [];
 		data.secondary_fields.forEach(function(f) {
 			b.secondary_fields.push(getField(q, f));
 		});
 
-		b.url = {id: 'ticket', table: 'x_baes2_legal_port_cao_request', sys_id: b.sys_id};
-		//b.edit_url = {id: 'sc_cat_item', sys_id: '8a00d11a0f6643000a09079ce1050e86', rec_id: b.sys_id};
-		b.edit_url = {id: 'sc_cat_item', sys_id: '8a00d11a0f6643000a09079ce1050e86', copy_item: b.sys_id, copy_table: 'x_baes2_legal_port_cao_request'};		$sp.getRecordValues(b, q, 'short_description,sys_view_count,sys_id,published');
-		b.published_display = q.getDisplayValue("published");					
+		b.url = "?id=bi_idea_view&sys_idea_id=" + b.sys_id;
+		b.edit_url = {id: 'sc_cat_item', sys_id: '8a00d11a0f6643000a09079ce1050e86', copy_item: b.sys_id, copy_table: 'x_baes2_busimprove_ideas'};		
+		$sp.getRecordValues(b, q, 'short_description,sys_view_count,sys_id,published');
+		b.variables = $sp.getRecordVariablesArray(q);		
+		b.published_display = q.getDisplayValue("published");		
 
 		data.requests_closed.push(b);
 	}		
 
-	// Open F680 Requests
+	// Open Observations
 
 	data.demands_open = [];
-	var q = new GlideRecordSecure('x_baes2_legal_port_f680_request'); // does ACL checking for us
-	q.addEncodedQuery('opened_by=javascript:gs.getUserID()^active=true');    
+	var q = new GlideRecordSecure('x_baes2_busimprove_ideas'); // does ACL checking for us
+	q.addQuery('campaign.classification', '2');		
+	q.addQuery('state', 'IN', '-5,1,3,4,5,6,7');	
+	q.addEncodedQuery('submitter=javascript:gs.getUserID()');
+	//q.addInactiveQuery();
 	q.orderByDesc('sys_created_on');
 	q.setLimit(5);
 	q.query();
@@ -288,18 +348,22 @@ tooltip._top tip tip-arrow {&#13;
 			b.secondary_fields.push(getField(q, f));
 		});
 
-		b.url = {id: 'ticket', table: 'x_baes2_legal_port_f680_request', sys_id: b.sys_id};
+		b.url = "?id=bi_idea_view&sys_idea_id=" + b.sys_id;
 		$sp.getRecordValues(b, q, 'short_description,sys_view_count,sys_id,published');
+		b.variables = $sp.getRecordVariablesArray(q);		
 		b.published_display = q.getDisplayValue("published");							
 
 		data.demands_open.push(b);
 	}
 
-	// Closed F680 Requests
+	// Closed Observations
 
 	data.demands_closed = [];
-	var q = new GlideRecordSecure('x_baes2_legal_port_f680_request'); // does ACL checking for us
-	q.addEncodedQuery('opened_by=javascript:gs.getUserID()^active=false');    
+	var q = new GlideRecordSecure('x_baes2_busimprove_ideas'); // does ACL checking for us
+	q.addQuery('campaign.classification', '2');		
+	q.addQuery('state', 'NOT IN', '-5,1,3,4,5,6,7');	
+	q.addEncodedQuery('submitter=javascript:gs.getUserID()');
+	//q.addInactiveQuery();
 	q.orderByDesc('sys_created_on');
 	q.setLimit(5);
 	q.query();
@@ -314,15 +378,15 @@ tooltip._top tip tip-arrow {&#13;
 		b.updated_on = q.sys_updated_on.getDisplayValue();
 		b.updated_by = q.getDisplayValue("sys_updated_by");
 		b.state = q.getDisplayValue("state");		
-		b.table = 'x_baes2_legal_port_f680_request';		
+		b.table = 'x_baes2_busimprove_ideas';		
 		b.secondary_fields = [];
 		data.secondary_fields.forEach(function(f) {
 			b.secondary_fields.push(getField(q, f));
 		});
 
-		b.url = {id: 'ticket', table: 'x_baes2_legal_port_f680_request', sys_id: b.sys_id};
-		//b.edit_url = {id: 'sc_cat_item', sys_id: 'a790d4cd0f8f47000a09079ce1050e4a', rec_id: b.sys_id};
+		b.url = "?id=bi_idea_view&sys_idea_id=" + b.sys_id;
 		b.edit_url = {id: 'sc_cat_item', sys_id: 'a790d4cd0f8f47000a09079ce1050e4a', copy_item: b.sys_id, copy_table: 'x_baes2_legal_port_f680_request'};		$sp.getRecordValues(b, q, 'short_description,sys_view_count,sys_id,published');
+		b.variables = $sp.getRecordVariablesArray(q);		
 		b.published_display = q.getDisplayValue("published");
 
 		data.demands_closed.push(b);
@@ -331,35 +395,10 @@ tooltip._top tip tip-arrow {&#13;
 	data.tooltip = "";
 	
 	if (input) {			
-		
-		// Client Request For Request Item Tooltip
-		if (input && input.action === "getTooltip_REQ") {
-			var gr = new GlideRecord("x_baes2_legal_port_cao_request");
-			if (gr.get(input.itemID)) {
-				number = gr.getDisplayValue("number");				
-				display_field = gr.getDisplayValue("short_description");
-				updated_on = gr.sys_updated_on.getDisplayValue();
-				updated_by = gr.getDisplayValue("sys_updated_by");			
-				secondary_fields = [];
-				//data.secondary_fields.forEach(function(f) {
-					//secondary_fields.push(getField(q, f));
-				//});
-				published_display = gr.getDisplayValue("published");			
-				var variables = $sp.getRecordVariablesArray(gr);			
-				data.tooltip = '<div class="tip-header">' + number + ' - ' + display_field + '</br><medium class="text-muted"><span class="glyphicon glyphicon-time " />&nbsp;' + updated_on + ' • ' + updated_by + '</medium>' +  '</div><table><tbody>';		
-				for(var i =0; i< variables.length; i++){
-					if (variables[i].label) {
-						data.tooltip += "<tr class='tip-row'><td class='tip-col'>" + variables[i].label + "&nbsp;&nbsp;</td><td class='tip-col'>" + variables[i].display_value + "</td></tr>";
-					}
-				}
-				data.tooltip += "</tbody></table>";
-			}
-			return;
-		}		
-		
+			
 		// Client Request For Idea Tooltip
 		if (input && input.action === "getTooltip_IDEA") {
-			var gr = new GlideRecord("x_baes2_legal_port_f680_request");
+			var gr = new GlideRecord("x_baes2_busimprove_ideas");
 			if (gr.get(input.itemID)) {
 				number = gr.getDisplayValue("number");
 				display_field = gr.getDisplayValue("short_description");
@@ -387,64 +426,7 @@ tooltip._top tip tip-arrow {&#13;
 				data.tooltip += "</tbody></table>";
 			}
 			return;
-		}		
-		
-		// Client Request For Demand Tooltip
-		if (input && input.action === "getTooltip_DMN") {
-			var gr = new GlideRecord("dmn_demand");
-			if (gr.get(input.itemID)) {
-				number = gr.getDisplayValue("number");
-				display_field = gr.getDisplayValue("short_description");
-				updated_on = gr.sys_updated_on.getDisplayValue();
-				updated_by = gr.getDisplayValue("sys_updated_by");
-				secondary_fields = [];
-				//data.secondary_fields.forEach(function(f) {
-					//secondary_fields.push(getField(q, f));
-				//});
-				published_display = gr.getDisplayValue("published");
-				short_description = gr.getDisplayValue("short_description");				
-				business_case = gr.getDisplayValue("business_case");				
-				var variables = $sp.getRecordVariablesArray(gr);
-				data.tooltip = '<div class="tip-header">' + number + ' - ' + display_field + '</br><medium class="text-muted"><span class="glyphicon glyphicon-time " />&nbsp;' + updated_on + ' • ' + updated_by + '</medium>' +  '</div><table><tbody>';
-				if (variables.length == 0) {
-					data.tooltip += "<tr class='tip-row'><td class='tip-col'>Title&nbsp;&nbsp;</td><td class='tip-col'>" + short_description + "</td></tr>";					
-					data.tooltip += "<tr class='tip-row'><td class='tip-col'>Additional Information&nbsp;&nbsp;</td><td class='tip-col'>" + business_case + "</td></tr>";
-				}				
-				for(var i =0; i< variables.length; i++){
-					if (variables[i].label) {
-						data.tooltip += "<tr class='tip-row'><td class='tip-col'>" + variables[i].label + "&nbsp;&nbsp;</td><td class='tip-col'>" + variables[i].display_value + "</td></tr>";
-					}
-				}
-				data.tooltip += "</tbody></table>";
-			}
-			return;
-		}		
-		
-		// Client Request For Incident Tooltip
-		if (input && input.action === "getTooltip_INC") {
-			var gr = new GlideRecord("incident");
-			if (gr.get(input.itemID)) {
-				number = gr.getDisplayValue("number");
-				display_field = gr.getDisplayValue("short_description");
-				updated_on = gr.sys_updated_on.getDisplayValue();
-				updated_by = gr.getDisplayValue("sys_updated_by");
-				secondary_fields = [];
-				//data.secondary_fields.forEach(function(f) {
-					//secondary_fields.push(getField(q, f));
-				//});
-				published_display = gr.getDisplayValue("published");		
-				var variables = $sp.getRecordVariablesArray(gr);
-				data.tooltip = '<div class="tip-header">' + number + ' - ' + display_field + '</br><medium class="text-muted"><span class="glyphicon glyphicon-time " />&nbsp;' + updated_on + ' • ' + updated_by + '</medium>' +  '</div><table><tbody>';		
-				for(var i =0; i< variables.length; i++){
-					if (variables[i].label) {
-						data.tooltip += "<tr class='tip-row'><td class='tip-col'>" + variables[i].label + "&nbsp;&nbsp;</td><td class='tip-col'>" + variables[i].display_value + "</td></tr>";
-					}
-				}
-				data.tooltip += "</tbody></table>";
-			}
-			return;
-		}		
-		
+		}				
 		
 	}  
 	else {  	
@@ -468,7 +450,7 @@ tooltip._top tip tip-arrow {&#13;
         <sys_created_on>2019-01-07 08:20:21</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>9591a4aedb3a2780561fb29a6896194c</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>46</sys_mod_count>
         <sys_name>JB Megamenu Progress SPBI</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -476,15 +458,15 @@ tooltip._top tip tip-arrow {&#13;
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sp_widget_9591a4aedb3a2780561fb29a6896194c</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-01-07 08:20:21</sys_updated_on>
-        <template><![CDATA[<div class="container hidden">
+        <sys_updated_on>2019-03-27 12:04:49</sys_updated_on>
+        <template><![CDATA[<div class="container">
   <div class="row">
     
     <div ng-show="c.data.request_state=='Open'" ng-class="c.data.ACA==true ? 'col-lg-4 col-md-4 col-sm-4 col-xs-12' : 'col-lg-6 col-md-6 col-sm-6 col-xs-12'">
       <div class="panel panel-default b">
       <div class="panel-heading">
       	<h4 class="panel-title">
-        CAOs - Open
+        Ideas - Open
         <a type="button" class="btn-xs btn-primary pull-right" ng-click="c.changeRequestState('Closed')" href="javascript:void(0);">View Closed</a>          
         </h4>
       </div>
@@ -492,10 +474,10 @@ tooltip._top tip tip-arrow {&#13;
       <ul class="top_items">
         <li ng-repeat="viewItem in c.data.requests_open">          
           <div style="float:left;">
-            <span class="fa fa-info-circle" id="MMPU{{viewItem.sys_id}}" data-container="#the-basics" data-viewport=".page" data-placement="right" data-html="true" data-title="<div>loading ..</div>" ng-mouseover="c.showTooltip('MMPU',viewItem.sys_id,viewItem.table)">&nbsp;</span>            
+          	<button id="tooltip-button-{{viewItem.sys_id}}" type="button" class="cd-tooltip viewBtn btn btn-default icon-info btn-icon" uib-popover-template="'ideas-tooltip'" popover-placement='bottom-left' popover-trigger='outsideClick' popover-is-open='viewItem.isInfoPopoverOpen' aria-haspopup='true' aria-expanded="{{viewItem.isInfoPopoverOpen}}" data-container="body"><span class="sr-only">${Information}</span></button>
           </div>
           <div>
-            <a ng-click="c.onClick($event, viewItem, viewItem.url, {})" href="javascript:void(0)" title="Click to view request item">
+            <a ng-click="c.goToURL(viewItem.url)" href="javascript:void(0)" title="Click to view Idea">
               <div ng-class="{'l-h-40': !viewItem.secondary_fields.length}">{{viewItem.display_field}}</div>
               <small class="text-muted" ng-repeat="f in viewItem.secondary_fields">
                 <span ng-if="!$first"> • </span>
@@ -511,7 +493,7 @@ tooltip._top tip tip-arrow {&#13;
       </ul>
       <ul class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <li class="divider"></li>
-        <li><a href="javascript:void(0);" ng-click="c.goToURL('?id=datatable&table=x_baes2_legal_port_cao_request&view=sp&sp_page=ticket&filter=opened_by%3Djavascript%3Ags.getUserID()%5Eactive%3Dtrue')">View all open CAOs</a></li>        
+        <li><a href="javascript:void(0);" ng-click="c.goToURL('?id=datatable&table=x_baes2_busimprove_ideas&view=sp&sp_page=ticket&filter=opened_by%3Djavascript%3Ags.getUserID()%5Ecampaign.classification%3D1%5EstateIN-5%2C1%2C3%2C4%2C5%2C6%2C7')">View all open Ideas</a></li>        
       </ul>
       </div>
       </div>        
@@ -521,7 +503,7 @@ tooltip._top tip tip-arrow {&#13;
       <div class="panel panel-default b">
       <div class="panel-heading">
       	<h4 class="panel-title">
-        CAOs - Closed
+        Ideas - Closed
         <a type="button" class="btn-xs btn-primary pull-right" ng-click="c.changeRequestState('Open')" href="javascript:void(0);">View Open</a>
         </h4>
       </div>
@@ -529,13 +511,11 @@ tooltip._top tip tip-arrow {&#13;
       <ul class="top_items">
         <li ng-repeat="viewItem in c.data.requests_closed">
           <div style="float:left;">
-            <span class="fa fa-info-circle" id="MMPU{{viewItem.sys_id}}" data-container="#the-basics" data-viewport=".page" data-placement="right" data-html="true" data-title="<div>loading ..</div>" ng-mouseover="c.showTooltip('MMPU',viewItem.sys_id,viewItem.table)">&nbsp;</span>                        
+          	<button id="tooltip-button-{{viewItem.sys_id}}" type="button" class="cd-tooltip viewBtn btn btn-default icon-info btn-icon" uib-popover-template="'ideas-tooltip'" popover-placement='bottom-left' popover-trigger='outsideClick' popover-is-open='viewItem.isInfoPopoverOpen' aria-haspopup='true' aria-expanded="{{viewItem.isInfoPopoverOpen}}" data-container="body"><span class="sr-only">${Information}</span></button>
           </div>
           <div>
-            <a ng-click="c.onClick($event, viewItem, viewItem.url, {})" href="javascript:void(0)" title="Click to view request item">
-            <div ng-class="{'l-h-40': !viewItem.secondary_fields.length}">{{viewItem.display_field}} ({{viewItem.state}})
-              <span ng-if="(viewItem.state == 'Rejected')" class="pull-right"><a class="btn-xs btn-primary pull-right" href="javascript:void(0)" ng-click="c.onClick($event, viewItem, viewItem.edit_url, {})">Resubmit</a></span>
-            </div>
+            <a ng-click="c.goToURL(viewItem.url)" href="javascript:void(0)" title="Click to view Idea">
+            <div ng-class="{'l-h-40': !viewItem.secondary_fields.length}">{{viewItem.display_field}} ({{viewItem.state}})</div>
               <small class="text-muted" ng-repeat="f in viewItem.secondary_fields">
                 <span ng-if="!$first"> • </span>
                 <span ng-switch="f.type" title="{{::f.label}}">
@@ -550,7 +530,7 @@ tooltip._top tip tip-arrow {&#13;
       </ul>
       <ul class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <li class="divider"></li>
-        <li><a href="javascript:void(0);" ng-click="c.goToURL('?id=datatable&table=x_baes2_legal_port_cao_request&view=sp&sp_page=ticket&filter=opened_by%3Djavascript%3Ags.getUserID()%5Eactive%3Dfalse')">View all closed CAOs</a></li>        
+        <li><a href="javascript:void(0);" ng-click="c.goToURL('?id=datatable&table=x_baes2_busimprove_ideas&view=sp&sp_page=ticket&filter=opened_by%3Djavascript%3Ags.getUserID()%5Ecampaign.classification%3D1%5EstateNOT%20IN-5%2C1%2C3%2C4%2C5%2C6%2C7')">View all closed Ideas</a></li>        
         <li style="display:none"><a href="javascript:void(0);" ng-click="c.goToURL('?id=requests_closed')">View all closed requests</a></li>
       </ul>
       </div>
@@ -561,7 +541,7 @@ tooltip._top tip tip-arrow {&#13;
       <div class="panel panel-default b">
       <div class="panel-heading">
       	<h4 class="panel-title">
-        F680s - Open
+        Observations - Open
         <a type="button" class="btn-xs btn-primary pull-right" ng-click="c.changeDemandState('Closed')" href="javascript:void(0);">View Closed</a>
         </h4>
       </div>
@@ -569,10 +549,10 @@ tooltip._top tip tip-arrow {&#13;
       <ul class="top_items">
         <li ng-repeat="viewItem in c.data.demands_open">
           <div style="float:left;">
-            <span class="fa fa-info-circle" id="MMPU{{viewItem.sys_id}}" data-container="#the-basics" data-viewport=".page" data-placement="right" data-html="true" data-title="<div>loading ..</div>" ng-mouseover="c.showTooltip('MMPU',viewItem.sys_id,viewItem.table)">&nbsp;</span>                        
+          	<button id="tooltip-button-{{viewItem.sys_id}}" type="button" class="cd-tooltip viewBtn btn btn-default icon-info btn-icon" uib-popover-template="'ideas-tooltip'" popover-placement='bottom-left' popover-trigger='outsideClick' popover-is-open='viewItem.isInfoPopoverOpen' aria-haspopup='true' aria-expanded="{{viewItem.isInfoPopoverOpen}}" data-container="body"><span class="sr-only">${Information}</span></button>
           </div>
           <div>
-            <a ng-click="c.onClick($event, viewItem, viewItem.url, {})" href="javascript:void(0)" title="Click to view demand">
+            <a ng-click="c.goToURL(viewItem.url)" href="javascript:void(0)" title="Click to view demand">
               <div ng-class="{'l-h-40': !viewItem.secondary_fields.length}">{{viewItem.display_field}}</div>
               <small class="text-muted" ng-repeat="f in viewItem.secondary_fields">
                 <span ng-if="!$first"> • </span>
@@ -588,7 +568,7 @@ tooltip._top tip tip-arrow {&#13;
       </ul>
       <ul class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <li class="divider"></li>
-        <li><a href="javascript:void(0);" ng-click="c.goToURL('?id=datatable&table=x_baes2_legal_port_f680_request&view=sp&filter=opened_by%3Djavascript%3Ags.getUserID()%5Eactive%3Dtrue')">View all open F680s</a></li>
+        <li><a href="javascript:void(0);" ng-click="c.goToURL('?id=datatable&table=x_baes2_busimprove_ideas&view=sp&filter=opened_by%3Djavascript%3Ags.getUserID()%5Ecampaign.classification%3D2%5EstateIN-5%2C1%2C3%2C4%2C5%2C6%2C7')">View all open Observations</a></li>
       </ul>
       </div>
       </div>         
@@ -598,7 +578,7 @@ tooltip._top tip tip-arrow {&#13;
       <div class="panel panel-default b">
       <div class="panel-heading">
       	<h4 class="panel-title">
-        F680s - Closed
+        Observations - Closed
         <a type="button" class="btn-xs btn-primary pull-right" ng-click="c.changeDemandState('Open')" href="javascript:void(0);">View Open</a>
         </h4>
       </div>
@@ -606,13 +586,11 @@ tooltip._top tip tip-arrow {&#13;
       <ul class="top_items">
         <li ng-repeat="viewItem in c.data.demands_closed">
           <div style="float:left;">
-            <span class="fa fa-info-circle" id="MMPU{{viewItem.sys_id}}" data-container="#the-basics" data-viewport=".page" data-placement="right" data-html="true" data-title="<div>loading ..</div>" ng-mouseover="c.showTooltip('MMPU',viewItem.sys_id,viewItem.table)">&nbsp;</span>                                    
+          	<button id="tooltip-button-{{viewItem.sys_id}}" type="button" class="cd-tooltip viewBtn btn btn-default icon-info btn-icon" uib-popover-template="'ideas-tooltip'" popover-placement='bottom-left' popover-trigger='outsideClick' popover-is-open='viewItem.isInfoPopoverOpen' aria-haspopup='true' aria-expanded="{{viewItem.isInfoPopoverOpen}}" data-container="body"><span class="sr-only">${Information}</span></button>
           </div>
           <div>
-            <a ng-click="c.onClick($event, viewItem, viewItem.url, {})" href="javascript:void(0)" title="Click to view demand">
-              <div ng-class="{'l-h-40': !viewItem.secondary_fields.length}">{{viewItem.display_field}} ({{viewItem.state}})
-              	<span ng-if="(viewItem.state == 'Rejected')" class="pull-right"><a class="btn-xs btn-primary pull-right" href="javascript:void(0)" ng-click="c.onClick($event, viewItem, viewItem.edit_url, {})">Resubmit</a></span>                
-              </div>
+            <a ng-click="c.goToURL(viewItem.url)" href="javascript:void(0)" title="Click to view demand">
+              <div ng-class="{'l-h-40': !viewItem.secondary_fields.length}">{{viewItem.display_field}} ({{viewItem.state}})</div>
               <small class="text-muted" ng-repeat="f in viewItem.secondary_fields">
                 <span ng-if="!$first"> • </span>
                 <span ng-switch="f.type" title="{{::f.label}}">
@@ -627,7 +605,7 @@ tooltip._top tip tip-arrow {&#13;
       </ul>
       <ul class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <li class="divider"></li>
-        <li><a href="javascript:void(0);" ng-click="c.goToURL('?id=datatable&table=x_baes2_legal_port_f680_request&view=sp&filter=opened_by%3Djavascript%3Ags.getUserID()%5Eactive%3Dfalse')">View all closed F680s</a></li>
+        <li><a href="javascript:void(0);" ng-click="c.goToURL('?id=datatable&table=x_baes2_busimprove_ideas&view=sp&filter=opened_by%3Djavascript%3Ags.getUserID()%5Ecampaign.classification%3D2%5EstateNOT%20IN-5%2C1%2C3%2C4%2C5%2C6%2C7')">View all closed Observations</a></li>
       </ul>
       </div>
       </div>        
@@ -648,7 +626,7 @@ tooltip._top tip tip-arrow {&#13;
             <span class="fa fa-info-circle" id="MMPU{{viewItem.sys_id}}" data-container="#the-basics" data-viewport=".page" data-placement="right" data-html="true" data-title="<div>loading ..</div>" ng-mouseover="c.showTooltip('MMPU',viewItem.sys_id,viewItem.table)">&nbsp;</span>            
           </div>
           <div>
-            <a ng-click="c.onClick($event, viewItem, viewItem.url, {})" href="javascript:void(0)" title="Click to view incident">
+            <a ng-click="c.goToURL(viewItem.url)" href="javascript:void(0)" title="Click to view incident">
               <div ng-class="{'l-h-40': !viewItem.secondary_fields.length}">{{viewItem.display_field}}</div>
               <small class="text-muted" ng-repeat="f in viewItem.secondary_fields">
                 <span ng-if="!$first"> • </span>
@@ -685,7 +663,7 @@ tooltip._top tip tip-arrow {&#13;
             <span class="fa fa-info-circle" id="MMPU{{viewItem.sys_id}}" data-container="#the-basics" data-viewport=".page" data-placement="right" data-html="true" data-title="<div>loading ..</div>" ng-mouseover="c.showTooltip('MMPU',viewItem.sys_id,viewItem.table)">&nbsp;</span>                               	
           </div>
           <div>
-            <a ng-click="c.onClick($event, viewItem, viewItem.url, {})" href="javascript:void(0)" title="Click to view incident">
+            <a ng-click="c.goToURL(viewItem.url)" href="javascript:void(0)" title="Click to view incident">
               <div ng-class="{'l-h-40': !viewItem.secondary_fields.length}">{{viewItem.display_field}}</div>
               <small class="text-muted" ng-repeat="f in viewItem.secondary_fields">
                 <span ng-if="!$first"> • </span>

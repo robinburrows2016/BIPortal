@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>ideas-tooltip</id>
+        <sp_widget display_value="JB Megamenu Progress SPBI">9591a4aedb3a2780561fb29a6896194c</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-03-27 10:44:29</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>0618ff73db1c7740610f7b47f4961908</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>ideas-tooltip</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_ng_template_0618ff73db1c7740610f7b47f4961908</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-03-27 11:39:18</sys_updated_on>
+        <template><![CDATA[<div class="tooltip-popover" id="tooltip-popover-{{viewItem.sys_id}}">
+  <ul ng-if="viewItem.variables.length != 0" class="color-items">
+    <li class="color-item" ng-repeat="field in viewItem.variables">
+      <div class="color-label">{{field.label}}</div>
+      <div class="color-label pull-right">{{field.display_value}}</div>
+    </li>
+  </ul>
+  <ul ng-if="viewItem.variables.length == 0" class="color-items">
+    <li class="color-item" ng-repeat="field in data.fields_array">
+      <div class="color-label">{{item[field].label}}</div>
+      <div class="color-label pull-right">{{item[field].display_value}}</div>
+    </li>
+  </ul>  
+</div>]]></template>
+    </sp_ng_template>
+</record_update>

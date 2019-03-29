@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="2">3c5c45e1db44ff00561fb29a68961902</sp_column>
+        <sp_widget display_value="Knowledge Article Content Listener - BAE">75d8762ddb066b00e9c39334ca9619e4</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-03-07 12:11:39</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>745c45e1db44ff00561fb29a68961906</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_instance_745c45e1db44ff00561fb29a68961906</sys_update_name>
+        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-03-29 11:14:41</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"hide_all_actions": {
+		"value": "false",
+		"displayValue": "false"
+	},
+	"show_version_info": {
+		"value": "true",
+		"displayValue": "true"
+	},
+	"show_create_incident_action": {
+		"value": "false",
+		"displayValue": "false"
+	},
+	"create_task_prompt": {
+		"value": "",
+		"displayValue": ""
+	},
+	"create_task_url": {
+		"value": "",
+		"displayValue": ""
+	}
+}]]></widget_parameters>
+    </sp_instance>
+</record_update>

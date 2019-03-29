@@ -37,10 +37,10 @@
         <mask_use_confirmation>false</mask_use_confirmation>
         <mask_use_encryption>false</mask_use_encryption>
         <name>confidential</name>
-        <order>67</order>
+        <order>100</order>
         <price_if_checked>0</price_if_checked>
         <pricing_implications>false</pricing_implications>
-        <question_text>Confidential</question_text>
+        <question_text>Confidential (if Yes, your name will NOT be displayed publicly)</question_text>
         <read_roles/>
         <rec_lookup_price/>
         <rec_price_if_checked>0</rec_price_if_checked>
@@ -60,15 +60,15 @@
         <sys_created_on>2019-01-08 13:56:51</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>ce08f67adbb66780561fb29a68961972</sys_id>
-        <sys_mod_count>4</sys_mod_count>
-        <sys_name>Confidential</sys_name>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>Confidential (if Yes, your name will NOT be displayed publicly)</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>item_option_new_ce08f67adbb66780561fb29a68961972</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-01-23 07:50:38</sys_updated_on>
+        <sys_updated_on>2019-03-28 12:17:38</sys_updated_on>
         <table/>
         <tooltip/>
         <type>1</type>

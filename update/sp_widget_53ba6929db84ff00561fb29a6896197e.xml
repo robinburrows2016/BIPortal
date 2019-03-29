@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>other</category>
+        <client_script><![CDATA[function($scope, $http, $timeout, spUtil, $rootScope) {
+	var c = this;
+
+	c.tagList = "";
+	c.editMode = false;
+
+	c.toggleEditMode = function() {
+		if (c.editMode || c.data.tags.length === 0) {
+			$timeout(function() {
+				$scope.data.action = "update";
+				if ($scope.data.tagList != c.tagList) {
+					c.saving = true;
+					$scope.data.tagList = c.tagList;
+					$scope.server.update().then(function() {
+						c.saveMsg = c.data.tagsSavedMsg;
+						c.saving = false;
+						$timeout(function() {
+							c.saveMsg = "";
+						}, 1500);
+						c.editMode = false;
+						//spUtil.addTrivialMessage('Tags have been updated');
+						$rootScope.$broadcast("sp-favorite-tags-updated");
+					});
+				} else
+					c.editMode = false;
+
+				c.tagList = "";
+			});
+		} else {
+			c.editMode = true;
+			c.tagList = "";
+			$timeout(function() {
+				$rootScope.$broadcast("sp-favorite-tags-edit");
+			});
+		}
+	}	
+	$scope.$on("spTagListBlurred", function() {
+		c.toggleEditMode();
+	});
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>a.question-tag {
+    color: #39739d;
+    background-color: #e1ecf4;
+    border: 1px solid #e1ecf4;
+    display: inline-block;
+    margin: 4px 4px 4px 0;
+    border-radius: 0;
+    text-align: center;
+    line-height: 1;
+    padding: .4em .5em;
+}
+
+.panel-title &gt; a {
+  color: #428bca !important;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>bi-favourite-tags</id>
+        <internal>false</internal>
+        <link/>
+        <name>BI Favorite Tags</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[// populate the 'data' object
+// e.g., data.table = $sp.getValue('table');
+data.typeTagNameMsg = gs.getMessage("Type tag name...");
+data.tagsSavedMsg = gs.getMessage("Tags saved");
+var loggedInSysUserID = gs.getUser().getID();
+data.userIsGuest = (gs.getUserName() === "guest");
+data.liveProfileID = "";
+var liveProfileGR = new GlideRecord("live_profile");
+if (liveProfileGR.get("document", loggedInSysUserID))
+	data.liveProfileID = liveProfileGR.getUniqueValue();
+
+// blunt: delete the user's tags, then add back the ones we want to keep
+if (input && input.action == "update") {
+	var labelEntryGR = new GlideRecord("sqanda_tag_entry");
+	labelEntryGR.addQuery("reference_name", "live_profile");
+	labelEntryGR.addQuery("reference_id", data.liveProfileID);
+	labelEntryGR.deleteMultiple();
+	
+	input.tagList.split(",").forEach(function(tagID) {
+		var newLabelEntryGR = new GlideRecord("sqanda_tag_entry");
+		newLabelEntryGR.initialize();
+		newLabelEntryGR.reference_name = "live_profile";
+		newLabelEntryGR.reference_id = data.liveProfileID;
+		newLabelEntryGR.tag = tagID;
+		newLabelEntryGR.insert();
+	});
+}
+
+data.tags = [];
+
+if (data.liveProfileID) {
+	var labelEntryGR = new GlideRecord("sqanda_tag_entry");
+	labelEntryGR.addQuery("reference_name", "live_profile");
+	labelEntryGR.addQuery("reference_id", data.liveProfileID);
+	labelEntryGR.query();
+	
+	while (labelEntryGR.next()) {
+		var labelGR = labelEntryGR.getElement("tag").getRefRecord();
+		if (labelGR.getUniqueValue() !== null)
+			data.tags.push({
+				name: labelGR.getValue("name"),
+				sys_id: labelGR.getUniqueValue(),
+				label_entry_id: labelEntryGR.getUniqueValue()
+			});
+	}
+}]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-03-07 14:24:32</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>53ba6929db84ff00561fb29a6896197e</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>BI Favorite Tags</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_widget_53ba6929db84ff00561fb29a6896197e</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-03-07 14:26:08</sys_updated_on>
+        <template><![CDATA[<div ng-if="!data.userIsGuest" class="panel panel-info b">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a ng-if="data.tags.length" href="?id=sqa_tagged_questions&sys_id=-1">${My Favorite Tags}</a>
+      <span ng-if="!data.tags.length">${My Favorite Tags}</span>
+    </h4>
+  </div>
+   
+  <div ng-if="data.tags.length > 0" class="panel-body">
+	<div role="list" ng-if="!c.editMode">
+      <span role="listitem" ng-repeat="tag in data.tags">
+      	<a ng-href="?id=sqa_tagged_questions&sys_id={{tag.sys_id}}" class="question-tag">{{tag.name}}</a>
+      </span>
+    </div>
+    <div ng-if="c.editMode">
+      <sp-tag-list ng-model="c.tagList" init-items="data.tags" prohibit-new-tag="true"></sp-tag-list>
+    </div>
+    <div class="m-t-sm">
+      <a ng-if="!c.editMode && !c.saveMsg" href="javascript:void(0)" ng-click="c.toggleEditMode()" role="button">${Edit tags lower}</a>
+      <a ng-if="!c.editMode && c.saveMsg" href="javascript:void(0)" ng-click="c.toggleEditMode()" role="button">${{{c.saveMsg}}}</a>
+      <a ng-if="c.editMode && !c.saving" href="javascript:void(0)" ng-click="c.toggleEditMode()" role="button">${Save tags}</a>
+      <a ng-if="c.editMode && c.saving" href="javascript:void(0)">${Saving tags...}</a>
+    </div>
+  </div>
+    
+  <!-- Empty State -->  
+  <div ng-if="data.tags.length == 0" class="panel-body empty-state-content">
+    <p>${Favorite tags let you follow or participate in questions you care about}</p>
+    <p>${Type your favorite tags here}</p>
+	<sp-tag-list ng-model="c.tagList" init-items="data.tags" prohibit-new-tag="true" type-tag-name-msg="c.data.typeTagNameMsg"></sp-tag-list>
+    <div class="m-t-sm">
+      <a ng-if="!c.saving && c.tagList !== ''" ng-class="{'disabled': c.tagList === ''}" href="javascript:void(0)" ng-click="c.toggleEditMode()">${Save tags}</a>
+      <a ng-if="false && c.saving" href="javascript:void(0)" class="btn btn-primary">${Saving tags...}</a>
+    </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

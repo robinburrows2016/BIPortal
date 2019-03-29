@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action">
+    <sys_ui_policy_action action="INSERT_OR_UPDATE">
+        <cleared>false</cleared>
+        <disabled>true</disabled>
+        <field>campaign.classification</field>
+        <mandatory>ignore</mandatory>
+        <sys_class_name>sys_ui_policy_action</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-03-18 10:54:32</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>e214e589dbd43b40561fb29a68961904</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>campaign.classification</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sys_ui_policy_action_e214e589dbd43b40561fb29a68961904</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-03-18 10:54:32</sys_updated_on>
+        <table>x_baes2_busimprove_ideas</table>
+        <ui_policy display_value="Make Campaign Classification Read Only">23e36589dbd43b40561fb29a68961925</ui_policy>
+        <visible>ignore</visible>
+    </sys_ui_policy_action>
+</record_update>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_widget_dependency">
+    <m2m_sp_widget_dependency action="INSERT_OR_UPDATE">
+        <sp_dependency display_value="selectize">4a3c6ab7d730120023c84f80de6103de</sp_dependency>
+        <sp_widget display_value="BI Create Question">5909eda5db84ff00561fb29a6896192c</sp_widget>
+        <sys_class_name>m2m_sp_widget_dependency</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-03-07 14:17:01</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>d509e1e5db84ff00561fb29a689619b3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>selectize.Copy of SQANDA Create Question</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>m2m_sp_widget_dependency_d509e1e5db84ff00561fb29a689619b3</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-03-07 14:17:01</sys_updated_on>
+    </m2m_sp_widget_dependency>
+</record_update>

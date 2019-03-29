@@ -14,7 +14,7 @@
         <mobile_title>Campaigns</mobile_title>
         <mobile_view_name>Mobile</mobile_view_name>
         <name>x_baes2_busimprove_campaigns</name>
-        <order/>
+        <order>40</order>
         <override_menu_roles>false</override_menu_roles>
         <query/>
         <report/>
@@ -27,7 +27,7 @@
         <sys_customer_update>false</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_id>72aff8eedb7a2780561fb29a689619a8</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Campaigns</sys_name>
         <sys_overrides/>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
@@ -36,7 +36,7 @@
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sys_app_module_72aff8eedb7a2780561fb29a689619a8</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-01-07 10:31:48</sys_updated_on>
+        <sys_updated_on>2019-03-29 10:22:43</sys_updated_on>
         <timeline_page/>
         <title>Campaigns</title>
         <uncancelable>false</uncancelable>

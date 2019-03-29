@@ -3,7 +3,7 @@
         <abort_action>false</abort_action>
         <access>package_private</access>
         <action_delete>true</action_delete>
-        <action_insert>true</action_insert>
+        <action_insert>false</action_insert>
         <action_label/>
         <action_name/>
         <action_query>false</action_query>
@@ -22,7 +22,7 @@
         <filter_condition/>
         <is_rest>false</is_rest>
         <message/>
-        <name>BI Idea - Adjust Parent Idea Counts</name>
+        <name>BI Idea - Adjust Parent Idea Count (DEL)</name>
         <onclick/>
         <order>100</order>
         <priority>100</priority>
@@ -35,15 +35,11 @@
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
 	
-	//If comment is deleted or deactivated, decrement comment count
-	//If comment is reactivated, increment comment count
+	//If idea is deleted, decrement idea count
 	var parCampaign = new GlideRecord("x_baes2_busimprove_campaigns");	
-	if (parCampaign.get(current.campaign.sys_id.toString())){
-		if (current.operation() == "delete"){
+	if (parCampaign.get(current.campaign.sys_id.toString()) && (current.operation() == "delete") ){
+		if (current.approval == 'approved'){
 			parCampaign.idea_count--;
-			parCampaign.update();			
-		} else if (current.operation() == "insert") {
-			parCampaign.idea_count++;
 			parCampaign.update();			
 		}
 	}
@@ -55,8 +51,8 @@
         <sys_customer_update>false</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_id>16a6cd88db772300561fb29a689619c8</sys_id>
-        <sys_mod_count>2</sys_mod_count>
-        <sys_name>BI Idea - Adjust Parent Idea Counts</sys_name>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>BI Idea - Adjust Parent Idea Count (DEL)</sys_name>
         <sys_overrides/>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -64,7 +60,7 @@
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sys_script_16a6cd88db772300561fb29a689619c8</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-02-18 09:55:33</sys_updated_on>
+        <sys_updated_on>2019-03-13 16:15:07</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>

@@ -739,6 +739,7 @@ function populateDataFromIdeaViewModel(){
 	        data.revisionString = 'Submitted by ' + ideaRecord.submitted_for;
 			//data.isSubscriptionEnabled = ideaViewModel.isSubscriptionEnabled;
             data.isSubscriptionEnabled = true;
+			data.campaignClassification = ideaRecord.campaign.classification.getValue();	
 			data.campaignState = ideaRecord.campaign.state.getValue();
 			if (data.campaignState == '0' && data.active) {
 				data.isArticleActive = true;
@@ -844,8 +845,9 @@ function populateFeedback(){
 		var comment = ideaViewModel.getFeedbackComment(ideaViewModel.feedbackRecord);
 		var useful = ideaViewModel.feedbackRecord.useful.getDisplayValue();
 		var resolved = ideaViewModel.feedbackRecord.resolved.getDisplayValue();
+		var flagged = ideaViewModel.feedbackRecord.flagged.getDisplayValue();		
 		var sys_id = ideaViewModel.feedbackRecord.sys_id.getValue();		
-		data.comments.push({'userName' : user, 'userID' : userID, 'createdOn' : createdTime, 'commentText' : comment, 'usefulFlag' : useful, 'resolvedFlag' : resolved, 'sys_id' : sys_id});
+		data.comments.push({'userName' : user, 'userID' : userID, 'createdOn' : createdTime, 'commentText' : comment, 'usefulFlag' : useful, 'resolvedFlag' : resolved, 'flagged' : flagged, 'sys_id' : sys_id});
 	}
 }
 ]]></script>
@@ -855,7 +857,7 @@ function populateFeedback(){
         <sys_created_on>2019-01-10 14:03:48</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>e5fc05ebdb3ea780561fb29a689619ce</sys_id>
-        <sys_mod_count>185</sys_mod_count>
+        <sys_mod_count>190</sys_mod_count>
         <sys_name>BI Portal - Idea Content</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -863,7 +865,7 @@ function populateFeedback(){
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sp_widget_e5fc05ebdb3ea780561fb29a689619ce</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-02-25 12:52:14</sys_updated_on>
+        <sys_updated_on>2019-03-28 08:36:25</sys_updated_on>
         <template><![CDATA[<div ng-if="data.versionWarningMessage && c.options.show_version_info != 'false'" class="alert alert-info alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <div ng-bind-html="data.versionWarningMessage">
@@ -895,7 +897,7 @@ function populateFeedback(){
                 </span>
               </a>
             </span>
-            <span class="hidden-sm hidden-xs">
+            <span ng-if="data.campaignClassification == '1'" class="hidden-sm hidden-xs">
               <a tabindex="0"
                  id="sendlinkButton"
                  role="button"

@@ -17,7 +17,7 @@
         <size>md</size>
         <sp_column display_value="2">5d2307c3dbfe6780561fb29a689619bc</sp_column>
         <sp_page/>
-        <sp_widget display_value="BI Portal - Active Homepage Campaigns">8a2f5162dbfa2780561fb29a689619f1</sp_widget>
+        <sp_widget display_value="BI Portal - Active Campaigns">8a2f5162dbfa2780561fb29a689619f1</sp_widget>
         <sys_class_name>sp_instance_link</sys_class_name>
         <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
         <sys_created_on>2019-01-09 09:23:11</sys_created_on>

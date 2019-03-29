@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="impact_assessment" table="x_baes2_busimprove_ideas" version="3">
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>impact_assessment</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>1 - Critical</label>
+            <language>en</language>
+            <name>x_baes2_busimprove_ideas</name>
+            <sequence/>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-03-18 10:32:54</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>b12f5585dbd43b40561fb29a689619c9</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-03-18 10:34:46</sys_updated_on>
+            <value>1</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>impact_assessment</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>2 - High</label>
+            <language>en</language>
+            <name>x_baes2_busimprove_ideas</name>
+            <sequence/>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-03-18 10:34:34</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>bd8f1d81dbd43b40561fb29a68961993</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-03-18 10:35:04</sys_updated_on>
+            <value>2</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>impact_assessment</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>4 - Low</label>
+            <language>en</language>
+            <name>x_baes2_busimprove_ideas</name>
+            <sequence/>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-03-18 10:35:41</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>dcdfdd85dbd43b40561fb29a68961993</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-03-18 10:35:41</sys_updated_on>
+            <value>Low</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>impact_assessment</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>3 - Moderate</label>
+            <language>en</language>
+            <name>x_baes2_busimprove_ideas</name>
+            <sequence/>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-03-18 10:35:27</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>aebf5d85dbd43b40561fb29a68961991</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-03-18 10:35:27</sys_updated_on>
+            <value>Moderate</value>
+        </sys_choice>
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>impact_assessment</element>
+            <name>x_baes2_busimprove_ideas</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-03-18 10:32:54</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>e53f5d81dbd43b40561fb29a689619be</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>impact_assessment</sys_name>
+            <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+            <sys_update_name>sys_choice_x_baes2_busimprove_ideas_impact_assessment</sys_update_name>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-03-18 10:32:54</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+</record_update>

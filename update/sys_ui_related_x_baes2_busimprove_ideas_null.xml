@@ -2,45 +2,59 @@
     <sys_ui_related sys_domain="global" table="x_baes2_busimprove_ideas" version="2" view="">
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
-            <list_id display_value="Ideas - Default view" name="x_baes2_busimprove_ideas" related_list="NULL" sys_domain="global" view="Default view">35feca04db7b2300561fb29a68961920</list_id>
+            <list_id display_value="Ideas - Default view" name="x_baes2_busimprove_ideas" related_list="NULL" sys_domain="global" view="Default view">4a199e07dbc47b00610f7b47f4961914</list_id>
             <order_by/>
             <position>0</position>
             <related_list>x_baes2_busimprove_idea_feedback.idea</related_list>
             <sys_class_name>sys_ui_related_list_entry</sys_class_name>
             <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-            <sys_created_on>2019-02-18 14:56:13</sys_created_on>
-            <sys_id>bdfeca04db7b2300561fb29a68961920</sys_id>
+            <sys_created_on>2019-03-12 09:37:58</sys_created_on>
+            <sys_id>8a199e07dbc47b00610f7b47f4961915</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-            <sys_updated_on>2019-02-18 14:56:13</sys_updated_on>
+            <sys_updated_on>2019-03-12 09:37:58</sys_updated_on>
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
-            <list_id display_value="Ideas - Default view" name="x_baes2_busimprove_ideas" related_list="NULL" sys_domain="global" view="Default view">35feca04db7b2300561fb29a68961920</list_id>
+            <list_id display_value="Ideas - Default view" name="x_baes2_busimprove_ideas" related_list="NULL" sys_domain="global" view="Default view">4a199e07dbc47b00610f7b47f4961914</list_id>
             <order_by/>
             <position>1</position>
             <related_list>x_baes2_busimprove_idea_vote.idea</related_list>
             <sys_class_name>sys_ui_related_list_entry</sys_class_name>
             <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-            <sys_created_on>2019-02-18 14:56:13</sys_created_on>
-            <sys_id>35feca04db7b2300561fb29a68961921</sys_id>
+            <sys_created_on>2019-03-12 09:37:58</sys_created_on>
+            <sys_id>46199e07dbc47b00610f7b47f4961916</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-            <sys_updated_on>2019-02-18 14:56:13</sys_updated_on>
+            <sys_updated_on>2019-03-12 09:37:58</sys_updated_on>
         </sys_ui_related_list_entry>
         <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
             <filter/>
-            <list_id display_value="Ideas - Default view" name="x_baes2_busimprove_ideas" related_list="NULL" sys_domain="global" view="Default view">35feca04db7b2300561fb29a68961920</list_id>
+            <list_id display_value="Ideas - Default view" name="x_baes2_busimprove_ideas" related_list="NULL" sys_domain="global" view="Default view">4a199e07dbc47b00610f7b47f4961914</list_id>
             <order_by/>
             <position>2</position>
             <related_list>x_baes2_busimprove_idea_use.idea</related_list>
             <sys_class_name>sys_ui_related_list_entry</sys_class_name>
             <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-            <sys_created_on>2019-02-18 14:56:13</sys_created_on>
-            <sys_id>b9feca04db7b2300561fb29a68961921</sys_id>
+            <sys_created_on>2019-03-12 09:37:58</sys_created_on>
+            <sys_id>ca199e07dbc47b00610f7b47f4961916</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-            <sys_updated_on>2019-02-18 14:56:13</sys_updated_on>
+            <sys_updated_on>2019-03-12 09:37:58</sys_updated_on>
+        </sys_ui_related_list_entry>
+        <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
+            <filter/>
+            <list_id display_value="Ideas - Default view" name="x_baes2_busimprove_ideas" related_list="NULL" sys_domain="global" view="Default view">4a199e07dbc47b00610f7b47f4961914</list_id>
+            <order_by/>
+            <position>3</position>
+            <related_list>sysapproval_approver.sysapproval</related_list>
+            <sys_class_name>sys_ui_related_list_entry</sys_class_name>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-03-12 09:37:58</sys_created_on>
+            <sys_id>42199e07dbc47b00610f7b47f4961917</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-03-12 09:37:58</sys_updated_on>
         </sys_ui_related_list_entry>
         <sys_ui_related_list action="INSERT_OR_UPDATE">
             <calculated_name>Ideas - Default view</calculated_name>
@@ -51,10 +65,10 @@
             <related_list/>
             <sys_class_name>sys_ui_related_list</sys_class_name>
             <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-            <sys_created_on>2019-02-18 14:56:13</sys_created_on>
+            <sys_created_on>2019-03-12 09:37:58</sys_created_on>
             <sys_customer_update>false</sys_customer_update>
             <sys_domain>global</sys_domain>
-            <sys_id>35feca04db7b2300561fb29a68961920</sys_id>
+            <sys_id>4a199e07dbc47b00610f7b47f4961914</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_name>Ideas - Default view</sys_name>
             <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
@@ -63,7 +77,7 @@
             <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
             <sys_update_name>sys_ui_related_x_baes2_busimprove_ideas_null</sys_update_name>
             <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-            <sys_updated_on>2019-02-18 14:56:13</sys_updated_on>
+            <sys_updated_on>2019-03-12 09:37:58</sys_updated_on>
             <sys_user/>
             <view display_value="Default view" name="NULL">Default view</view>
             <view_name/>

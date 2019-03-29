@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">10be982edb3a2780561fb29a6896192c</sp_column>
+        <sp_widget display_value="HTML">8679ef89cb21120000f8d856634c9c4f</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-03-28 10:45:04</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>c5e1c1d4dba8b740610f7b47f49619aa</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_instance_c5e1c1d4dba8b740610f7b47f49619aa</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-03-28 11:07:46</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"html": {
+		"value": "<div class=\"panel panel-default\">\n<div class=\"panels-container ng-scope\">\n<div class=\"row\" style=\"margin-left: 0; margin-right: 0; padding-top: 15px; padding-left: 10px; padding-right: 10px;\">\n<div class=\"col-sm-6 col-md-6\">\n<div class=\"panel panel-default item-card\">\n<div class=\"icon-container\">\n<div class=\"m-b fa fa-question-circle fa-4x  text-default\">&nbsp;</div>\n<h3 class=\"ng-binding\">What Happens Next?</h3>\n<div class=\"icon-overlay icon-link-background-default\"><span class=\"icon-text-muted ng-binding\">Find out about the lifecycle of an idea</span></div>\n<div>&nbsp;</div>\n</div>\n<div class=\"col-sm-6 col-md-6\">&nbsp;</div>\n</div>\n</div>\n</div>\n</div>\n</div>",
+		"displayValue": "<div class=\"panel panel-default\">\n<div class=\"panels-container ng-scope\">\n<div class=\"row\" style=\"margin-left: 0; margin-right: 0; padding-top: 15px; padding-left: 10px; padding-right: 10px;\">\n<div class=\"col-sm-6 col-md-6\">\n<div class=\"panel panel-default item-card\">\n<div class=\"icon-container\">\n<div class=\"m-b fa fa-question-circle fa-4x  text-default\">&nbsp;</div>\n<h3 class=\"ng-binding\">What Happens Next?</h3>\n<div class=\"icon-overlay icon-link-background-default\"><span class=\"icon-text-muted ng-binding\">Find out about the lifecycle of an idea</span></div>\n<div>&nbsp;</div>\n</div>\n<div class=\"col-sm-6 col-md-6\">&nbsp;</div>\n</div>\n</div>\n</div>\n</div>\n</div>"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+</record_update>

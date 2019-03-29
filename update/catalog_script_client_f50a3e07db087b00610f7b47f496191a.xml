@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="catalog_script_client">
+    <catalog_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_catalog>true</applies_catalog>
+        <applies_extended>false</applies_extended>
+        <applies_req_item>false</applies_req_item>
+        <applies_sc_task>false</applies_sc_task>
+        <applies_target_record>false</applies_target_record>
+        <applies_to>item</applies_to>
+        <cat_item display_value="Submit Idea">480589a2dbba2780561fb29a689619da</cat_item>
+        <cat_variable>IO:81bc8a3a0fae83000a09079ce1050ed8</cat_variable>
+        <condition/>
+        <description/>
+        <field/>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>BI Idea - On Load Setup / Warning</name>
+        <order/>
+        <script><![CDATA[function onLoad() {
+	
+	// Set Placeholder Help Text
+	g_form.setFieldPlaceholder("short_description", "Your idea or suggestion, in one sentence");
+	g_form.setFieldPlaceholder("description", "Describe the opportunity in more detail. Tell us about what happens now, or about the gap that you've spotted");
+	g_form.setFieldPlaceholder("business_case", "Tell us why this will improve Naval Ships - think Safety, Quality, Cost, Delivery, People or Reputation");	
+	g_form.setFieldPlaceholder("solution", "How do you propose that gap should be filled");
+	g_form.setFieldPlaceholder("already_tried", "If you've made any progress so far, tell us about it");
+	
+	// Notify user concerning Export Control, IPR and Security Markings
+	var m = '<div class="row"><div class="col-md-2"><span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-check fa-stack-1x text-white"></i></span></div><div class="col-md-10" style="padding-left: 0px;"><div class="ng-scope"><div class="font-bold">Please ensure that your submission and any attachments do not refer to sensitive or restricted information relating to BAE, for example, Export Control, Intellectual Property Rights or Security Markings</div></div></div></div>';	
+	
+	 spModal.open({
+		title: 'Idea Submission',
+		message: m,
+		buttons: [				
+			{label:'Ok', primary: true}
+		]
+	});
+	
+}]]></script>
+        <sys_class_name>catalog_script_client</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-03-12 12:01:51</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>f50a3e07db087b00610f7b47f496191a</sys_id>
+        <sys_mod_count>38</sys_mod_count>
+        <sys_name>BI Idea - On Load Setup / Warning</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>catalog_script_client_f50a3e07db087b00610f7b47f496191a</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-03-15 13:28:12</sys_updated_on>
+        <table/>
+        <type>onLoad</type>
+        <ui_type>1</ui_type>
+        <variable_set/>
+        <view/>
+    </catalog_script_client>
+</record_update>

@@ -35,7 +35,7 @@
 	$scope.data.show3MthMY = false;
 	
 	// COMMENTED FOR TESTING !!!!!!!!!!!!!!!!!!!!
-	$scope.data.challengeFilter = 'active=true';
+	$scope.data.challengeFilter = 'active=true^classification=1';
 		
 	$scope.data.inputFiledChallenge = {
 		value: $scope.data.challengeId,
@@ -194,18 +194,30 @@
 	};
 	
 	c.ideaModal = function(ev, sysId){
+		// Force reload of widget and hide 'X' close button		
+		c.ideaModalInstance = null;
+		//jQuery("#modalCloseButton").hide();
+		
 		// Create Instance Of The Idea Record Producer Widget - widget-sc-cat-item-v2-bae
-		spUtil.get('widget-sc-cat-item-v2-bae', {sysparm_campaign: sysId, sys_id: '480589a2dbba2780561fb29a689619da'}).then(function(response){	
+		spUtil.get('widget-sc-cat-item-v3-bae', {sys_id: '480589a2dbba2780561fb29a689619da', sysparm_campaign: sysId}).then(function(response){	
 			c.ideaModalInstance = response;
 			c.ideaModalInstance.options = {show_add_cart_button: 'false', show_add_to_wishlist_button: 'true', display_cart_on_right: 'false', show_field_validation_messages: 'true'};
+			c.ideaModalInstance.data.default_variables = '[{"name":"campaign", "value":"' + sysId + '" , "readOnly":"true"}, {"name":"IGNORE", "value":"IGNORE", "readOnly":"false"}]';
 		});
 		// Open the Idea Modal
-		$uibModal.open({
-			templateUrl: 'ideaModalTemplate2',
+		c.modalInstance = $uibModal.open({
+			templateUrl: 'ideaModalTemplate',
 			size : 'lg',
 			scope: $scope
-		});		
+		});
+		c.server.update();
+		// Show 'X' close button	
+		//jQuery("#modalCloseButton").show();
 	};	
+
+	c.closeModal = function() {
+		c.modalInstance.close();
+	};		
 	
 }]]></client_script>
         <controller_as>c</controller_as>
@@ -533,6 +545,7 @@ display:none;&#13;
 }&#13;
 &#13;
 .overflow-100 {&#13;
+    height:120px;&#13;
     color: $primary;  &#13;
 }&#13;
 &#13;
@@ -611,6 +624,10 @@ display:none;&#13;
 .submitBtns {&#13;
   display: inline-block;&#13;
   padding: 6px 0px 6px 0px;&#13;
+}&#13;
+&#13;
+.unpublished {&#13;
+  color: red;&#13;
 }&#13;
 &#13;
  /*.breadcrumbs-container {&#13;
@@ -791,8 +808,8 @@ function getRTW(filter) {
 	// Get all RTW
 	var gr_RTW = new GlideRecord('x_baes2_busimprove_ideas');
 	gr_RTW.addQuery('campaign', data.challengeId);
-	gr_RTW.addActiveQuery();	
-	//gr_RTW.addQuery('state', 'IN', '-5,1');	
+	gr_RTW.addQuery('state', 'NOT IN', '-5');	
+	gr_RTW.addActiveQuery();		
 
 	// Constrain by Selection
 	if (filter == 'select12MthRTW') {
@@ -815,12 +832,15 @@ function getRTW(filter) {
 	// Populate data model with RTW
 	while (gr_RTW.next()) {
 		var rec_RTW = {};
+		rec_RTW.active = gr_RTW.getDisplayValue('active');		
 		rec_RTW.sys_id = gr_RTW.getUniqueValue();
 		rec_RTW.number_display = gr_RTW.getDisplayValue('number');
 		rec_RTW.title_display = gr_RTW.getDisplayValue('short_description');
 		rec_RTW.state_display = gr_RTW.getDisplayValue('state');		
 		rec_RTW.description_display = gr_RTW.getDisplayValue('description');
-		rec_RTW.business_case_display = gr_RTW.getDisplayValue('business_case');		
+		rec_RTW.business_case_display = gr_RTW.getDisplayValue('business_case');
+		rec_RTW.solution_display = gr_RTW.getDisplayValue('solution');
+		rec_RTW.already_tried_display = gr_RTW.getDisplayValue('already_tried');		
 		rec_RTW.campaign_display = gr_RTW.getDisplayValue('campaign');
 		rec_RTW.campaignId = gr_RTW.getValue('campaign');
 		rec_RTW.category_display = gr_RTW.getDisplayValue('category');
@@ -835,7 +855,8 @@ function getRTW(filter) {
 		rec_RTW.commentCount = gr_RTW.getDisplayValue('comment_count');
 		rec_RTW.award = gr_RTW.getDisplayValue('award');
 		rec_RTW.revisionString = 'Submitted by ' + rec_RTW.submitted_for;
-		rec_RTW.confidential = gr_RTW.getDisplayValue('confidential');		
+		rec_RTW.confidential_display = gr_RTW.getDisplayValue('confidential');
+		rec_RTW.state = gr_RTW.getDisplayValue('state');		
         $sp.getRecordElements(rec_RTW, gr_RTW, data.rtwfields);
 		for (var f in data.rtwfields_array) { 
 			var fld = data.rtwfields_array[f];
@@ -892,12 +913,15 @@ function getAR(filter) {
 	// Populate data model with AR
 	while (gr_AR.next()) {		
 		var rec_AR = {};
+		rec_AR.active = gr_AR.getDisplayValue('active');		
 		rec_AR.sys_id = gr_AR.getUniqueValue();
 		rec_AR.number_display = gr_AR.getDisplayValue('number');
 		rec_AR.title_display = gr_AR.getDisplayValue('short_description');
 		rec_AR.state_display = gr_AR.getDisplayValue('state');		
 		rec_AR.description_display = gr_AR.getDisplayValue('description');
-		rec_AR.business_case_display = gr_AR.getDisplayValue('business_case');		
+		rec_AR.business_case_display = gr_AR.getDisplayValue('business_case');
+		rec_AR.solution_display = gr_AR.getDisplayValue('solution');
+		rec_AR.already_tried_display = gr_AR.getDisplayValue('already_tried');		
 		rec_AR.campaign_display = gr_AR.getDisplayValue('campaign');
 		rec_AR.campaignId = gr_AR.getValue('campaign');
 		rec_AR.category_display = gr_AR.getDisplayValue('category');
@@ -912,7 +936,8 @@ function getAR(filter) {
 		rec_AR.commentCount = gr_AR.getDisplayValue('comment_count');
 		rec_AR.award = gr_AR.getDisplayValue('award');
 		rec_AR.revisionString = 'Submitted by ' + rec_AR.submitted_for;
-		rec_AR.confidential = gr_AR.getDisplayValue('confidential');		
+		rec_AR.confidential_display = gr_AR.getDisplayValue('confidential');
+		rec_AR.state = gr_AR.getDisplayValue('state');		
         $sp.getRecordElements(rec_AR, gr_AR, data.arfields);
 		for (var f in data.arfields_array) { 
 			var fld = data.arfields_array[f];
@@ -970,12 +995,15 @@ function getMY(filter) {
 	// Populate data model with MY
 	while (gr_MY.next()) {		
 		var rec_MY = {};
+		rec_MY.active = gr_MY.getDisplayValue('active');		
 		rec_MY.sys_id = gr_MY.getUniqueValue();
 		rec_MY.number_display = gr_MY.getDisplayValue('number');
 		rec_MY.title_display = gr_MY.getDisplayValue('short_description');
 		rec_MY.state_display = gr_MY.getDisplayValue('state');		
 		rec_MY.description_display = gr_MY.getDisplayValue('description');
-		rec_MY.business_case_display = gr_MY.getDisplayValue('business_case');		
+		rec_MY.business_case_display = gr_MY.getDisplayValue('business_case');
+		rec_MY.solution_display = gr_MY.getDisplayValue('solution');
+		rec_MY.already_tried_display = gr_MY.getDisplayValue('already_tried');		
 		rec_MY.campaign_display = gr_MY.getDisplayValue('campaign');
 		rec_MY.campaignId = gr_MY.getValue('campaign');
 		rec_MY.category_display = gr_MY.getDisplayValue('category');
@@ -990,7 +1018,8 @@ function getMY(filter) {
 		rec_MY.commentCount = gr_MY.getDisplayValue('comment_count');
 		rec_MY.award = gr_MY.getDisplayValue('award');
 		rec_MY.revisionString = 'Submitted by ' + rec_MY.submitted_for;
-		rec_MY.confidential = gr_MY.getDisplayValue('confidential');		
+		rec_MY.confidential_display = gr_MY.getDisplayValue('confidential');
+		rec_MY.state = gr_MY.getDisplayValue('state');		
         $sp.getRecordElements(rec_MY, gr_MY, data.myfields);
 		for (var f in data.myfields_array) { 
 			var fld = data.myfields_array[f];
@@ -1139,7 +1168,7 @@ function getMYTotals() {
         <sys_created_on>2019-01-09 10:29:30</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>6c52974fdbfe6780561fb29a6896197d</sys_id>
-        <sys_mod_count>357</sys_mod_count>
+        <sys_mod_count>396</sys_mod_count>
         <sys_name>BI Portal - Campaign Overview</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -1147,7 +1176,7 @@ function getMYTotals() {
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sp_widget_6c52974fdbfe6780561fb29a6896197d</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-02-27 08:01:10</sys_updated_on>
+        <sys_updated_on>2019-03-18 15:17:31</sys_updated_on>
         <template><![CDATA[<div class="row">
     <div class="col-md-12" style="padding :0px;">
 
@@ -1165,7 +1194,7 @@ function getMYTotals() {
                   </button>
                   <div ng-if="data.state == 0" class="submitBtns"> 
                     <div class="btn-group" role="group">
-                        <button id="itemViewBtn" type="button" ng-click="c.ideaModal($event, item.sys_id)" class="btn btn-primary" role="button">${Submit Idea}</button>          
+                        <button id="itemViewBtn" type="button" ng-click="c.ideaModal($event, data.challengeId)" class="btn btn-primary" role="button">${Submit Idea}</button>          
                     </div>
                   </div>
                   <div ng-if="data.state != 0" class="submitBtns">
@@ -1432,12 +1461,14 @@ function getMYTotals() {
                                              </span>
                                            </small>
                                          </span>              
-                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis" style="clear:both;" title="{{::item.title}}"><span style="display: inline-block; width:75px;">Description:</span>{{::item.description_display | limitTo: 200}}<span ng-if="::item.description_display.length > 200">...</span></h2>                                      
-                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis" style="clear:both;" title="{{::item.title}}"><span style="display: inline-block; width:75px;">Benefits:</span>{{::item.business_case_display | limitTo: 200}}<span ng-if="::item.business_case_display.length > 200">...</span></h2>                                                                             
-                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis pull-left" title="{{::item.title}}"><span style="display: inline-block; width:75px;">Category:</span>{{::item.category_display}}</h2>
+                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis" style="clear:both;" title="{{::item.title}}"><span style="display: inline-block; width:85px;">Summary:</span>{{::item.description_display | limitTo: 200}}<span ng-if="::item.description_display.length > 200">...</span></h2>                                      
+                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis" style="clear:both;" title="{{::item.title}}"><span style="display: inline-block; width:85px;">Solution:</span>{{::item.solution_display | limitTo: 200}}<span ng-if="::item.solution_display.length > 200">...</span></h2>                                                                             
+                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis" style="clear:both;" title="{{::item.title}}"><span style="display: inline-block; width:85px;">Already Tried:</span>{{::item.already_tried_display | limitTo: 200}}<span ng-if="::item.already_tried_display.length > 200">...</span></h2>                                       
+                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis pull-left" style="clear:both;" title="{{::item.title}}"><span style="display: inline-block; width:85px;">Benefits:</span>{{::item.business_case_display | limitTo: 100}}<span ng-if="::item.business_case_display.length > 100">...</span></h2>                                                                                                                    
+                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis pull-left hide" title="{{::item.title}}"><span style="display: inline-block; width:75px;">Category:</span>{{::item.category_display}}</h2>
                                        <span class="pull-right">
                                          <small>
-                                           <span ng-if="item.revisionString && item.confidential == 'false'" class="author pad-right text-nowrap">
+                                           <span ng-if="item.revisionString && item.confidential_display == 'false'" class="author pad-right text-nowrap">
                                             <span ng-if="item.langList.length > 1" class="pad-right">&#8226;</span>
                                             <i class="fa fa-user pad-right" />
                                              {{item.revisionString}}
@@ -1512,8 +1543,8 @@ function getMYTotals() {
                                              <span class="pad-right">&#8226;</span> <i class="fa fa-comments pad-right" />
                                              ${{{item.commentCount}} Comments}
                                            </span>
-                                           </p>
-                                       </small>                                        
+                                           </small>
+                                       </p>                                        
                                        <img ng-src="{{::item.picture}}" ng-if="::item.picture" class="m-r-sm m-b-sm item-image pull-left" alt="{{::item.title}}" role="presentation" />
                                        <div class="text-muted item-short-desc hidden">{{::item.business_case_display}}</div>
                                      </div>                  
@@ -1580,12 +1611,14 @@ function getMYTotals() {
                                              </span>
                                            </small>
                                          </span>              
-                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis" style="clear:both;" title="{{::item.title}}"><span style="display: inline-block; width:75px;">Description:</span>{{::item.description_display | limitTo: 200}}<span ng-if="::item.description_display.length > 200">...</span></h2>                                      
-                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis" style="clear:both;" title="{{::item.title}}"><span style="display: inline-block; width:75px;">Benefits:</span>{{::item.business_case_display | limitTo: 200}}<span ng-if="::item.business_case_display.length > 200">...</span></h2>                                                                             
-                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis pull-left" title="{{::item.title}}"><span style="display: inline-block; width:75px;">Category:</span>{{::item.category_display}}</h2>
+                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis" style="clear:both;" title="{{::item.title}}"><span style="display: inline-block; width:85px;">Summary:</span>{{::item.description_display | limitTo: 200}}<span ng-if="::item.description_display.length > 200">...</span></h2>                                      
+                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis" style="clear:both;" title="{{::item.title}}"><span style="display: inline-block; width:85px;">Solution:</span>{{::item.solution_display | limitTo: 200}}<span ng-if="::item.solution_display.length > 200">...</span></h2>                                                                             
+                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis" style="clear:both;" title="{{::item.title}}"><span style="display: inline-block; width:85px;">Already Tried:</span>{{::item.already_tried_display | limitTo: 200}}<span ng-if="::item.already_tried_display.length > 200">...</span></h2>                                       
+                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis pull-left" style="clear:both;" title="{{::item.title}}"><span style="display: inline-block; width:85px;">Benefits:</span>{{::item.business_case_display | limitTo: 100}}<span ng-if="::item.business_case_display.length > 100">...</span></h2>                                                                                                                    
+                                       <h2 class="h5 m-t-none m-b-xs text-overflow-ellipsis pull-left hide" title="{{::item.title}}"><span style="display: inline-block; width:75px;">Category:</span>{{::item.category_display}}</h2>
                                        <span class="pull-right">
-                                         <small>
-                                           <span ng-if="item.revisionString && item.confidential == 'false'" class="author pad-right text-nowrap">
+                                         <small>                                          
+                                           <span ng-if="item.revisionString && item.confidential_display == 'false'" class="author pad-right text-nowrap">
                                             <span ng-if="item.langList.length > 1" class="pad-right">&#8226;</span>
                                             <i class="fa fa-user pad-right" />
                                              {{item.revisionString}}
@@ -1607,7 +1640,10 @@ function getMYTotals() {
 
                                  <a href="?id=bi_idea_view&sys_idea_id={{item.sys_id}}" class="text-muted" title="Click to view idea" tabindex="-1">
                                    <div class="panel-footer text-center">
-                                     <span>${View Idea}</span> 
+                                     <span>${View Idea}</span>
+                                     <span ng-if="item.state == 'Draft'" class="pull-right font-bold">
+                                       ${** AWAITING APPROVAL **}
+                                     </span>                                     
                                      <span class="pull-right item-price font-bold"></span> &nbsp;           
                                    </div>
                                  </a>

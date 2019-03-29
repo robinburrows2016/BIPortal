@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_ng_template">
+    <sp_ng_template action="INSERT_OR_UPDATE">
+        <id>ideaHomeModalTemplate</id>
+        <sp_widget display_value="BI Portal - Homepage Campaigns">11d74dd8dba8b740610f7b47f4961958</sp_widget>
+        <sys_class_name>sp_ng_template</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-03-28 12:03:08</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>05b35198dbe8b740610f7b47f4961952</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ideaHomeModalTemplate</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_ng_template_05b35198dbe8b740610f7b47f4961952</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-03-28 12:03:08</sys_updated_on>
+        <template><![CDATA[<style>
+.panel-default {
+    margin-top: 0px!important;
+}
+#modalCloseButton {
+	position:absolute!important;
+    top:10px!important;
+    z-index:9999!important;
+    right:5px!important;
+}
+</style>
+<sp-widget widget="c.ideaModalInstance"></sp-widget>
+<button id="modalCloseButton" class="btn btn-default pull-right" title="Close window" ng-click="c.closeModal()"><i class="fa fa-times"></i></button>
+]]></template>
+    </sp_ng_template>
+</record_update>

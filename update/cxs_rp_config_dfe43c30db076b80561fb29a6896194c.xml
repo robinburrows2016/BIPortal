@@ -10,7 +10,7 @@
         <results_header_text>Knowledge results</results_header_text>
         <results_per_page>10</results_per_page>
         <sc_cat_item display_value="Submit Idea">480589a2dbba2780561fb29a689619da</sc_cat_item>
-        <search_variable display_value="Summary">5bc4ccefdb7aa780561fb29a68961960</search_variable>
+        <search_variable display_value="Title">5bc4ccefdb7aa780561fb29a68961960</search_variable>
         <sys_class_name>cxs_rp_config</sys_class_name>
         <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
         <sys_created_on>2019-01-14 09:31:34</sys_created_on>

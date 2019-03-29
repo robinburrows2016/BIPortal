@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_process_flow">
+    <sys_process_flow action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition table="x_baes2_busimprove_ideas">state=16^EQ<item endquery="false" field="state" goto="false" newquery="false" operator="=" or="false" value="16"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </condition>
+        <description><![CDATA[<p>Business Improvement Idea State -&nbsp;Ideas Bank</p>]]></description>
+        <label>Ideas Bank</label>
+        <name>Ideas Bank</name>
+        <order>5</order>
+        <sys_class_name>sys_process_flow</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-03-13 13:46:34</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>e99bd06fdbc4bb00610f7b47f49619af</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Ideas Bank</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sys_process_flow_e99bd06fdbc4bb00610f7b47f49619af</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-03-18 14:34:32</sys_updated_on>
+        <table>x_baes2_busimprove_ideas</table>
+    </sys_process_flow>
+</record_update>

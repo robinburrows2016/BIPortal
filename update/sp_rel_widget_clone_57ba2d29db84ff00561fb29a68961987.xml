@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rel_widget_clone">
+    <sp_rel_widget_clone action="INSERT_OR_UPDATE">
+        <child display_value="BI Favorite Tags">53ba6929db84ff00561fb29a6896197e</child>
+        <cloned>2019-03-07 14:24:32</cloned>
+        <last_validated>2019-03-07 14:24:32</last_validated>
+        <parent display_value="My Favorite Tags">c00bbf9ad701120023c84f80de610312</parent>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;sp_widget&gt;&lt;category&gt;other&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function($scope, $http, $timeout, spUtil, $rootScope) {
+	var c = this;
+
+	c.tagList = "";
+	c.editMode = false;
+
+	c.toggleEditMode = function() {
+		if (c.editMode || c.data.tags.length === 0) {
+			$timeout(function() {
+				$scope.data.action = "update";
+				if ($scope.data.tagList != c.tagList) {
+					c.saving = true;
+					$scope.data.tagList = c.tagList;
+					$scope.server.update().then(function() {
+						c.saveMsg = c.data.tagsSavedMsg;
+						c.saving = false;
+						$timeout(function() {
+							c.saveMsg = "";
+						}, 1500);
+						c.editMode = false;
+						//spUtil.addTrivialMessage('Tags have been updated');
+						$rootScope.$broadcast("sp-favorite-tags-updated");
+					});
+				} else
+					c.editMode = false;
+
+				c.tagList = "";
+			});
+		} else {
+			c.editMode = true;
+			c.tagList = "";
+			$timeout(function() {
+				$rootScope.$broadcast("sp-favorite-tags-edit");
+			});
+		}
+	}	
+	$scope.$on("spTagListBlurred", function() {
+		c.toggleEditMode();
+	});
+
+}]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;a.question-tag {
+    color: #39739d;
+    background-color: #e1ecf4;
+    border: 1px solid #e1ecf4;
+    display: inline-block;
+    margin: 4px 4px 4px 0;
+    border-radius: 0;
+    text-align: center;
+    line-height: 1;
+    padding: .4em .5em;
+}
+
+.panel-title &amp;gt; a {
+  color: #428bca !important;
+}&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id&gt;my-favorite-tags&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link/&gt;&lt;name&gt;My Favorite Tags&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[// populate the 'data' object
+// e.g., data.table = $sp.getValue('table');
+data.typeTagNameMsg = gs.getMessage("Type tag name...");
+data.tagsSavedMsg = gs.getMessage("Tags saved");
+var loggedInSysUserID = gs.getUser().getID();
+data.userIsGuest = (gs.getUserName() === "guest");
+data.liveProfileID = "";
+var liveProfileGR = new GlideRecord("live_profile");
+if (liveProfileGR.get("document", loggedInSysUserID))
+	data.liveProfileID = liveProfileGR.getUniqueValue();
+
+// blunt: delete the user's tags, then add back the ones we want to keep
+if (input &amp;&amp; input.action == "update") {
+	var labelEntryGR = new GlideRecord("sqanda_tag_entry");
+	labelEntryGR.addQuery("reference_name", "live_profile");
+	labelEntryGR.addQuery("reference_id", data.liveProfileID);
+	labelEntryGR.deleteMultiple();
+	
+	input.tagList.split(",").forEach(function(tagID) {
+		var newLabelEntryGR = new GlideRecord("sqanda_tag_entry");
+		newLabelEntryGR.initialize();
+		newLabelEntryGR.reference_name = "live_profile";
+		newLabelEntryGR.reference_id = data.liveProfileID;
+		newLabelEntryGR.tag = tagID;
+		newLabelEntryGR.insert();
+	});
+}
+
+data.tags = [];
+
+if (data.liveProfileID) {
+	var labelEntryGR = new GlideRecord("sqanda_tag_entry");
+	labelEntryGR.addQuery("reference_name", "live_profile");
+	labelEntryGR.addQuery("reference_id", data.liveProfileID);
+	labelEntryGR.query();
+	
+	while (labelEntryGR.next()) {
+		var labelGR = labelEntryGR.getElement("tag").getRefRecord();
+		if (labelGR.getUniqueValue() !== null)
+			data.tags.push({
+				name: labelGR.getValue("name"),
+				sys_id: labelGR.getUniqueValue(),
+				label_entry_id: labelEntryGR.getUniqueValue()
+			});
+	}
+}]]&gt;&lt;/script&gt;&lt;servicenow&gt;true&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2016-01-22 00:46:49&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;false&lt;/sys_customer_update&gt;&lt;sys_id&gt;c00bbf9ad701120023c84f80de610312&lt;/sys_id&gt;&lt;sys_mod_count&gt;151&lt;/sys_mod_count&gt;&lt;sys_name&gt;My Favorite Tags&lt;/sys_name&gt;&lt;sys_package display_value="Service Portal Social QA" source="com.glide.service-portal.sqanda"&gt;5e1c66264ff032002292a4eab110c73b&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_c00bbf9ad701120023c84f80de610312&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2017-10-12 09:17:09&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div ng-if="!data.userIsGuest" class="panel panel-default b"&gt;
+  &lt;div class="panel-heading"&gt;
+    &lt;h4 class="panel-title"&gt;
+      &lt;a ng-if="data.tags.length" href="?id=sqa_tagged_questions&amp;sys_id=-1"&gt;${My Favorite Tags}&lt;/a&gt;
+      &lt;span ng-if="!data.tags.length"&gt;${My Favorite Tags}&lt;/span&gt;
+    &lt;/h4&gt;
+  &lt;/div&gt;
+   
+  &lt;div ng-if="data.tags.length &gt; 0" class="panel-body"&gt;
+	&lt;div role="list" ng-if="!c.editMode"&gt;
+      &lt;span role="listitem" ng-repeat="tag in data.tags"&gt;
+      	&lt;a ng-href="?id=sqa_tagged_questions&amp;sys_id={{tag.sys_id}}" class="question-tag"&gt;{{tag.name}}&lt;/a&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div ng-if="c.editMode"&gt;
+      &lt;sp-tag-list ng-model="c.tagList" init-items="data.tags" prohibit-new-tag="true"&gt;&lt;/sp-tag-list&gt;
+    &lt;/div&gt;
+    &lt;div class="m-t-sm"&gt;
+      &lt;a ng-if="!c.editMode &amp;&amp; !c.saveMsg" href="javascript:void(0)" ng-click="c.toggleEditMode()" role="button"&gt;${Edit tags lower}&lt;/a&gt;
+      &lt;a ng-if="!c.editMode &amp;&amp; c.saveMsg" href="javascript:void(0)" ng-click="c.toggleEditMode()" role="button"&gt;${{{c.saveMsg}}}&lt;/a&gt;
+      &lt;a ng-if="c.editMode &amp;&amp; !c.saving" href="javascript:void(0)" ng-click="c.toggleEditMode()" role="button"&gt;${Save tags}&lt;/a&gt;
+      &lt;a ng-if="c.editMode &amp;&amp; c.saving" href="javascript:void(0)"&gt;${Saving tags...}&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+    
+  &lt;!-- Empty State --&gt;  
+  &lt;div ng-if="data.tags.length == 0" class="panel-body empty-state-content"&gt;
+    &lt;p&gt;${Favorite tags let you follow or participate in questions you care about}&lt;/p&gt;
+    &lt;p&gt;${Type your favorite tags here}&lt;/p&gt;
+	&lt;sp-tag-list ng-model="c.tagList" init-items="data.tags" prohibit-new-tag="true" type-tag-name-msg="c.data.typeTagNameMsg"&gt;&lt;/sp-tag-list&gt;
+    &lt;div class="m-t-sm"&gt;
+      &lt;a ng-if="!c.saving &amp;&amp; c.tagList !== ''" ng-class="{'disabled': c.tagList === ''}" href="javascript:void(0)" ng-click="c.toggleEditMode()"&gt;${Save tags}&lt;/a&gt;
+      &lt;a ng-if="false &amp;&amp; c.saving" href="javascript:void(0)" class="btn btn-primary"&gt;${Saving tags...}&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;</payload>
+        <sys_class_name>sp_rel_widget_clone</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-03-07 14:24:32</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>57ba2d29db84ff00561fb29a68961987</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>53ba6929db84ff00561fb29a6896197e</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_rel_widget_clone_57ba2d29db84ff00561fb29a68961987</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-03-07 14:24:32</sys_updated_on>
+    </sp_rel_widget_clone>
+</record_update>

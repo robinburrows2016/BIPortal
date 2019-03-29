@@ -18,7 +18,7 @@
 	$scope.submitComment = function(){
 		$scope.server.get({action : 'add_comment', commentText : $scope.data.comments, article_id : $rootScope.article_sys_id, rating : $scope.data.rating}).then(function(r){
 			$scope.data.response = $rootScope.messages.THANK_YOU;	
-			var feedback = {sys_id: r.data.sys_id, usefulFlag : '', userName : r.data.currentUserName, userID : r.data.currentUserID, createdOn : r.data.timeStamp, commentText : $scope.data.comments, resolvedFlag: "false"};
+			var feedback = {sys_id: r.data.sys_id, usefulFlag : '', userName : r.data.currentUserName, userID : r.data.currentUserID, createdOn : r.data.timeStamp, commentText : $scope.data.comments, resolvedFlag: "false", flagged: "false"};
 			$rootScope.comments.unshift(feedback);
 			$rootScope.commentCount++;
 			$scope.data.comments ="";
@@ -193,7 +193,7 @@ function getFeedback(articleID) {
         <sys_created_on>2019-01-15 13:33:18</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>a3e5f60ddb03ab80561fb29a68961949</sys_id>
-        <sys_mod_count>24</sys_mod_count>
+        <sys_mod_count>31</sys_mod_count>
         <sys_name>BI Portal - Idea Comments</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -201,7 +201,7 @@ function getFeedback(articleID) {
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sp_widget_a3e5f60ddb03ab80561fb29a68961949</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-02-20 09:13:41</sys_updated_on>
+        <sys_updated_on>2019-03-13 12:00:48</sys_updated_on>
         <template><![CDATA[<div class="kb-wrapper" ng-if="data.isLoggedInUser && !$root.hideFeedbackOptions && $root.isValid">
   
 
@@ -239,7 +239,7 @@ function getFeedback(articleID) {
 
 
     <div ng-if="$root.comments" ng-repeat="feedback in $root.comments">
-      <div ng-if="(feedback.resolvedFlag == 'false' && feedback.usefulFlag == 'Yes') || (feedback.resolvedFlag == 'true' && feedback.usefulFlag == 'Yes' && c.showResolved) || (feedback.resolvedFlag == 'false' && (feedback.userID == c.data.userID || c.data.isAdmin)) || (feedback.resolvedFlag == 'true' && (feedback.userID == c.data.userID || c.data.isAdmin) && c.showResolved)">
+      <div>
         <p style="font-weight: bold" class="author pad-right kb-comments-list">
            {{::feedback.userName}}
             <span class="published pad-right">
@@ -250,7 +250,8 @@ function getFeedback(articleID) {
           <span ng-if="(feedback.resolvedFlag == 'true') && (feedback.userID != c.data.userID) && !c.data.isAdmin" class="pull-right">RESOLVED</span>                    
           <span ng-if="(feedback.userID == c.data.userID) || c.data.isAdmin" class="pull-right hidden"><a class="btn btn-primary" ng-href="?id=ticket&table=kb_feedback&sys_id={{::feedback.sys_id}}">View</a></span>         
         </p>
-        <p class="break-word kb-comments-list" style="white-space: pre-wrap" ng-bind-html="feedback.commentText"></p>
+        <p ng-if="feedback.flagged == 'false'" class="break-word kb-comments-list" style="white-space: pre-wrap" ng-bind-html="feedback.commentText"></p>
+        <p ng-if="feedback.flagged == 'true'" class="break-word kb-comments-list" style="white-space: pre-wrap">** Content restricted at this time **</p>        
         <hr class="kb-line"/>
 
       </div>

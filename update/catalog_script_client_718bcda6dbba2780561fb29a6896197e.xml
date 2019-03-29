@@ -26,6 +26,12 @@
 		g_form.setReadOnly('campaign', true);		
 	}	
 	
+	// If Wishlist Edit, Protect Campaign
+	var editparm = getParmVal('edit');
+	if (editparm == 'wishlist') {
+		g_form.setReadOnly('campaign', true);		
+	}
+	
 	function getParmVal(name) {  
 		name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");  
 		var regexS = "[\\?&]" + name + "=([^&#]*)";  
@@ -45,7 +51,7 @@
         <sys_customer_update>false</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_id>718bcda6dbba2780561fb29a6896197e</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Submit Idea - Initial Load</sys_name>
         <sys_overrides/>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
@@ -54,7 +60,7 @@
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>catalog_script_client_718bcda6dbba2780561fb29a6896197e</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-02-14 15:20:54</sys_updated_on>
+        <sys_updated_on>2019-03-28 09:07:26</sys_updated_on>
         <table/>
         <type>onLoad</type>
         <ui_type>1</ui_type>

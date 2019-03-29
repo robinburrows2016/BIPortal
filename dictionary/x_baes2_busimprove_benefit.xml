@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Benefit" max_length="40" name="x_baes2_busimprove_benefit" type="collection">
+        <element default="true" label="Active" max_length="40" name="active" type="boolean"/>
+        <element display="true" label="Title" max_length="100" name="title" type="string_full_utf8"/>
+    </element>
+</database>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="item_option_new">
     <item_option_new action="INSERT_OR_UPDATE">
-        <active>true</active>
+        <active>false</active>
         <attributes/>
         <cat_item display_value="Submit Idea">480589a2dbba2780561fb29a689619da</cat_item>
         <category/>
@@ -37,7 +37,7 @@
         <mask_use_confirmation>false</mask_use_confirmation>
         <mask_use_encryption>false</mask_use_encryption>
         <name>keywords</name>
-        <order>36</order>
+        <order>60</order>
         <price_if_checked>0</price_if_checked>
         <pricing_implications>false</pricing_implications>
         <question_text>Keywords</question_text>
@@ -60,7 +60,7 @@
         <sys_created_on>2019-01-08 14:18:15</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>a5dcba3edbb66780561fb29a6896194d</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Keywords</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -68,7 +68,7 @@
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>item_option_new_a5dcba3edbb66780561fb29a6896194d</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-01-23 07:50:30</sys_updated_on>
+        <sys_updated_on>2019-03-12 15:10:35</sys_updated_on>
         <table/>
         <tooltip/>
         <type>21</type>

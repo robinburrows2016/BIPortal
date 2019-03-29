@@ -14,7 +14,7 @@
         <mobile_title>Overview</mobile_title>
         <mobile_view_name>Mobile</mobile_view_name>
         <name/>
-        <order>5</order>
+        <order>10</order>
         <override_menu_roles>false</override_menu_roles>
         <query>home.do?sys_id=-1&amp;sysparm_view=business_improvement_overview</query>
         <report/>
@@ -27,7 +27,7 @@
         <sys_customer_update>false</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_id>050cd4aadb3a2780561fb29a689619aa</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Overview</sys_name>
         <sys_overrides/>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
@@ -36,7 +36,7 @@
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sys_app_module_050cd4aadb3a2780561fb29a689619aa</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-01-07 07:56:02</sys_updated_on>
+        <sys_updated_on>2019-03-29 10:21:41</sys_updated_on>
         <timeline_page/>
         <title>Overview</title>
         <uncancelable>false</uncancelable>

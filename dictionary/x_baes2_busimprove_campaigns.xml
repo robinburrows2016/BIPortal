@@ -2,6 +2,12 @@
     <element label="Campaigns" max_length="40" name="x_baes2_busimprove_campaigns" type="collection">
         <element default="true" label="Active" mandatory="true" max_length="40" name="active" type="boolean"/>
         <element label="Background" max_length="40" name="background" type="user_image"/>
+        <element choice="3" default="1" label="Classification" mandatory="true" max_length="40" name="classification" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Improvement" value="1"/>
+                <element inactive_on_update="false" label="Observation" value="2"/>
+            </choice>
+        </element>
         <element default="0" label="Comment count" max_length="40" name="comment_count" read_only="true" type="integer"/>
         <element label="Description" mandatory="true" max_length="1000" name="description" type="string_full_utf8"/>
         <element label="End Date / Time" max_length="40" name="end_date" type="glide_date_time"/>

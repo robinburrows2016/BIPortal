@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_email">
+    <sys_script_email action="INSERT_OR_UPDATE">
+        <name>IMT_spbi_table_link</name>
+        <new_lines_to_html>false</new_lines_to_html>
+        <script><![CDATA[// Business Improvement Portal link
+var portal_id = 'spbi';
+var table_id = 'bi_idea_view';
+var link_id = current.number;
+var cat_id = '';
+var parm_id = '';
+var sys_id = current.sys_id;
+
+//Idea Feedback
+if (current.getTableName() == 'x_baes2_busimprove_idea_feedback') {
+	link_id = current.idea.number;
+    sys_id = current.idea.sys_id;	
+}
+
+var tableLink = '<a href="' + gs.getProperty('glide.servlet.uri') + portal_id + '?id=' + table_id + '&sys_idea_id=' + sys_id + '">' + link_id + '</a>';
+template.print(tableLink);]]></script>
+        <sys_class_name>sys_script_email</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-03-13 09:46:51</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>0eb42b9fdb04bb00610f7b47f49619f3</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>IMT_spbi_table_link</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sys_script_email_0eb42b9fdb04bb00610f7b47f49619f3</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-03-13 09:56:45</sys_updated_on>
+    </sys_script_email>
+</record_update>

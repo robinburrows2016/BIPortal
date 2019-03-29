@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>0</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">c5749998dbe8b740610f7b47f49619b2</sp_column>
+        <sp_widget display_value="HTML">8679ef89cb21120000f8d856634c9c4f</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-03-28 12:06:10</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>c1749998dbe8b740610f7b47f49619b4</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_instance_c1749998dbe8b740610f7b47f49619b4</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-03-28 12:08:34</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"html": {
+		"value": "<div class=\"panel-info\">\n<div class=\"color_box icon-link-background-default text-white panel-heading\" style=\"display: block; position: relative; padding: 20px 20px 20px 82px; border-radius: 4px; margin-bottom: 20px;\">\n<div class=\"fa fa-user-md fa-3x\" style=\"position: absolute; left: 20px; top: 20px; width: 42px; text-align: center;\">&nbsp;</div>\n<h3 class=\"ng-binding\" style=\"font-weight: 300; padding: 0; margin: 0 0 10px 0;\">FAQs</h3>\n<span class=\"ng-binding\">Frequently Asked Questions</span></div>\n</div>",
+		"displayValue": "<div class=\"panel-info\">\n<div class=\"color_box icon-link-background-default text-white panel-heading\" style=\"display: block; position: relative; padding: 20px 20px 20px 82px; border-radius: 4px; margin-bottom: 20px;\">\n<div class=\"fa fa-user-md fa-3x\" style=\"position: absolute; left: 20px; top: 20px; width: 42px; text-align: center;\">&nbsp;</div>\n<h3 class=\"ng-binding\" style=\"font-weight: 300; padding: 0; margin: 0 0 10px 0;\">FAQs</h3>\n<span class=\"ng-binding\">Frequently Asked Questions</span></div>\n</div>"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+</record_update>

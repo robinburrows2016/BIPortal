@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function() {
+  /* widget controller */
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.btns {&#13;
+  /*margin-right: 15px;*/&#13;
+}&#13;
+&#13;
+.btn {&#13;
+  margin-bottom: 5px;&#13;
+}&#13;
+&#13;
+.btn-arrow-right, .btn-arrow-left {&#13;
+  position: relative;&#13;
+  padding-left: 18px;&#13;
+  padding-right: 18px;&#13;
+}&#13;
+&#13;
+.btn-arrow-right {&#13;
+  padding-left: 36px;&#13;
+}&#13;
+&#13;
+.btn-arrow-left {&#13;
+  padding-right: 36px;&#13;
+}&#13;
+&#13;
+.btn-arrow-right:before, .btn-arrow-right:after, .btn-arrow-left:before, .btn-arrow-left:after { /* make two squares (before and after), looking similar to the button */&#13;
+  content:"";&#13;
+  position: absolute;&#13;
+  top: 5px; /* move it down because of rounded corners */&#13;
+  width: 22px; /* same as height */&#13;
+  height: 22px; /* button_outer_height / sqrt(2) */&#13;
+  background: inherit; /* use parent background */&#13;
+  border: inherit; /* use parent border */&#13;
+  border-left-color: transparent; /* hide left border */&#13;
+  border-bottom-color: transparent; /* hide bottom border */&#13;
+  border-radius: 0px 4px 0px 0px; /* round arrow corner, the shorthand property doesn't accept "inherit" so it is set to 4px */&#13;
+  -webkit-border-radius: 0px 4px 0px 0px;&#13;
+  -moz-border-radius: 0px 4px 0px 0px;&#13;
+}&#13;
+&#13;
+.btn-arrow-right:before, .btn-arrow-right:after {&#13;
+  transform: rotate(45deg); /* rotate right arrow squares 45 deg to point right */&#13;
+  -webkit-transform: rotate(45deg);&#13;
+  -moz-transform: rotate(45deg);&#13;
+  -o-transform: rotate(45deg);&#13;
+  -ms-transform: rotate(45deg);&#13;
+}&#13;
+&#13;
+.btn-arrow-left:before, .btn-arrow-left:after {&#13;
+  transform: rotate(225deg); /* rotate left arrow squares 225 deg to point left */&#13;
+  -webkit-transform: rotate(225deg);&#13;
+  -moz-transform: rotate(225deg);&#13;
+  -o-transform: rotate(225deg);&#13;
+  -ms-transform: rotate(225deg);&#13;
+}&#13;
+&#13;
+.btn-arrow-right:before, .btn-arrow-left:before { /* align the "before" square to the left */&#13;
+  left: -11px;&#13;
+}&#13;
+&#13;
+.btn-arrow-right:after, .btn-arrow-left:after { /* align the "after" square to the right */&#13;
+  right: -11px;&#13;
+}&#13;
+&#13;
+.btn-arrow-right:after, .btn-arrow-left:before { /* bring arrow pointers to front */&#13;
+  z-index: 1;&#13;
+}&#13;
+&#13;
+.btn-arrow-right:before, .btn-arrow-left:after { /* hide arrow tails background */&#13;
+  background-color: white;&#13;
+}&#13;
+&#13;
+.btn-arrow-right:first-child:before { /* hide arrow tails background */&#13;
+  background-color: transparent;&#13;
+  border:none;&#13;
+}&#13;
+&#13;
+.btn-arrow-right:last-child:after { /* hide arrow tails background */&#13;
+  background-color: transparent;&#13;
+  border:none;  &#13;
+}&#13;
+&#13;
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>bi-process-flow-formatter</id>
+        <internal>false</internal>
+        <link/>
+        <name>BI Process Flow Formatter</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+   var sys_idea_id = $sp.getParameter('sys_idea_id') || $sp.getParameter('sys_id');
+   var gr = new GlideRecord('x_baes2_busimprove_ideas');
+   gr.get(sys_idea_id);	
+   data.canRead = gr.canRead();
+   if (!data.canRead) {
+	   return;	   
+   }
+
+   // Check the process flow query against the current job to see if the conditions match
+   function getCurrentStep(step, table, id) {
+	   var gnr = new GlideRecord(table);
+	   gnr.addEncodedQuery(step);
+	   gnr.addQuery('sys_id', id);
+	   gnr.query();
+	   if (gnr.next()) {
+		   return 'warning';
+	   } else {
+		   return 'primary';
+	   }
+   }
+
+   // Set the previous steps in the flow to success if the current step is further down the order
+   function retoActiveSuccess(items) {
+	   var i = 0;
+	   for (var key in items) {
+		   var value = items[key];
+		   if (value.colour == 'warning') {
+			   var index = i;
+			   for (var j = 0; j<i; j++) {
+				   items[j].colour = 'success';
+			   }
+			   if (index == items.length) {
+				   value.colour = 'sucess';
+			   }
+			   break;
+		   }
+		   i++;
+	   }
+	   return items;
+   }
+
+   function createProcessFlow() {
+	   var table = gr.getTableName();
+	   var id = gr.getUniqueValue();
+	   var gf = new GlideRecord('sys_process_flow');
+	   gf.addActiveQuery();
+	   gf.addQuery('table', table);
+	   gf.orderBy('order');
+	   gf.query();
+	   var items = [];
+	   while (gf.next()) {
+		   var item = {};
+		   item.name = gf.name.toString();
+		   item.colour = getCurrentStep(gf.condition.toString(), table, id);
+		   items.push(item);
+	   }
+	   items = retoActiveSuccess(items);
+	   return items;
+   }
+   data.flow = createProcessFlow();
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-03-18 08:59:58</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>9cf9c985db943b40561fb29a68961930</sys_id>
+        <sys_mod_count>22</sys_mod_count>
+        <sys_name>BI Process Flow Formatter</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_widget_9cf9c985db943b40561fb29a68961930</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-03-18 11:58:56</sys_updated_on>
+        <template><![CDATA[<div>
+   <div class="visible-md visible-lg btns" ng-if="data.flow.length > 0">
+       <button ng-repeat="key in data.flow" type="button" class="btn btn-{{key.colour}} btn-arrow-right" ng-style="{ 'width': (100/data.flow.length) + '%' }">{{key.name}}</button>
+   </div>
+</div>
+
+]]></template>
+    </sp_widget>
+</record_update>

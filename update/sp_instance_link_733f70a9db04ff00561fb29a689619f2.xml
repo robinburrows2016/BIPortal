@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_link">
+    <sp_instance_link action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>info</color>
+        <css>a.color_box {&#13;
+  margin-top: 20px;&#13;
+}</css>
+        <glyph>comments-o</glyph>
+        <id/>
+        <kb_article/>
+        <kb_category/>
+        <kb_topic/>
+        <order>1</order>
+        <roles/>
+        <sc_cat_item/>
+        <sc_category/>
+        <short_description>Post a question within the Business Improvement FAQ to which other users can respond</short_description>
+        <size>md</size>
+        <sp_column display_value="3">5128f425db04ff00561fb29a6896194c</sp_column>
+        <sp_page display_value="bi_new_question">55f765a1db84ff00561fb29a689619f4</sp_page>
+        <sp_widget display_value="Icon Link Overlay - BAE">f94ea54cdb2ee740561fb29a68961971</sp_widget>
+        <sys_class_name>sp_instance_link</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-03-07 11:14:31</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>733f70a9db04ff00561fb29a689619f2</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>Ask a Question</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_instance_link_733f70a9db04ff00561fb29a689619f2</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-03-07 14:13:15</sys_updated_on>
+        <title>Ask a Question</title>
+        <type>page</type>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"link_template": {
+		"value": "Color Box",
+		"displayValue": "Color Box"
+	},
+	"target": {
+		"value": "_self",
+		"displayValue": "Same"
+	}
+}]]></widget_parameters>
+    </sp_instance_link>
+</record_update>

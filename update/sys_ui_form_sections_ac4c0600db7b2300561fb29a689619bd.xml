@@ -16,41 +16,80 @@
         <sys_ui_form_section action="INSERT_OR_UPDATE">
             <position>1</position>
             <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-            <sys_created_on>2019-02-18 14:56:48</sys_created_on>
+            <sys_created_on>2019-03-13 14:03:53</sys_created_on>
             <sys_domain>global</sys_domain>
-            <sys_id>c21fca04db7b2300561fb29a689619ab</sys_id>
+            <sys_id>d78f5423db08bb00610f7b47f49619f5</sys_id>
             <sys_mod_count>1</sys_mod_count>
             <sys_overrides/>
             <sys_ui_form display_value="x_baes2_busimprove_ideas" name="x_baes2_busimprove_ideas" sys_domain="global" view="Default view">ac4c0600db7b2300561fb29a689619bd</sys_ui_form>
-            <sys_ui_section caption="Notes" display_value="Notes" name="x_baes2_busimprove_ideas" sys_domain="global" view="Default view">421fca04db7b2300561fb29a689619a9</sys_ui_section>
+            <sys_ui_section caption="Idea" display_value="Idea" name="x_baes2_busimprove_ideas" sys_domain="global" view="Default view">9f8f5423db08bb00610f7b47f49619f2</sys_ui_section>
             <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-            <sys_updated_on>2019-02-18 15:02:46</sys_updated_on>
+            <sys_updated_on>2019-03-13 14:05:59</sys_updated_on>
         </sys_ui_form_section>
         <sys_ui_form_section action="INSERT_OR_UPDATE">
             <position>2</position>
             <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-            <sys_created_on>2019-02-18 14:48:43</sys_created_on>
+            <sys_created_on>2019-02-18 14:56:48</sys_created_on>
             <sys_domain>global</sys_domain>
-            <sys_id>bb3d0640db7b2300561fb29a6896196d</sys_id>
-            <sys_mod_count>0</sys_mod_count>
+            <sys_id>c21fca04db7b2300561fb29a689619ab</sys_id>
+            <sys_mod_count>2</sys_mod_count>
             <sys_overrides/>
             <sys_ui_form display_value="x_baes2_busimprove_ideas" name="x_baes2_busimprove_ideas" sys_domain="global" view="Default view">ac4c0600db7b2300561fb29a689619bd</sys_ui_form>
-            <sys_ui_section caption="Assignment" display_value="Assignment" name="x_baes2_busimprove_ideas" sys_domain="global" view="Default view">fb3d0640db7b2300561fb29a6896196b</sys_ui_section>
+            <sys_ui_section caption="Notes" display_value="Notes" name="x_baes2_busimprove_ideas" sys_domain="global" view="Default view">421fca04db7b2300561fb29a689619a9</sys_ui_section>
             <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-            <sys_updated_on>2019-02-18 14:48:43</sys_updated_on>
+            <sys_updated_on>2019-03-13 14:05:59</sys_updated_on>
         </sys_ui_form_section>
         <sys_ui_form_section action="INSERT_OR_UPDATE">
             <position>3</position>
             <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-03-13 14:12:14</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>6571e863db08bb00610f7b47f4961949</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_baes2_busimprove_ideas" name="x_baes2_busimprove_ideas" sys_domain="global" view="Default view">ac4c0600db7b2300561fb29a689619bd</sys_ui_form>
+            <sys_ui_section caption="Categorisation" display_value="Categorisation" name="x_baes2_busimprove_ideas" sys_domain="global" view="Default view">6d71e863db08bb00610f7b47f4961946</sys_ui_section>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-03-13 14:13:04</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>4</position>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-03-18 10:41:15</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>7711a109dbd43b40561fb29a68961919</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_baes2_busimprove_ideas" name="x_baes2_busimprove_ideas" sys_domain="global" view="Default view">ac4c0600db7b2300561fb29a689619bd</sys_ui_form>
+            <sys_ui_section caption="Observation Impact" display_value="Observation Impact" name="x_baes2_busimprove_ideas" sys_domain="global" view="Default view">ab112109dbd43b40561fb29a68961956</sys_ui_section>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-03-18 11:11:18</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>5</position>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-02-18 14:48:43</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>bb3d0640db7b2300561fb29a6896196d</sys_id>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_baes2_busimprove_ideas" name="x_baes2_busimprove_ideas" sys_domain="global" view="Default view">ac4c0600db7b2300561fb29a689619bd</sys_ui_form>
+            <sys_ui_section caption="Assignment" display_value="Assignment" name="x_baes2_busimprove_ideas" sys_domain="global" view="Default view">fb3d0640db7b2300561fb29a6896196b</sys_ui_section>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-03-18 11:11:18</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>6</position>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
             <sys_created_on>2019-02-18 14:44:24</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_id>644c0600db7b2300561fb29a689619c0</sys_id>
-            <sys_mod_count>2</sys_mod_count>
+            <sys_mod_count>5</sys_mod_count>
             <sys_overrides/>
             <sys_ui_form display_value="x_baes2_busimprove_ideas" name="x_baes2_busimprove_ideas" sys_domain="global" view="Default view">ac4c0600db7b2300561fb29a689619bd</sys_ui_form>
             <sys_ui_section caption="Counts" display_value="Counts" name="x_baes2_busimprove_ideas" sys_domain="global" view="Default view">e04c0600db7b2300561fb29a689619bf</sys_ui_section>
             <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-            <sys_updated_on>2019-02-18 15:02:49</sys_updated_on>
+            <sys_updated_on>2019-03-18 11:11:18</sys_updated_on>
         </sys_ui_form_section>
         <sys_ui_form action="INSERT_OR_UPDATE">
             <name>x_baes2_busimprove_ideas</name>

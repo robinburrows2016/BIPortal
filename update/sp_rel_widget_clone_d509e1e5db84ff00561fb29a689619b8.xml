@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rel_widget_clone">
+    <sp_rel_widget_clone action="INSERT_OR_UPDATE">
+        <child display_value="BI Create Question">5909eda5db84ff00561fb29a6896192c</child>
+        <cloned>2019-03-07 14:17:01</cloned>
+        <last_validated>2019-03-07 14:17:01</last_validated>
+        <parent display_value="SQANDA Create Question">b8a0d161d730120023c84f80de610321</parent>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;sp_widget&gt;&lt;category&gt;other&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function($scope, $location, $timeout, spUtil, glideFormFactory, $rootScope,spAriaUtil, spAriaFocusManager) {
+
+	$timeout(function() {
+		$rootScope.$broadcast('sp.update.breadcrumbs', [
+			{label: $scope.data.communityBreadcrumb, url: '?id=sqa_tagged_questions'},
+			{label: $scope.page.title, url: '#'}
+		]);
+	});
+
+	$scope.tagList = "";
+
+	$scope.update = function() {
+		var d = $scope.data;
+		//Must be wrapped in timeout - need to wait for tagList to be updated
+		//by the digest cycle before saving.
+		$timeout(function() {
+			if (d.f._fields.question.value === "") {
+				spUtil.addErrorMessage(d.mustSpecifyQuestionMsg);
+				spAriaUtil.sendLiveMessage(d.mustSpecifyQuestionErrorMsg + d.mustSpecifyQuestionMsg);
+				return;
+			}
+
+			if (g_form &amp;&amp; g_form.submit() === false)
+				return;
+
+			var x = {};
+			x.method = "save";
+			x.table = d.table;
+			x.sys_id = d.sys_id;
+			x._fields = d.f._fields;
+			x._fields._attachmentGUID = d.f._attachmentGUID;
+			x.tagList = $scope.tagList;
+			$scope.status = $scope.data.postingMsg;
+			spUtil.get($scope, x).then(function(response) {
+				var newURL = $location.search({id: 'kb_social_qa_question', sys_id: response.data.sys_id});
+				spAriaFocusManager.navigateToLink(newURL.url());
+			});
+		});
+	}
+
+	var flatFields = [];
+	angular.forEach($scope.data.f._fields, function(field) {
+		flatFields.push(field);
+	});
+
+	var uiMessageHandler = function(g_form, type, message) {
+		switch (type) {
+			case 'addInfoMessage':
+				spUtil.addInfoMessage(message);
+				break;
+			case 'addErrorMessage':
+				spUtil.addErrorMessage(message);
+				break;
+			case 'clearMessages':
+				break;
+			default:
+		}
+	};
+
+	var g_form = glideFormFactory.create($scope, $scope.data.f.table, $scope.data.f.sys_id, flatFields, null, {uiMessageHandler: uiMessageHandler});
+
+	$scope.getGlideForm = function() {
+		return g_form;
+	}
+
+	var timeoutPromise;
+	$scope.$watch("data.f._fields.question.value", function(nv) {
+		if (!nv || nv.length &lt; 5) {
+			$scope.data.questionSuggestions = [];
+			return;
+		}
+
+		$timeout.cancel(timeoutPromise);
+		timeoutPromise = $timeout(function() {
+			var x = {};
+			x.method = "search";
+			x.query = nv;
+			spUtil.get($scope, x).then(function(response) {
+				$scope.data.questionSuggestions = response.data.questionSuggestions;
+			});
+		}, 1000);
+	});
+}]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;.suggested-question-container {
+  max-height: 150px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-bottom: 10px;
+}
+
+.suggested-question-container &amp;gt; .question-summary {
+  padding: 3px;
+}
+
+.hide-element {
+  visibility: hidden;
+}
+
+.mce-ico {
+  width: 14px;
+}&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id&gt;sqanda-create-question&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link/&gt;&lt;name&gt;SQANDA Create Question&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;true&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function($sp, input, data, gs, GlideRecord) {
+  "use strict";
+	data.typeTagNameMsg = gs.getMessage("Type tag name...");
+	data.mustSpecifyQuestionMsg = gs.getMessage("You must specify a question");
+	data.mustSpecifyQuestionErrorMsg= gs.getMessage("Error: Your question field is empty. ");
+	data.postingMsg = gs.getMessage("Posting");
+	data.communityBreadcrumb = gs.getMessage("Community");
+	data.questionSuggestions = [];
+	data.knowledgeBase = $sp.getPortalRecord().getValue("sqanda_knowledge_base") || gs.getProperty("glide.service_portal.sqanda.default_kb");
+
+	if (input &amp;&amp; input.method === 'save') {
+		data.table = input.table;
+		data.sys_id = input.sys_id;
+		var result = {};
+		if (input._fields) {
+			result = $sp.saveRecord(input.table, input.sys_id, input._fields);
+			if (result.sys_id &amp;&amp; input.tagList.length &gt; 0) {
+				input.tagList.split(',').forEach(function(tagID) {
+					var labelEntryGR = new GlideRecord("sqanda_tag_entry");
+					labelEntryGR.initialize();
+					labelEntryGR.tag = tagID;
+					labelEntryGR.reference_name = "kb_social_qa_question";
+					labelEntryGR.reference_id = result.sys_id;
+					labelEntryGR.insert();
+				})
+			}
+		}
+
+		if (input.sys_id == '-1'){
+			data.sys_id = result.sys_id;
+			data.isNewRecord = true;
+		}
+	} else if (input &amp;&amp; input.method === 'search') {
+		var questionGR = new GlideRecord("kb_social_qa_question");
+		questionGR.addActiveQuery();
+		questionGR.addQuery('123TEXTQUERY321', input.query);
+		questionGR.orderBy('votes');
+		questionGR.query();
+		while(questionGR.next()) {
+			if (!$sp.canReadRecord(questionGR))
+				continue;
+
+			var question = {};
+			question.title = questionGR.getValue("question");
+			question.sys_id = questionGR.getUniqueValue();
+
+			var answerGR = new GlideRecord("kb_social_qa_answer");
+			answerGR.addQuery("question", question.sys_id);
+			answerGR.addQuery("accepted", true);
+			answerGR.query();
+
+			question.acceptedAnswer = (answerGR.getRowCount() &gt; 0);
+
+			data.questionSuggestions.push(question);
+		}
+
+		return data;
+	} else {
+		data.table = 'kb_social_qa_question';
+		data.sys_id = '-1';
+	}
+
+  data.f = $sp.getForm(data.table, data.sys_id, data.query);
+	data.f._fields.kb_knowledge_base.value = data.knowledgeBase;
+})($sp, input, data, gs, GlideRecord);]]&gt;&lt;/script&gt;&lt;servicenow&gt;true&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2016-01-06 18:11:16&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;false&lt;/sys_customer_update&gt;&lt;sys_id&gt;b8a0d161d730120023c84f80de610321&lt;/sys_id&gt;&lt;sys_mod_count&gt;205&lt;/sys_mod_count&gt;&lt;sys_name&gt;SQANDA Create Question&lt;/sys_name&gt;&lt;sys_package display_value="Service Portal Social QA" source="com.glide.service-portal.sqanda"&gt;5e1c66264ff032002292a4eab110c73b&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_b8a0d161d730120023c84f80de610321&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2018-04-06 22:30:38&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="row"&gt;
+  &lt;div class="col-sm-3 hidden-xs"&gt;
+    &lt;div class="panel panel-default"&gt;
+      &lt;div class="panel-heading"&gt;
+        &lt;h2 class="panel-title"&gt;${Ask a Question}&lt;/h2&gt;
+      &lt;/div&gt;
+      &lt;div class="panel-body"&gt;
+        &lt;p&gt;${We prefer questions that can be &lt;i&gt;answered&lt;/i&gt;, not just discussed}&lt;/p&gt;
+        &lt;p&gt;${Give as much detail as possible}&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="col-sm-9"&gt;
+    &lt;div class="panel panel-default"&gt;
+      &lt;div class="panel-heading visible-xs"&gt;
+        &lt;div class="panel-title"&gt;${Ask a Question}&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="panel-body"&gt;
+        &lt;sp-form-field form-model="data.f" field="data.f._fields.question" glide-form="getGlideForm()"&gt;&lt;/sp-form-field&gt;
+        &lt;div ng-show="data.questionSuggestions.length &gt; 0"&gt;
+          &lt;div&gt;
+            &lt;strong&gt;${Questions that may already have your answer}&lt;/strong&gt;
+          &lt;/div&gt;
+          &lt;div class="suggested-question-container"&gt;
+            &lt;div ng-repeat="question in data.questionSuggestions" class="question-summary"&gt;
+              &lt;span ng-class="{'hide-element': !question.acceptedAnswer}"
+                    class="fa fa-check-circle text-success"
+                    title="${Question contains a verified answer}"&gt;&lt;/span&gt;
+              &lt;a ng-href="?id=kb_social_qa_question&amp;sys_id={{question.sys_id}}" target="_blank"&gt;{{question.title}}&lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;sp-form-field form-model="data.f" field="data.f._fields.question_details" glide-form="getGlideForm()"&gt;&lt;/sp-form-field&gt;
+        &lt;sp-tag-list ng-model="tagList" type-tag-name-msg="data.typeTagNameMsg"&gt;&lt;/sp-tag-list&gt;
+      &lt;/div&gt;
+      &lt;div class="panel-footer"&gt;
+        &lt;a ng-disabled="status"
+                name="submit"
+                ng-click="update()"
+           		href=""
+                class="btn btn-primary"&gt;
+          &lt;span ng-show="status"&gt;{{status}}&lt;/span&gt;
+          &lt;span ng-show="!status"&gt;${Post question}&lt;/span&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;</payload>
+        <sys_class_name>sp_rel_widget_clone</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-03-07 14:17:01</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>d509e1e5db84ff00561fb29a689619b8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>5909eda5db84ff00561fb29a6896192c</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_rel_widget_clone_d509e1e5db84ff00561fb29a689619b8</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-03-07 14:17:01</sys_updated_on>
+    </sp_rel_widget_clone>
+</record_update>

@@ -18,7 +18,7 @@
         <sc_cat_item/>
         <sc_category/>
         <short_description/>
-        <sp_page display_value="bi_blog">dadf8ab2db766780561fb29a68961983</sp_page>
+        <sp_page display_value="bi_blog_v2">b45c05e1db44ff00561fb29a68961988</sp_page>
         <sp_rectangle_menu display_value="BI Sub Navigation Menu">b0d8163adb766780561fb29a68961911</sp_rectangle_menu>
         <sp_rectangle_menu_item/>
         <sys_class_name>sp_rectangle_menu_item</sys_class_name>
@@ -26,7 +26,7 @@
         <sys_created_on>2019-01-08 11:44:02</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>bec95a3adb766780561fb29a689619ec</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Blog</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -34,7 +34,7 @@
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sp_rectangle_menu_item_bec95a3adb766780561fb29a689619ec</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-01-09 09:31:17</sys_updated_on>
+        <sys_updated_on>2019-03-07 12:12:30</sys_updated_on>
         <table/>
         <type>page</type>
         <u_mega_menu_properties/>

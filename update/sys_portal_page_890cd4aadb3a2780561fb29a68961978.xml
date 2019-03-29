@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><record_update node_type="sys_portal_page" unload_date="2019-03-01 15:30:16">
+<?xml version="1.0" encoding="UTF-8"?><record_update node_type="sys_portal_page" unload_date="2019-03-29 13:21:10">
     <sys_portal_page action="INSERT_OR_UPDATE">
         <layout display_value="layout_2_across">f6defafa0a0a0b12000d5016bd12ff06</layout>
         <order>850</order>
@@ -26,190 +26,93 @@
         <view>business_improvement_overview</view>
         <related_items_node>
             <sys_portal action="INSERT_OR_UPDATE">
-                <dropzone>dropzone999</dropzone>
-                <offset>0</offset>
-                <page display_value="Business Improvement Overview">890cd4aadb3a2780561fb29a68961978</page>
-                <summary>Business Improvement Catalog Usage</summary>
-                <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                <sys_id>050cd4aadb3a2780561fb29a6896197e</sys_id>
-                <sys_mod_count>1</sys_mod_count>
-                <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                <related_items_node>
-                    <sys_portal_preferences action="INSERT_OR_UPDATE">
-                        <name>title</name>
-                        <portal_section display_value="Created 07/01/2019 07:56:01">050cd4aadb3a2780561fb29a6896197e</portal_section>
-                        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                        <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                        <sys_id>490cd4aadb3a2780561fb29a6896197e</sys_id>
-                        <sys_mod_count>0</sys_mod_count>
-                        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                        <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                        <value>Business Improvement Catalog Usage</value>
-                    </sys_portal_preferences>
-                    <sys_portal_preferences action="INSERT_OR_UPDATE">
-                        <name>sys_id</name>
-                        <portal_section display_value="Created 07/01/2019 07:56:01">050cd4aadb3a2780561fb29a6896197e</portal_section>
-                        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                        <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                        <sys_id>810cd4aadb3a2780561fb29a6896197f</sys_id>
-                        <sys_mod_count>0</sys_mod_count>
-                        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                        <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                        <value>7c0cd4aadb3a2780561fb29a68961954</value>
-                    </sys_portal_preferences>
-                    <sys_portal_preferences action="INSERT_OR_UPDATE">
-                        <name>renderer</name>
-                        <portal_section display_value="Created 07/01/2019 07:56:01">050cd4aadb3a2780561fb29a6896197e</portal_section>
-                        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                        <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                        <sys_id>cd0cd4aadb3a2780561fb29a6896197e</sys_id>
-                        <sys_mod_count>0</sys_mod_count>
-                        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                        <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                        <value>com.glide.ui.portal.RenderDashboard</value>
-                    </sys_portal_preferences>
-                </related_items_node>
-            </sys_portal>
-            <sys_portal action="INSERT_OR_UPDATE">
-                <dropzone>dropzone2</dropzone>
-                <offset>0</offset>
-                <page display_value="Business Improvement Overview">890cd4aadb3a2780561fb29a68961978</page>
-                <summary>Business Improvement Requests by Month</summary>
-                <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                <sys_id>410cd4aadb3a2780561fb29a6896197d</sys_id>
-                <sys_mod_count>1</sys_mod_count>
-                <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                <related_items_node>
-                    <sys_portal_preferences action="INSERT_OR_UPDATE">
-                        <name>renderer</name>
-                        <portal_section display_value="Created 07/01/2019 07:56:01">410cd4aadb3a2780561fb29a6896197d</portal_section>
-                        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                        <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                        <sys_id>0d0cd4aadb3a2780561fb29a6896197d</sys_id>
-                        <sys_mod_count>0</sys_mod_count>
-                        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                        <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                        <value>com.glide.ui.portal.RenderDashboard</value>
-                    </sys_portal_preferences>
-                    <sys_portal_preferences action="INSERT_OR_UPDATE">
-                        <name>title</name>
-                        <portal_section display_value="Created 07/01/2019 07:56:01">410cd4aadb3a2780561fb29a6896197d</portal_section>
-                        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                        <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                        <sys_id>850cd4aadb3a2780561fb29a6896197d</sys_id>
-                        <sys_mod_count>0</sys_mod_count>
-                        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                        <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                        <value>Business Improvement Requests by Month</value>
-                    </sys_portal_preferences>
-                    <sys_portal_preferences action="INSERT_OR_UPDATE">
-                        <name>sys_id</name>
-                        <portal_section display_value="Created 07/01/2019 07:56:01">410cd4aadb3a2780561fb29a6896197d</portal_section>
-                        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                        <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                        <sys_id>cd0cd4aadb3a2780561fb29a6896197d</sys_id>
-                        <sys_mod_count>0</sys_mod_count>
-                        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                        <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                        <value>740cd4aadb3a2780561fb29a6896195a</value>
-                    </sys_portal_preferences>
-                </related_items_node>
-            </sys_portal>
-            <sys_portal action="INSERT_OR_UPDATE">
-                <dropzone>dropzone1</dropzone>
-                <offset>1</offset>
-                <page display_value="Business Improvement Overview">890cd4aadb3a2780561fb29a68961978</page>
-                <summary>Business Improvement Group Usage</summary>
-                <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                <sys_id>450cd4aadb3a2780561fb29a68961979</sys_id>
-                <sys_mod_count>1</sys_mod_count>
-                <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                <related_items_node>
-                    <sys_portal_preferences action="INSERT_OR_UPDATE">
-                        <name>title</name>
-                        <portal_section display_value="Created 07/01/2019 07:56:01">450cd4aadb3a2780561fb29a68961979</portal_section>
-                        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                        <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                        <sys_id>0d0cd4aadb3a2780561fb29a68961979</sys_id>
-                        <sys_mod_count>0</sys_mod_count>
-                        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                        <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                        <value>Business Improvement Group Usage</value>
-                    </sys_portal_preferences>
-                    <sys_portal_preferences action="INSERT_OR_UPDATE">
-                        <name>sys_id</name>
-                        <portal_section display_value="Created 07/01/2019 07:56:01">450cd4aadb3a2780561fb29a68961979</portal_section>
-                        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                        <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                        <sys_id>850cd4aadb3a2780561fb29a6896197a</sys_id>
-                        <sys_mod_count>0</sys_mod_count>
-                        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                        <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                        <value>3c0cd4aadb3a2780561fb29a68961971</value>
-                    </sys_portal_preferences>
-                    <sys_portal_preferences action="INSERT_OR_UPDATE">
-                        <name>renderer</name>
-                        <portal_section display_value="Created 07/01/2019 07:56:01">450cd4aadb3a2780561fb29a68961979</portal_section>
-                        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                        <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                        <sys_id>c10cd4aadb3a2780561fb29a6896197a</sys_id>
-                        <sys_mod_count>0</sys_mod_count>
-                        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                        <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                        <value>com.glide.ui.portal.RenderDashboard</value>
-                    </sys_portal_preferences>
-                </related_items_node>
-            </sys_portal>
-            <sys_portal action="INSERT_OR_UPDATE">
                 <dropzone>dropzone1</dropzone>
                 <offset>0</offset>
                 <page display_value="Business Improvement Overview">890cd4aadb3a2780561fb29a68961978</page>
-                <summary>Business Improvement Requests</summary>
-                <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                <sys_id>8d0cd4aadb3a2780561fb29a6896197b</sys_id>
-                <sys_mod_count>1</sys_mod_count>
-                <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
+                <summary/>
+                <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                <sys_id>2c95e924dbe4f740610f7b47f49619ea</sys_id>
+                <sys_mod_count>0</sys_mod_count>
+                <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
                 <related_items_node>
                     <sys_portal_preferences action="INSERT_OR_UPDATE">
-                        <name>sys_id</name>
-                        <portal_section display_value="Created 07/01/2019 07:56:01">8d0cd4aadb3a2780561fb29a6896197b</portal_section>
-                        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                        <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                        <sys_id>0d0cd4aadb3a2780561fb29a6896197c</sys_id>
+                        <name>report_type</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">2c95e924dbe4f740610f7b47f49619ea</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>2095e924dbe4f740610f7b47f49619ec</sys_id>
                         <sys_mod_count>0</sys_mod_count>
-                        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                        <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                        <value>700cd4aadb3a2780561fb29a68961952</value>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>line_bar</value>
                     </sys_portal_preferences>
                     <sys_portal_preferences action="INSERT_OR_UPDATE">
                         <name>renderer</name>
-                        <portal_section display_value="Created 07/01/2019 07:56:01">8d0cd4aadb3a2780561fb29a6896197b</portal_section>
-                        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                        <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                        <sys_id>490cd4aadb3a2780561fb29a6896197c</sys_id>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">2c95e924dbe4f740610f7b47f49619ea</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>2495e924dbe4f740610f7b47f49619eb</sys_id>
                         <sys_mod_count>0</sys_mod_count>
-                        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                        <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                        <value>com.glide.ui.portal.RenderDashboard</value>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>com.glide.ui.portal.RenderReport</value>
                     </sys_portal_preferences>
                     <sys_portal_preferences action="INSERT_OR_UPDATE">
                         <name>title</name>
-                        <portal_section display_value="Created 07/01/2019 07:56:01">8d0cd4aadb3a2780561fb29a6896197b</portal_section>
-                        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                        <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                        <sys_id>c10cd4aadb3a2780561fb29a6896197c</sys_id>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">2c95e924dbe4f740610f7b47f49619ea</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>2495e924dbe4f740610f7b47f49619ec</sys_id>
                         <sys_mod_count>0</sys_mod_count>
-                        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                        <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                        <value>Business Improvement Requests</value>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>TP Created Ideas per week by state</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>help_text_window</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">2c95e924dbe4f740610f7b47f49619ea</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>2895e924dbe4f740610f7b47f49619eb</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>report_widget_description</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>can_subscribe</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">2c95e924dbe4f740610f7b47f49619ea</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>2c95e924dbe4f740610f7b47f49619eb</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>true</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>current_page</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">2c95e924dbe4f740610f7b47f49619ea</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>a895e924dbe4f740610f7b47f49619ec</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>890cd4aadb3a2780561fb29a68961978</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>sys_id</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">2c95e924dbe4f740610f7b47f49619ea</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>ac95e924dbe4f740610f7b47f49619ea</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>fb32a1a0dbe4f740610f7b47f49619cf</value>
                     </sys_portal_preferences>
                 </related_items_node>
             </sys_portal>
@@ -217,46 +120,305 @@
                 <dropzone>dropzone2</dropzone>
                 <offset>1</offset>
                 <page display_value="Business Improvement Overview">890cd4aadb3a2780561fb29a68961978</page>
-                <summary>Business Improvement Tasks</summary>
-                <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                <sys_id>c90cd4aadb3a2780561fb29a6896197a</sys_id>
-                <sys_mod_count>1</sys_mod_count>
-                <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
+                <summary/>
+                <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                <sys_id>6c95e924dbe4f740610f7b47f49619f1</sys_id>
+                <sys_mod_count>0</sys_mod_count>
+                <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
                 <related_items_node>
                     <sys_portal_preferences action="INSERT_OR_UPDATE">
-                        <name>title</name>
-                        <portal_section display_value="Created 07/01/2019 07:56:01">c90cd4aadb3a2780561fb29a6896197a</portal_section>
-                        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                        <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                        <sys_id>010cd4aadb3a2780561fb29a6896197b</sys_id>
+                        <name>can_subscribe</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">6c95e924dbe4f740610f7b47f49619f1</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>6095e924dbe4f740610f7b47f49619f3</sys_id>
                         <sys_mod_count>0</sys_mod_count>
-                        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                        <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                        <value>Business Improvement Tasks</value>
-                    </sys_portal_preferences>
-                    <sys_portal_preferences action="INSERT_OR_UPDATE">
-                        <name>sys_id</name>
-                        <portal_section display_value="Created 07/01/2019 07:56:01">c90cd4aadb3a2780561fb29a6896197a</portal_section>
-                        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                        <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                        <sys_id>490cd4aadb3a2780561fb29a6896197b</sys_id>
-                        <sys_mod_count>0</sys_mod_count>
-                        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                        <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                        <value>090cd4aadb3a2780561fb29a68961974</value>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>true</value>
                     </sys_portal_preferences>
                     <sys_portal_preferences action="INSERT_OR_UPDATE">
                         <name>renderer</name>
-                        <portal_section display_value="Created 07/01/2019 07:56:01">c90cd4aadb3a2780561fb29a6896197a</portal_section>
-                        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-                        <sys_created_on>2019-01-07 07:56:01</sys_created_on>
-                        <sys_id>850cd4aadb3a2780561fb29a6896197b</sys_id>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">6c95e924dbe4f740610f7b47f49619f1</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>6495e924dbe4f740610f7b47f49619f2</sys_id>
                         <sys_mod_count>0</sys_mod_count>
-                        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-                        <sys_updated_on>2019-01-07 07:56:01</sys_updated_on>
-                        <value>com.glide.ui.portal.RenderDashboard</value>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>com.glide.ui.portal.RenderReport</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>report_type</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">6c95e924dbe4f740610f7b47f49619f1</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>6495e924dbe4f740610f7b47f49619f3</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>pie</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>help_text_window</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">6c95e924dbe4f740610f7b47f49619f1</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>6895e924dbe4f740610f7b47f49619f2</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>report_widget_description</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>title</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">6c95e924dbe4f740610f7b47f49619f1</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>6895e924dbe4f740610f7b47f49619f3</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>TP Idea Bank by type</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>can_publish</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">6c95e924dbe4f740610f7b47f49619f1</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>6c95e924dbe4f740610f7b47f49619f2</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>true</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>sys_id</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">6c95e924dbe4f740610f7b47f49619f1</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>ec95e924dbe4f740610f7b47f49619f1</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>e825a1a0dbe4f740610f7b47f49619de</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>current_page</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">6c95e924dbe4f740610f7b47f49619f1</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>ec95e924dbe4f740610f7b47f49619f3</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>890cd4aadb3a2780561fb29a68961978</value>
+                    </sys_portal_preferences>
+                </related_items_node>
+            </sys_portal>
+            <sys_portal action="INSERT_OR_UPDATE">
+                <dropzone>dropzone2</dropzone>
+                <offset>0</offset>
+                <page display_value="Business Improvement Overview">890cd4aadb3a2780561fb29a68961978</page>
+                <summary/>
+                <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                <sys_id>a895e924dbe4f740610f7b47f49619ef</sys_id>
+                <sys_mod_count>0</sys_mod_count>
+                <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                <related_items_node>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>current_page</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">a895e924dbe4f740610f7b47f49619ef</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>2895e924dbe4f740610f7b47f49619f1</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>890cd4aadb3a2780561fb29a68961978</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>sys_id</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">a895e924dbe4f740610f7b47f49619ef</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>2c95e924dbe4f740610f7b47f49619ef</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>c3d1e920dbe4f740610f7b47f496199c</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>renderer</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">a895e924dbe4f740610f7b47f49619ef</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>a095e924dbe4f740610f7b47f49619f0</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>com.glide.ui.portal.RenderReport</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>title</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">a895e924dbe4f740610f7b47f49619ef</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>a095e924dbe4f740610f7b47f49619f1</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>TP Created Ideas per week by state</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>help_text_window</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">a895e924dbe4f740610f7b47f49619ef</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>a495e924dbe4f740610f7b47f49619f0</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>report_widget_description</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>can_subscribe</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">a895e924dbe4f740610f7b47f49619ef</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>a895e924dbe4f740610f7b47f49619f0</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>true</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>report_type</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">a895e924dbe4f740610f7b47f49619ef</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>ac95e924dbe4f740610f7b47f49619f0</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>line_bar</value>
+                    </sys_portal_preferences>
+                </related_items_node>
+            </sys_portal>
+            <sys_portal action="INSERT_OR_UPDATE">
+                <dropzone>dropzone1</dropzone>
+                <offset>1</offset>
+                <page display_value="Business Improvement Overview">890cd4aadb3a2780561fb29a68961978</page>
+                <summary/>
+                <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                <sys_id>ec95e924dbe4f740610f7b47f49619ec</sys_id>
+                <sys_mod_count>0</sys_mod_count>
+                <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                <related_items_node>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>sys_id</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">ec95e924dbe4f740610f7b47f49619ec</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>6095e924dbe4f740610f7b47f49619ed</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>68b16d60dbe4f740610f7b47f496195f</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>current_page</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">ec95e924dbe4f740610f7b47f49619ec</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>6495e924dbe4f740610f7b47f49619ef</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>890cd4aadb3a2780561fb29a68961978</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>can_subscribe</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">ec95e924dbe4f740610f7b47f49619ec</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>e095e924dbe4f740610f7b47f49619ee</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>true</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>renderer</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">ec95e924dbe4f740610f7b47f49619ec</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>e495e924dbe4f740610f7b47f49619ed</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>com.glide.ui.portal.RenderReport</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>report_type</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">ec95e924dbe4f740610f7b47f49619ec</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>e495e924dbe4f740610f7b47f49619ee</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>pie</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>help_text_window</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">ec95e924dbe4f740610f7b47f49619ec</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>e895e924dbe4f740610f7b47f49619ed</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>report_widget_description</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>media</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">ec95e924dbe4f740610f7b47f49619ec</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>e895e924dbe4f740610f7b47f49619ee</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>preview</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>can_publish</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">ec95e924dbe4f740610f7b47f49619ec</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>ec95e924dbe4f740610f7b47f49619ed</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>true</value>
+                    </sys_portal_preferences>
+                    <sys_portal_preferences action="INSERT_OR_UPDATE">
+                        <name>title</name>
+                        <portal_section display_value="Created 29/03/2019 07:59:26">ec95e924dbe4f740610f7b47f49619ec</portal_section>
+                        <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
+                        <sys_created_on>2019-03-29 07:59:26</sys_created_on>
+                        <sys_id>ec95e924dbe4f740610f7b47f49619ee</sys_id>
+                        <sys_mod_count>0</sys_mod_count>
+                        <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
+                        <sys_updated_on>2019-03-29 07:59:26</sys_updated_on>
+                        <value>TP Closed Ideas by type</value>
                     </sys_portal_preferences>
                 </related_items_node>
             </sys_portal>
