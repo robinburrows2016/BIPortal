@@ -9,6 +9,15 @@
   margin-top: 20px;&#13;
 }&#13;
 &#13;
+.panel-body {&#13;
+  padding: 5px;&#13;
+}&#13;
+&#13;
+h4, .h4 {&#13;
+    font-size: 18px;&#13;
+    font-weight: 600;&#13;
+}&#13;
+&#13;
 #portalSearch.input-lg {&#13;
   padding-top:0px!important;&#13;
   padding-bottom:0px!important;&#13;
@@ -19,6 +28,15 @@
 .breadcrumbs-container {&#13;
   background-color: transparent;&#13;
   border-bottom: none;&#13;
+}&#13;
+&#13;
+div.sp-row-content div.ng-scope {&#13;
+  background-color: #ffffff;&#13;
+  margin:15px;&#13;
+}&#13;
+&#13;
+div.sp-row-content div.ng-scope h2 {&#13;
+  padding-top:15px;&#13;
 }</css>
         <draft>false</draft>
         <dynamic_title_structure/>
@@ -32,7 +50,7 @@
         <sys_created_on>2019-01-09 09:30:03</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>ceb40307dbfe6780561fb29a689619a0</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>bi_about</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -40,7 +58,7 @@
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sp_page_ceb40307dbfe6780561fb29a689619a0</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-02-18 08:37:14</sys_updated_on>
+        <sys_updated_on>2019-04-02 13:10:01</sys_updated_on>
         <title>BI About</title>
     </sp_page>
 </record_update>

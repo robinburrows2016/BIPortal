@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_report_users_groups">
     <sys_report_users_groups action="INSERT_OR_UPDATE">
         <group_id/>
-        <report_id display_value="TP Idea Bank by type">e825a1a0dbe4f740610f7b47f49619de</report_id>
+        <report_id display_value="TP Idea Bank by department">e825a1a0dbe4f740610f7b47f49619de</report_id>
         <sys_class_name>sys_report_users_groups</sys_class_name>
         <sys_created_by>andy.bourner@baesystems.com</sys_created_by>
         <sys_created_on>2019-03-29 07:57:31</sys_created_on>

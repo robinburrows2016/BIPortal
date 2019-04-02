@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>primary</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">18be982edb3a2780561fb29a68961930</sp_column>
+        <sp_widget display_value="BI Portal - Top Contributors">660f0ecfdb0fef80e9c39334ca96196a</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-04-02 07:57:05</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>d96b0ef5db6cbb40610f7b47f4961969</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Top Idea Contributers</sys_name>
+        <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
+        <sys_update_name>sp_instance_d96b0ef5db6cbb40610f7b47f4961969</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-04-02 08:45:55</sys_updated_on>
+        <title>Top Idea Contributers</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"max_number": {
+		"value": 5,
+		"displayValue": "5"
+	},
+	"campaign": {
+		"value": "0b80f5bb1b9763c0f441eb186e4bcb96",
+		"displayValue": "Improvement Ideas"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+</record_update>

@@ -90,7 +90,8 @@
 }&#13;
 &#13;
 .overflow-200 {&#13;
-    height: 200px;&#13;
+    height: 250px;&#13;
+    width: 100%;&#13;
     overflow: hidden;  &#13;
     color: $primary;  &#13;
 }&#13;
@@ -148,10 +149,10 @@
 }&#13;
 &#13;
 .item-image {&#13;
-    min-height: 200px;&#13;
-    min-width: 470px;  &#13;
-    max-height: 200px;&#13;
-    max-width: 470px;&#13;
+	min-height: 100%;&#13;
+    min-width: 100%;  &#13;
+    max-height: 100%;&#13;
+    max-width: 100%;  &#13;
 }&#13;
 &#13;
 .text-muted {&#13;
@@ -190,7 +191,7 @@
         <sys_created_on>2019-03-28 11:11:02</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>11d74dd8dba8b740610f7b47f4961958</sys_id>
-        <sys_mod_count>38</sys_mod_count>
+        <sys_mod_count>61</sys_mod_count>
         <sys_name>BI Portal - Homepage Campaigns</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -198,7 +199,7 @@
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sp_widget_11d74dd8dba8b740610f7b47f4961958</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-03-28 16:18:30</sys_updated_on>
+        <sys_updated_on>2019-04-02 13:54:29</sys_updated_on>
         <template><![CDATA[<div class="recent-widget">
 	<div class="panel panel-default">
     
@@ -211,7 +212,10 @@
                 <div class="panel-body block">
                   <div class="overflow-200 text-center pull-left">
                     <a href ng-click="c.ideaModal($event, data.improvement_id)" class="text-muted" title="Click To Submit Improvement" tabindex="-1">
-                      <img src="tp-improvement-logo3.png" class="m-r-sm m-b-sm item-image" alt="Click To Submit Improvement" role="presentation" />                   
+                      <img src="tp-improvement-logo4.png" class="m-r-sm m-b-sm item-image" alt="Click To Submit Improvement" role="presentation" />
+                      <div class="icon-overlay icon-link-background-success"> 
+                        <span class="icon-text-muted ng-binding"><p>Spotted an improvement that will benefit Naval Ships?</p><p>Tell us about it here</p></span>                        
+                      </div>                      
                     </a>                   
                   </div>                  
                 </div>               
@@ -225,7 +229,10 @@
                 <div class="panel-body block">
                   <div class="overflow-200 text-center pull-left">
                     <a href ng-click="c.observationModal($event, data.observation_id)" class="text-muted" title="Click To Submit Observation" tabindex="-1">
-                      <img src="tp-observation-logo3.png" class="m-r-sm m-b-sm item-image" alt="Click To Submit Observation" role="presentation" />                   
+                      <img src="tp-observation-logo4.png" class="m-r-sm m-b-sm item-image" alt="Click To Submit Observation" role="presentation" />
+                      <div class="icon-overlay icon-link-background-success"> 
+                        <span class="icon-text-muted ng-binding"><p>Experienced something Quality-related that's not quite right?</p><p>Tell us about it here</p></span>                         
+                      </div>                      
                     </a>                   
                   </div>                  
                 </div>               

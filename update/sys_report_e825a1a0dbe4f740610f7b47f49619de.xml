@@ -11,7 +11,7 @@
         <chart_border_radius>0</chart_border_radius>
         <chart_border_width>1</chart_border_width>
         <chart_height>450</chart_height>
-        <chart_size>large</chart_size>
+        <chart_size>small</chart_size>
         <chart_title/>
         <chart_title_color display_value="Black">65b30218a9fe3dba0120df8611520d97</chart_title_color>
         <chart_title_size>16</chart_title_size>
@@ -37,7 +37,7 @@
         <donut_width_percent>50</donut_width_percent>
         <end_time/>
         <exp_report_attrs>true</exp_report_attrs>
-        <field>submitter.location</field>
+        <field>submitter.department</field>
         <field_list>number,caller_id,opened_by,short_description,category,priority,state,assignment_group,assigned_to,sys_created_on,sys_updated_on,sys_updated_by</field_list>
         <filter table="x_baes2_busimprove_ideas">state=16<item endquery="false" field="state" goto="false" newquery="false" operator="=" or="false" value="16"/>
         </filter>
@@ -97,17 +97,17 @@
         <sys_created_on>2019-03-29 07:57:31</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>e825a1a0dbe4f740610f7b47f49619de</sys_id>
-        <sys_mod_count>2</sys_mod_count>
-        <sys_name>TP Idea Bank by type</sys_name>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>TP Idea Bank by department</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sys_report_e825a1a0dbe4f740610f7b47f49619de</sys_update_name>
         <sys_updated_by>andy.bourner@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-03-29 07:59:06</sys_updated_on>
+        <sys_updated_on>2019-04-01 08:59:44</sys_updated_on>
         <table>x_baes2_busimprove_ideas</table>
-        <title>TP Idea Bank by type</title>
+        <title>TP Idea Bank by department</title>
         <title_horizontal_alignment>center</title_horizontal_alignment>
         <title_vertical_alignment>top</title_vertical_alignment>
         <to/>

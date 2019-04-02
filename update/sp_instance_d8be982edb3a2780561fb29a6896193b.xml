@@ -17,7 +17,7 @@
         <sys_created_on>2019-01-07 08:07:43</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>d8be982edb3a2780561fb29a6896193b</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name/>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -25,7 +25,7 @@
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sp_instance_d8be982edb3a2780561fb29a6896193b</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-03-28 10:45:04</sys_updated_on>
+        <sys_updated_on>2019-04-01 14:30:09</sys_updated_on>
         <title/>
         <url/>
         <widget_parameters><![CDATA[{
@@ -36,6 +36,10 @@
 	"kb_category": {
 		"value": "ad4a16b31bdb63c0f441eb186e4bcb3d",
 		"displayValue": "BI-news"
+	},
+	"slide_height": {
+		"value": 659,
+		"displayValue": "659"
 	}
 }]]></widget_parameters>
     </sp_instance>
