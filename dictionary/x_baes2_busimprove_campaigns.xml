@@ -13,8 +13,62 @@
         <element label="End Date / Time" max_length="40" name="end_date" type="glide_date_time"/>
         <element choice="1" label="Glyph" mandatory="true" max_length="100" name="glyph" type="choice">
             <choice>
+                <element inactive_on_update="false" label="Apple" value="apple"/>
+                <element inactive_on_update="false" label="Arrow Down" value="arrow-circle-down"/>
+                <element inactive_on_update="false" label="Arrow Up" value="arrow-circle-up"/>
+                <element inactive_on_update="false" label="Award" value="trophy"/>
+                <element inactive_on_update="false" label="Ban" value="ban"/>
+                <element inactive_on_update="false" label="Barcode" value="barcode"/>
+                <element inactive_on_update="false" label="Battery" value="battery-half"/>
+                <element inactive_on_update="false" label="Bicycle" value="bicycle"/>
+                <element inactive_on_update="false" label="Bin" value="trash"/>
+                <element inactive_on_update="false" label="Binoculars" value="binoculars"/>
+                <element inactive_on_update="false" label="Birthday Cake" value="birthday-cake"/>
+                <element inactive_on_update="false" label="Bluetooth" value="bluetooth"/>
+                <element inactive_on_update="false" label="Building" value="building"/>
+                <element inactive_on_update="false" label="Bullhorn" value="bullhorn"/>
+                <element inactive_on_update="false" label="Bus" value="bus"/>
+                <element inactive_on_update="false" label="Camera" value="camera"/>
+                <element inactive_on_update="false" label="Car" value="car"/>
+                <element inactive_on_update="false" label="Charging" value="plug"/>
+                <element inactive_on_update="false" label="Chart Line" value="line-chart"/>
+                <element inactive_on_update="false" label="Clock" value="clock-o"/>
+                <element inactive_on_update="false" label="Cloud" value="cloud-upload"/>
+                <element inactive_on_update="false" label="Cogs" value="cogs"/>
                 <element inactive_on_update="false" label="Comments" value="comments"/>
+                <element inactive_on_update="false" label="Cup" value="coffee"/>
+                <element inactive_on_update="false" label="Dashboard" value="tachometer"/>
+                <element inactive_on_update="false" label="Envelope" value="envelope"/>
+                <element inactive_on_update="false" label="Female" value="female"/>
+                <element inactive_on_update="false" label="File" value="folder-open"/>
+                <element inactive_on_update="false" label="Fire Extinguisher" value="fire-extinguisher"/>
+                <element inactive_on_update="false" label="Fist Aid" value="medkit"/>
+                <element inactive_on_update="false" label="Flag" value="flag"/>
                 <element inactive_on_update="false" label="Group" value="group"/>
+                <element inactive_on_update="false" label="Happy Face" value="smile-o"/>
+                <element inactive_on_update="false" label="Heart" value="heart"/>
+                <element inactive_on_update="false" label="ID Badge" value="id-badge"/>
+                <element inactive_on_update="false" label="Information" value="info-circle"/>
+                <element inactive_on_update="false" label="Lightning Bolt" value="bolt"/>
+                <element inactive_on_update="false" label="Lock" value="lock"/>
+                <element inactive_on_update="false" label="Magnifying Glass" value="search"/>
+                <element inactive_on_update="false" label="Male" value="male"/>
+                <element inactive_on_update="false" label="Map" value="map"/>
+                <element inactive_on_update="false" label="Money" value="money"/>
+                <element inactive_on_update="false" label="Mortar Board" value="graduation-cap"/>
+                <element inactive_on_update="false" label="Newspaper" value="newspaper-o"/>
+                <element inactive_on_update="false" label="Paint Brush" value="paint-brush"/>
+                <element inactive_on_update="false" label="Paperclip" value="paperclip"/>
+                <element inactive_on_update="false" label="PC" value="desktop"/>
+                <element inactive_on_update="false" label="Plane" value="plane"/>
+                <element inactive_on_update="false" label="Pound Sign" value="gbp"/>
+                <element inactive_on_update="false" label="Power Off" value="power-off"/>
+                <element inactive_on_update="false" label="Scales Of Justice" value="balance-scale"/>
+                <element inactive_on_update="false" label="Shopping Trolley" value="shopping-cart"/>
+                <element inactive_on_update="false" label="Smart Phone" value="mobile"/>
+                <element inactive_on_update="false" label="Train" value="train"/>
+                <element inactive_on_update="false" label="Wheelchair" value="wheelchair"/>
+                <element inactive_on_update="false" label="Wifi" value="wifi"/>
             </choice>
         </element>
         <element label="Home Page" mandatory="true" max_length="40" name="home_page" type="boolean"/>
