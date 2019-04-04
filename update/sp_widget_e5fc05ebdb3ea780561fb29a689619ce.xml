@@ -432,16 +432,23 @@
 		if (isValidRecord) {
 			var ideaRecord = ideaViewModel.ideaRecord;
 			
-			// Create idea use Record For View			
-			var use = new x_baes2_busimprove.BAEIdeaAjax();
-			use.ideaCreateViewUseRecord(ideaRecord.sys_id.toString());
+			// Create idea use Record For View - If User Is NOT The Submitter
+            var user_id = gs.getUserID();
+            if (ideaRecord.submitter != user_id) {				
+			    var use = new x_baes2_busimprove.BAEIdeaAjax();
+				use.ideaCreateViewUseRecord(ideaRecord.sys_id.toString());
+            }
 			
 			populateDataFromIdeaViewModel();
 			populateMessages();
 			populateCommonProperties();
 			// populateBreadCrumbs();
 			populateVersionInfo();
-			handleViewCountIncrement();
+			
+			// Increment View Count - If User Is NOT The Submitter			
+            if (ideaRecord.submitter != user_id) {			
+				handleViewCountIncrement();
+			}
 			
 			if(data.articleType === 'wiki'){
 				initGlideWiki();
@@ -857,7 +864,7 @@ function populateFeedback(){
         <sys_created_on>2019-01-10 14:03:48</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>e5fc05ebdb3ea780561fb29a689619ce</sys_id>
-        <sys_mod_count>190</sys_mod_count>
+        <sys_mod_count>198</sys_mod_count>
         <sys_name>BI Portal - Idea Content</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -865,7 +872,7 @@ function populateFeedback(){
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sp_widget_e5fc05ebdb3ea780561fb29a689619ce</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-03-28 08:36:25</sys_updated_on>
+        <sys_updated_on>2019-04-04 09:55:53</sys_updated_on>
         <template><![CDATA[<div ng-if="data.versionWarningMessage && c.options.show_version_info != 'false'" class="alert alert-info alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <div ng-bind-html="data.versionWarningMessage">

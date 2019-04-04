@@ -10,41 +10,24 @@
         <roles/>
         <short_description/>
         <size>md</size>
-        <sp_column display_value="1">b45c05e1db44ff00561fb29a689619fd</sp_column>
-        <sp_widget display_value="KB Category Page Broadcaster - BAE">d2d1607edbb1e300e9c39334ca9619fb</sp_widget>
+        <sp_column display_value="2">3c5c45e1db44ff00561fb29a68961902</sp_column>
+        <sp_widget display_value="Knowledge Article Comments Listener- BAE">644115f4dbef2fc0e9c39334ca96192f</sp_widget>
         <sys_class_name>sp_instance</sys_class_name>
         <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-        <sys_created_on>2019-03-07 12:11:39</sys_created_on>
+        <sys_created_on>2019-04-04 13:25:22</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>305c45e1db44ff00561fb29a68961901</sys_id>
-        <sys_mod_count>4</sys_mod_count>
-        <sys_name>Blog Index</sys_name>
+        <sys_id>edb92da2dbacb780561fb29a68961912</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
-        <sys_update_name>sp_instance_305c45e1db44ff00561fb29a68961901</sys_update_name>
+        <sys_update_name>sp_instance_edb92da2dbacb780561fb29a68961912</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-04-04 13:25:22</sys_updated_on>
-        <title>Blog Index</title>
+        <sys_updated_on>2019-04-04 13:35:05</sys_updated_on>
+        <title/>
         <url/>
-        <widget_parameters><![CDATA[{
-	"show_kb_details": {
-		"value": "false",
-		"displayValue": "false"
-	},
-	"category": {
-		"value": "165a5ef31bdb63c0f441eb186e4bcb4b",
-		"displayValue": "BI-FAQ"
-	},
-	"sequence": {
-		"value": "Order",
-		"displayValue": "Order"
-	},
-	"article": {
-		"value": "",
-		"displayValue": ""
-	}
-}]]></widget_parameters>
+        <widget_parameters/>
     </sp_instance>
 </record_update>
