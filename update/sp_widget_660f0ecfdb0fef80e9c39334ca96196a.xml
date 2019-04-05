@@ -36,7 +36,7 @@
   }&#13;
   .user-avatar {&#13;
 	float: left;&#13;
-    margin-right: 10px;&#13;
+    margin-right: 0px;&#13;
     height: 50px;&#13;
     width: 50px;&#13;
     margin-bottom: 3px;&#13;
@@ -76,6 +76,10 @@
 }&#13;
 .rel-position {&#13;
 	position: relative;&#13;
+}&#13;
+&#13;
+div.panel-body {&#13;
+  	padding-left:10px;&#13;
 }&#13;
 </css>
         <data_table>sp_instance</data_table>
@@ -162,7 +166,7 @@
         <sys_created_on>2019-01-21 15:51:14</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>660f0ecfdb0fef80e9c39334ca96196a</sys_id>
-        <sys_mod_count>45</sys_mod_count>
+        <sys_mod_count>50</sys_mod_count>
         <sys_name>BI Portal - Top Contributors</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -170,7 +174,7 @@
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sp_widget_660f0ecfdb0fef80e9c39334ca96196a</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-04-02 11:51:12</sys_updated_on>
+        <sys_updated_on>2019-04-05 08:09:36</sys_updated_on>
         <template><![CDATA[<sp-panel ng-if="data.contributors.length > 0" >
   <div class="cm-people-list">      
     <ul class="list-unstyled">
@@ -193,19 +197,19 @@
               ${{{item.ideas}} Ideas}
             </span>                       
             <span ng-if="item.views == 1" class="views pad-right text-nowrap">
-              <span class="pad-right">&#8226;</span> <i class="fa fa-eye pad-right" />                         
+              <span class="pad-right hidden">&#8226;</span> <i class="fa fa-eye pad-right" />                         
               ${{{item.views}} View}
             </span>
             <span ng-if="item.views > 1 || item.views == 0" class="views pad-right text-nowrap">
-              <span class="pad-right">&#8226;</span> <i class="fa fa-eye pad-right" />
+              <span class="pad-right hidden">&#8226;</span> <i class="fa fa-eye pad-right" />
               ${{{item.views}} Views}
             </span>
             <span ng-if="item.comments == 1" class="views pad-right text-nowrap">
-              <span class="pad-right">&#8226;</span> <i class="fa fa-comments pad-right" />
+              <span class="pad-right hidden">&#8226;</span> <i class="fa fa-comments pad-right" />
               ${{{item.comments}} Comment}
             </span>
             <span ng-if="item.comments > 1 || item.comments == 0" class="views pad-right text-nowrap">
-              <span class="pad-right">&#8226;</span> <i class="fa fa-comments pad-right" />
+              <span class="pad-right hidden">&#8226;</span> <i class="fa fa-comments pad-right" />
               ${{{item.comments}} Comments}
             </span>
           </p>          

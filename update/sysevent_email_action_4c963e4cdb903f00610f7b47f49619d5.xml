@@ -41,7 +41,7 @@
 <div>${mail_script:IMT_standard_email_header}</div>
 <div>&nbsp;</div>
 <div>Dear ${submitter.first_name},<br />&nbsp;</div>
-<div>Thank you for raising the following&nbsp;Business Observation within myService:</div>
+<div>Thank you for raising&nbsp;a Quality Observation within myService:</div>
 <div>&nbsp;</div>
 <div>${mail_script:IMT_table_fields_detail}</div>
 <div>&nbsp;&nbsp;</div>
@@ -69,7 +69,7 @@
         <sys_customer_update>false</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_id>4c963e4cdb903f00610f7b47f49619d5</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>BI Observation Created - Applicant</sys_name>
         <sys_overrides/>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
@@ -78,7 +78,7 @@
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sysevent_email_action_4c963e4cdb903f00610f7b47f49619d5</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-03-15 14:24:46</sys_updated_on>
+        <sys_updated_on>2019-04-05 07:38:38</sys_updated_on>
         <sys_version>2</sys_version>
         <template/>
         <type>email</type>

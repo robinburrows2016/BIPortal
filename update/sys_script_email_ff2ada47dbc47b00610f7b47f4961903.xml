@@ -5,7 +5,7 @@
         <script><![CDATA[template.print("<div style='margin-top:15px;margin-right: 15px;float: left;width: 75%;'>");
 template.print("<img src='" + gs.getProperty('glide.servlet.uri') + "tp-main-logo.png' width='75px' height='75px'/>");
 template.print("<p style='margin-top:10px;'>Kind Regards</p>");
-template.print("<p>Your Business Improvements Team</p>");
+template.print("<p>Your Take Pride+ Team</p>");
 template.print("</div>");
 //Footer Divider
 template.print("<div style='border-top: solid #0066A4 1.0pt; border-left: none; border-bottom: none; border-right: none; padding: 5.00pt 0cm 5.00pt 0cm'></div>");]]></script>
@@ -14,7 +14,7 @@ template.print("<div style='border-top: solid #0066A4 1.0pt; border-left: none; 
         <sys_created_on>2019-03-12 09:43:32</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>ff2ada47dbc47b00610f7b47f4961903</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>BI_standard_email_footer</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -22,6 +22,6 @@ template.print("<div style='border-top: solid #0066A4 1.0pt; border-left: none; 
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sys_script_email_ff2ada47dbc47b00610f7b47f4961903</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-04-04 11:11:21</sys_updated_on>
+        <sys_updated_on>2019-04-05 07:36:02</sys_updated_on>
     </sys_script_email>
 </record_update>

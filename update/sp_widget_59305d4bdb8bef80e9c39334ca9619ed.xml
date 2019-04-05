@@ -260,7 +260,7 @@ tooltip._top tip tip-arrow {&#13;
         <sys_created_on>2019-01-21 11:16:43</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>59305d4bdb8bef80e9c39334ca9619ed</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>BI Portal - Most Voted</sys_name>
         <sys_package display_value="Business Improvement Portal" source="x_baes2_busimprove">cecbd46adb3a2780561fb29a6896192f</sys_package>
         <sys_policy/>
@@ -268,7 +268,7 @@ tooltip._top tip tip-arrow {&#13;
         <sys_scope display_value="Business Improvement Portal">cecbd46adb3a2780561fb29a6896192f</sys_scope>
         <sys_update_name>sp_widget_59305d4bdb8bef80e9c39334ca9619ed</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-04-03 10:31:32</sys_updated_on>
+        <sys_updated_on>2019-04-05 08:12:07</sys_updated_on>
         <template><![CDATA[<sp-panel ng-if="data.articles.length > 0" >
   <div ng-repeat="a in data.articles" class="m-b">
     <div style="float:left;">
@@ -293,19 +293,19 @@ tooltip._top tip tip-arrow {&#13;
         ${{{::a.sys_view_count}} View}
       </span>
       <span ng-if="a.sys_view_count > 1" class="views pad-right">
-        <span class="pad-right">&#8226;</span><glyph sn-char="eye-open" class="pad-right" />
+        <span class="pad-right hidden">&#8226;</span><glyph sn-char="eye-open" class="pad-right" />
         ${{{::a.sys_view_count}} Views}
       </span>      
       <span ng-if="a.commentCount == 1" class="views pad-right text-nowrap">
-        <span class="pad-right">&#8226;</span> <i class="fa fa-comments pad-right" />
+        <span class="pad-right hidden">&#8226;</span> <i class="fa fa-comments pad-right" />
         ${{{::a.commentCount}} Comment}
       </span>
       <span ng-if="a.commentCount > 1 || item.commentCount == 0" class="views pad-right text-nowrap">
-        <span class="pad-right">&#8226;</span> <i class="fa fa-comments pad-right" />
+        <span class="pad-right hidden">&#8226;</span> <i class="fa fa-comments pad-right" />
         ${{{::a.commentCount}} Comments}
       </span>      
       <span ng-if="false" class="published pad-right">
-        <span ng-if="a.sys_view_count > 0" class="pad-right">&#8226;</span> <glyph sn-char="calendar" class="pad-right" />
+        <span ng-if="a.sys_view_count > 0" class="pad-right hidden">&#8226;</span> <glyph sn-char="calendar" class="pad-right" />
         <sn-day-ago date="a.published"/>
       </span>
     </div>
